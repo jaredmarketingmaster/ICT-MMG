@@ -1,6 +1,6 @@
 # I.C.T. — Landing de venta (beta)
 
-Landing de **I.C.T.**, el sistema de adquisición de clientes de **Marketing Masters Group** para dueños de tiendas de iPhone en Colombia:
+Landing de **I.C.T.**, el sistema de adquisición de clientes de **Marketing Masters Group** para dueños de tiendas de iPhone:
 
 - **I**nterrupción: campañas en Meta.
 - **C**aptura: cotizadora conectada al WhatsApp de la tienda y a un CRM.

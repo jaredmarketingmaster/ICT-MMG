@@ -4,7 +4,7 @@ Guía para las próximas sesiones de Claude Code en este repo. Leer completa ant
 
 ## Qué es
 
-Landing estática (HTML + CSS + JS vanilla con ES modules, **sin build ni npm en producción**, solo Google Fonts como dependencia externa) para vender I.C.T. a dueños de tiendas de iPhone en Colombia. El tráfico es tibio y llega casi todo desde el celular. Hay un solo objetivo y un solo CTA: **"Aplicar a un cupo"**, que lleva al formulario `#aplicar`.
+Landing estática (HTML + CSS + JS vanilla con ES modules, **sin build ni npm en producción**, solo Google Fonts como dependencia externa) para vender I.C.T. a dueños de tiendas de iPhone. El tráfico es tibio y llega casi todo desde el celular. Hay un solo objetivo y un solo CTA: **"Aplicar a un cupo"**, que lleva al formulario `#aplicar`.
 
 - Toda la configuración está en `config.js`. Nunca se hardcodean links, IDs ni datos legales en el HTML o el JS.
 - Encabezado y pie: una sola plantilla en `assets/js/comun.js`.
@@ -26,6 +26,7 @@ El texto visible es literal del brief. Se pueden ajustar saltos de línea y jera
 8. Números en formato colombiano: punto de miles y coma decimal (USD 6.280, USD 26,17). En JS, usar `formatearNumero` / `formatearUSD` de `assets/js/utils.js`; no usar `Intl`, que en español puede no agrupar los números de 4 cifras.
 9. No inventar datos, cifras, testimonios ni logos. Lo que falta se deja como `[PENDIENTE]` visible o vacío en `config.js`.
 10. Los cupos por ciudad (`CONFIG.cupos`) solo llevan datos reales. Vacío = la franja no se muestra.
+11. El copy no limita el servicio a Colombia (pedido de Jared): nada de "en Colombia" ni "solo trabajamos en Colombia". Se mantienen el español de Colombia, el formato numérico, "(hora Colombia)" en la agenda y el +57 por defecto en el WhatsApp.
 
 ## Identidad visual (resumen)
 
