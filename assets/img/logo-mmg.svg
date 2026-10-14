@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 86.6 100" width="86.6" height="100" role="img" aria-labelledby="mmg-logo-titulo">
+  <!--
+    Recreación provisoria; reemplazar por el vector oficial cuando exista.
+    Calcada a partir de assets/img/logo-mmg-isotipo-70px.png (70×70 px):
+    hexágono vertical regular con degradado azul (#1A73E8) arriba → gris (#4A4A4A) abajo
+    y monograma "MM" en blanco, trazado como líneas (no depende de ninguna fuente).
+  -->
+  <title id="mmg-logo-titulo">Marketing Masters Group</title>
+  <defs>
+    <linearGradient id="mmg-grad-logo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1A73E8"/>
+      <stop offset="1" stop-color="#4A4A4A"/>
+    </linearGradient>
+  </defs>
+  <polygon points="43.3,0 86.6,25 86.6,75 43.3,100 0,75 0,25" fill="url(#mmg-grad-logo)"/>
+  <path d="M15.23 62.28V36.9L26.64 55.4L38.04 36.9V62.28M48.56 62.28V36.9L59.97 55.4L71.37 36.9V62.28"
+        fill="none" stroke="#FFFFFF" stroke-width="3.1" stroke-linejoin="miter" stroke-miterlimit="2"/>
+</svg>

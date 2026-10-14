@@ -1,0 +1,21 @@
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores
+.vscode/
+.idea/
+*.swp
+
+# Herramientas de desarrollo (el sitio no usa npm)
+node_modules/
+package-lock.json
+npm-debug.log*
+
+# Capturas de la verificación (tests/verificar.cjs con ICT_CAPTURAS=1)
+tests/capturas/
+
+# Variables locales
+.env
+.env.*

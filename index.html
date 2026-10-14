@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>I.C.T. | Ventas de iPhone medidas una por una — Marketing Masters Group</title>
+  <!-- Subtítulo del hero recortado a 155 caracteres o menos (se quitó la segunda frase). -->
+  <meta name="description" content="I.C.T. conecta su anuncio, una cotizadora y su WhatsApp para que cada venta quede registrada con la campaña que la generó.">
+  <!-- BETA: quitar esta línea cuando salga la versión definitiva. -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#2D3748">
+
+  <!-- Open Graph / Twitter.
+       [PENDIENTE] og:image, twitter:image y og:url tienen que ser URLs ABSOLUTAS
+       (https://dominio/...) para que Facebook y WhatsApp muestren la vista previa.
+       Completar cuando se defina el dominio. -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_CO">
+  <meta property="og:site_name" content="Marketing Masters Group">
+  <meta property="og:title" content="I.C.T. | Ventas de iPhone medidas una por una — Marketing Masters Group">
+  <meta property="og:description" content="I.C.T. conecta su anuncio, una cotizadora y su WhatsApp para que cada venta quede registrada con la campaña que la generó.">
+  <meta property="og:image" content="assets/img/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="15 ventas de iPhone atribuidas a su pauta en 30 días, medidas una por una. Máximo 5 tiendas por ciudad.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="I.C.T. | Ventas de iPhone medidas una por una — Marketing Masters Group">
+  <meta name="twitter:description" content="I.C.T. conecta su anuncio, una cotizadora y su WhatsApp para que cada venta quede registrada con la campaña que la generó.">
+  <meta name="twitter:image" content="assets/img/og-image.png">
+
+  <link rel="icon" href="assets/img/logo-mmg.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/img/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Google Fonts sin bloquear el primer pintado (display=swap muestra la fuente de respaldo mientras carga). -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Barlow:wght@700&amp;family=Lato:ital,wght@0,400;0,700;0,900;1,400&amp;display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@700&amp;family=Lato:ital,wght@0,400;0,700;0,900;1,400&amp;display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@700&amp;family=Lato:ital,wght@0,400;0,700;0,900;1,400&amp;display=swap"></noscript>
+  <link rel="stylesheet" href="assets/css/styles.css">
+
+  <script>
+    // Titular A/B: se decide ANTES de pintar para que no parpadee.
+    // Prioridad: ?h=a|b en la URL > variante ya vista en la sesión. Si no hay
+    // ninguna, main.js aplica CONFIG.titularPorDefecto (el CSS muestra la A).
+    (function () {
+      try {
+        var h = (new URLSearchParams(location.search).get("h") || "").toLowerCase();
+        if (h !== "a" && h !== "b") {
+          h = String(JSON.parse(sessionStorage.getItem("ict_variante") || "null") || "").toLowerCase();
+        }
+        if (h === "a" || h === "b") document.documentElement.setAttribute("data-h", h);
+      } catch (e) {}
+    })();
+  </script>
+  <link rel="modulepreload" href="config.js">
+  <script type="module" src="assets/js/main.js"></script>
+</head>
+<body class="con-cta-movil">
+  <a class="saltar-al-contenido" href="#contenido">Saltar al contenido</a>
+
+  <div id="encabezado" data-cta="#aplicar"></div>
+
+  <main id="contenido">
+
+    <!-- ===================================================================
+         01) HERO
+         =================================================================== -->
+    <section class="hero" id="hero" aria-labelledby="hero-titulo">
+      <div class="contenedor hero__interior">
+        <div class="hero__texto">
+          <p class="hero__antetitulo">
+            <span class="numero-seccion">01)</span>
+            <span class="hero__antetitulo-texto">Para tiendas de iPhone en Colombia que ya pautan en Meta</span>
+          </p>
+          <h1 id="hero-titulo">
+            <span class="titular titular--a">15 ventas de iPhone atribuidas a su pauta en 30 días, medidas una por una.</span>
+            <span class="titular titular--b">Un chat no es una venta. Sepa cuántos iPhones le vende cada anuncio.</span>
+          </h1>
+          <p class="hero__subtitulo">I.C.T. conecta su anuncio, una cotizadora y su WhatsApp para que cada venta quede registrada con la campaña que la generó. Así la plata va a la campaña que vende.</p>
+          <a class="boton boton--primario boton--bloque-movil" href="#aplicar" data-cta="hero">Aplicar a un cupo</a>
+          <p class="hero__debajo-boton">2 minutos. Si su tienda califica, agendamos una videollamada de 30 minutos. Máximo 5 tiendas por ciudad.</p>
+        </div>
+
+        <!-- Si CONFIG.videoHero tiene URL, main.js reemplaza el mock por el video. -->
+        <div class="hero__visual" id="hero-visual">
+          <div class="telefono-mock" role="img" aria-label="Ilustración de una cotizadora de iPhone conectada a WhatsApp">
+            <div class="telefono-mock__pantalla">
+              <div class="mock__tienda"><span class="mock__tienda-logo"></span><span class="mock__tienda-linea"></span></div>
+              <p class="mock__titulo">Cotice su iPhone</p>
+              <div class="mock__producto"><span></span></div>
+              <div class="mock__selector">
+                <span>iPhone 17 Pro · 256 GB · Negro</span>
+                <svg width="12" height="8" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1l5 5 5-5" fill="none" stroke="#2D3748" stroke-width="2"/></svg>
+              </div>
+              <p class="mock__precio">$ X.XXX.XXX</p>
+              <div class="mock__boton">
+                <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v12H8l-4 4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+                Enviar por WhatsApp
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Franja de prueba -->
+    <div class="franja-prueba">
+      <div class="contenedor franja-prueba__interior">
+        <span class="hex hex--chico" aria-hidden="true"></span>
+        <p>Una tienda de iPhone en Argentina que trabaja con este sistema reportó <strong>240 ventas en 3 meses y medio</strong>, a unos <strong>USD 26 cada una</strong>.</p>
+      </div>
+    </div>
+
+    <!-- Franja de cupos: solo se muestra si CONFIG.cupos tiene datos reales. -->
+    <div class="cupos" id="cupos" hidden>
+      <div class="contenedor">
+        <ul class="chips" role="list" aria-label="Cupos por ciudad"></ul>
+      </div>
+    </div>
+
+    <!-- ===================================================================
+         02) EL PROBLEMA
+         =================================================================== -->
+    <section class="seccion" id="problema" aria-labelledby="problema-titulo">
+      <div class="contenedor">
+        <div class="seccion__cabecera revelar">
+          <p class="numero-seccion">02)</p>
+          <h2 id="problema-titulo">¿Le pasa esto con su pauta?</h2>
+        </div>
+        <ul class="lista-hex problema__lista revelar" role="list">
+          <li>Le escriben “precio”, les responde y nunca más contestan.</li>
+          <li>La pauta trae chats, pero a fin de mes no sabe cuántos terminaron en una venta.</li>
+          <li>No sabe cuál de sus anuncios vendió iPhones y cuál solo trajo curiosos.</li>
+          <li>Cada asesor responde a su manera y a su tiempo.</li>
+          <!-- [PENDIENTE] validar este punto. Para quitarlo, borrar el <li> con data-pendiente="validar-agencias". -->
+          <li data-pendiente="validar-agencias">Si trabaja con una agencia, le reporta mensajes y alcance, no ventas.</li>
+        </ul>
+        <p class="destacado revelar">El problema no es el anuncio, es lo que se mide. Si mide mensajes, termina pagando por mensajes.</p>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         03) CONTRASTE E I.C.T.
+         =================================================================== -->
+    <section class="seccion seccion--suave" id="ict" aria-labelledby="ict-titulo">
+      <div class="contenedor">
+        <div class="seccion__cabecera revelar">
+          <p class="numero-seccion">03)</p>
+          <h2 id="ict-titulo">La mayoría mide mensajes. I.C.T. mide ventas.</h2>
+          <p>Casi todas las tiendas pautan para recibir chats, y dan el anuncio por bueno si llegan mensajes. Así nadie sabe qué anuncio vendió y la plata se reparte a ciegas. I.C.T. no termina en el clic: cubre los tres tramos que hay entre un anuncio y un iPhone vendido.</p>
+        </div>
+
+        <div class="tarjetas-ict">
+          <article class="tarjeta tarjeta-ict revelar">
+            <span class="hex" aria-hidden="true">I</span>
+            <h3>I de Interrupción.</h3>
+            <p>Campañas en Meta con la estrategia de un caso que ya funcionó. Nosotros escribimos los guiones de los anuncios; los graba alguien de su tienda.</p>
+          </article>
+          <article class="tarjeta tarjeta-ict revelar">
+            <span class="hex" aria-hidden="true">C</span>
+            <h3>C de Captura.</h3>
+            <p>Su cliente entra a una cotizadora, elige el modelo, la capacidad y el color, ve el precio y le llega al WhatsApp con todo definido. Su equipo lo atiende con un guion de venta, entrenado en 5 sesiones.</p>
+          </article>
+          <article class="tarjeta tarjeta-ict revelar">
+            <span class="hex" aria-hidden="true">T</span>
+            <h3>T de Tracking.</h3>
+            <p>Cada venta que su equipo registra en el CRM queda atribuida a la campaña que la generó.</p>
+          </article>
+        </div>
+
+        <figure class="flujo revelar">
+          <!-- Escritorio: horizontal -->
+          <svg class="flujo__h" viewBox="0 0 960 232" role="img" aria-labelledby="flujo-h-titulo flujo-h-desc">
+            <title id="flujo-h-titulo">Recorrido de una venta con I.C.T.</title>
+            <desc id="flujo-h-desc">Paso 1: anuncio. Paso 2: cotizadora. Paso 3: WhatsApp. Paso 4: venta registrada. Una flecha vuelve de la venta al anuncio.</desc>
+            <defs>
+              <linearGradient id="flujo-h-grad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#1A73E8"/><stop offset="1" stop-color="#4A4A4A"/>
+              </linearGradient>
+              <marker id="flujo-h-flecha" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0L10 5L0 10z" fill="#2D3748"/>
+              </marker>
+              <marker id="flujo-h-vuelta" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0L10 5L0 10z" fill="#247571"/>
+              </marker>
+            </defs>
+            <g fill="url(#flujo-h-grad)">
+              <polygon points="120,20 158.1,42 158.1,86 120,108 81.9,86 81.9,42"/>
+              <polygon points="360,20 398.1,42 398.1,86 360,108 321.9,86 321.9,42"/>
+              <polygon points="600,20 638.1,42 638.1,86 600,108 561.9,86 561.9,42"/>
+              <polygon points="840,20 878.1,42 878.1,86 840,108 801.9,86 801.9,42"/>
+            </g>
+            <g class="flujo__numero" font-size="30" text-anchor="middle">
+              <text class="flujo__numero" x="120" y="75">1</text>
+              <text class="flujo__numero" x="360" y="75">2</text>
+              <text class="flujo__numero" x="600" y="75">3</text>
+              <text class="flujo__numero" x="840" y="75">4</text>
+            </g>
+            <g stroke="#2D3748" stroke-width="3" marker-end="url(#flujo-h-flecha)">
+              <line x1="172" y1="64" x2="304" y2="64"/>
+              <line x1="412" y1="64" x2="544" y2="64"/>
+              <line x1="652" y1="64" x2="784" y2="64"/>
+            </g>
+            <g font-size="23" text-anchor="middle">
+              <text x="120" y="146">Anuncio</text>
+              <text x="360" y="146">Cotizadora</text>
+              <text x="600" y="146">WhatsApp</text>
+              <text x="840" y="146">Venta registrada</text>
+            </g>
+            <path d="M840 166V196Q840 214 822 214H138Q120 214 120 196V172" fill="none" stroke="#247571" stroke-width="3" stroke-dasharray="9 7" marker-end="url(#flujo-h-vuelta)"/>
+          </svg>
+
+          <!-- Móvil: vertical -->
+          <svg class="flujo__v" viewBox="0 0 360 512" role="img" aria-labelledby="flujo-v-titulo flujo-v-desc">
+            <title id="flujo-v-titulo">Recorrido de una venta con I.C.T.</title>
+            <desc id="flujo-v-desc">Paso 1: anuncio. Paso 2: cotizadora. Paso 3: WhatsApp. Paso 4: venta registrada. Una flecha vuelve de la venta al anuncio.</desc>
+            <defs>
+              <linearGradient id="flujo-v-grad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#1A73E8"/><stop offset="1" stop-color="#4A4A4A"/>
+              </linearGradient>
+              <marker id="flujo-v-flecha" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0L10 5L0 10z" fill="#2D3748"/>
+              </marker>
+              <marker id="flujo-v-vuelta" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0L10 5L0 10z" fill="#247571"/>
+              </marker>
+            </defs>
+            <g fill="url(#flujo-v-grad)">
+              <polygon points="104,16 138.64,36 138.64,76 104,96 69.36,76 69.36,36"/>
+              <polygon points="104,152 138.64,172 138.64,212 104,232 69.36,212 69.36,172"/>
+              <polygon points="104,288 138.64,308 138.64,348 104,368 69.36,348 69.36,308"/>
+              <polygon points="104,424 138.64,444 138.64,484 104,504 69.36,484 69.36,444"/>
+            </g>
+            <g font-size="28" text-anchor="middle">
+              <text class="flujo__numero" x="104" y="66">1</text>
+              <text class="flujo__numero" x="104" y="202">2</text>
+              <text class="flujo__numero" x="104" y="338">3</text>
+              <text class="flujo__numero" x="104" y="474">4</text>
+            </g>
+            <g stroke="#2D3748" stroke-width="3" marker-end="url(#flujo-v-flecha)">
+              <line x1="104" y1="104" x2="104" y2="140"/>
+              <line x1="104" y1="240" x2="104" y2="276"/>
+              <line x1="104" y1="376" x2="104" y2="412"/>
+            </g>
+            <g font-size="23">
+              <text x="160" y="64">Anuncio</text>
+              <text x="160" y="200">Cotizadora</text>
+              <text x="160" y="336">WhatsApp</text>
+              <text x="160" y="472">Venta registrada</text>
+            </g>
+            <path d="M62 464H32Q22 464 22 454V66Q22 56 32 56H58" fill="none" stroke="#247571" stroke-width="3" stroke-dasharray="9 7" marker-end="url(#flujo-v-vuelta)"/>
+          </svg>
+
+          <figcaption>
+            <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 8H8.5M12 4L8 8l4 4M20 8v8a4 4 0 0 1-4 4H6" fill="none" stroke="#247571" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            La venta le dice a la pauta qué funciona
+          </figcaption>
+        </figure>
+
+        <div class="por-que revelar">
+          <h3>Por qué funciona mejor</h3>
+          <ul class="por-que__lista" role="list">
+            <li><strong>Invierte donde se vende.</strong> Si sabe qué campaña vende iPhones, la plata va ahí.</li>
+            <li><strong>Su asesor no arranca de cero.</strong> Quien usó la cotizadora ya eligió el modelo y vio el precio.</li>
+            <li><strong>Lo ve rápido.</strong> El día 10 de tener los anuncios al aire ya se mide el primer hito.</li>
+          </ul>
+        </div>
+
+        <div class="acciones-seccion">
+          <a class="boton boton--primario boton--bloque-movil" href="#aplicar">Aplicar a un cupo</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         04) EL CASO
+         =================================================================== -->
+    <section class="seccion" id="caso" aria-labelledby="caso-titulo">
+      <div class="contenedor">
+        <div class="seccion__cabecera revelar">
+          <p class="numero-seccion">04)</p>
+          <h2 id="caso-titulo">Lo que pasó en una tienda de iPhone en Argentina</h2>
+          <p>Entre el 1 de julio y el 12 de octubre de 2026, la tienda invirtió USD 6.280 en Meta y reportó 240 ventas, unos USD 26 por venta.</p>
+        </div>
+
+        <div class="revelar">
+          <table class="tabla tabla--caso" role="table" aria-labelledby="caso-titulo">
+            <thead role="rowgroup">
+              <tr role="row">
+                <th scope="col" role="columnheader">Mes</th>
+                <th scope="col" role="columnheader">Pauta (USD)</th>
+                <th scope="col" role="columnheader">Ventas reportadas</th>
+                <th scope="col" role="columnheader">Costo por venta (USD)</th>
+              </tr>
+            </thead>
+            <tbody role="rowgroup">
+              <tr role="row">
+                <th scope="row" role="rowheader">Julio</th>
+                <td role="cell" data-etiqueta="Pauta (USD)">1.522</td>
+                <td role="cell" data-etiqueta="Ventas reportadas">70</td>
+                <td role="cell" data-etiqueta="Costo por venta (USD)">21,75</td>
+              </tr>
+              <tr role="row">
+                <th scope="row" role="rowheader">Agosto</th>
+                <td role="cell" data-etiqueta="Pauta (USD)">1.786</td>
+                <td role="cell" data-etiqueta="Ventas reportadas">80</td>
+                <td role="cell" data-etiqueta="Costo por venta (USD)">22,33</td>
+              </tr>
+              <tr role="row" class="es-destacada">
+                <th scope="row" role="rowheader">Septiembre <span class="etiqueta-mes">el mes que más enseña</span></th>
+                <td role="cell" data-etiqueta="Pauta (USD)">2.100</td>
+                <td role="cell" data-etiqueta="Ventas reportadas">50</td>
+                <td role="cell" data-etiqueta="Costo por venta (USD)">42,00</td>
+              </tr>
+              <tr role="row">
+                <th scope="row" role="rowheader">Octubre (1 al 12)</th>
+                <td role="cell" data-etiqueta="Pauta (USD)">871</td>
+                <td role="cell" data-etiqueta="Ventas reportadas">40</td>
+                <td role="cell" data-etiqueta="Costo por venta (USD)">21,78</td>
+              </tr>
+            </tbody>
+            <tfoot role="rowgroup">
+              <tr role="row">
+                <th scope="row" role="rowheader">Total</th>
+                <td role="cell" data-etiqueta="Pauta (USD)">6.280</td>
+                <td role="cell" data-etiqueta="Ventas reportadas">240</td>
+                <td role="cell" data-etiqueta="Costo por venta (USD)">26,17</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+
+        <p class="caso__ensena revelar"><strong>El mes que más enseña:</strong> en septiembre el sistema se aplicó a medias. El costo por venta subió de USD 22,33 a USD 42,00, aun invirtiendo un 17,6% más.</p>
+        <p class="letra-chica revelar">Las ventas las reporta la tienda. Es un solo caso, en otro país. No le prometemos esos números, y por eso hay una garantía al día 10.</p>
+
+        <!-- [PENDIENTE] Captura del Administrador de anuncios (CONFIG.capturaCaso). Sin imagen, este bloque se elimina. -->
+        <figure class="caso__captura" id="caso-captura" hidden></figure>
+
+        <div class="acciones-seccion">
+          <a class="boton boton--primario boton--bloque-movil" href="#aplicar">Aplicar a un cupo</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         05) QUÉ INCLUYE Y CÓMO ARRANCAMOS
+         =================================================================== -->
+    <section class="seccion seccion--suave" id="incluye" aria-labelledby="incluye-titulo">
+      <div class="contenedor">
+        <div class="seccion__cabecera revelar">
+          <p class="numero-seccion">05)</p>
+          <h2 id="incluye-titulo">Qué recibe su tienda</h2>
+        </div>
+
+        <div class="grilla-2 incluye">
+          <div class="tarjeta revelar">
+            <h3>Incluye</h3>
+            <ul class="lista-hex" role="list">
+              <li>Estrategia, configuración y gestión de campañas de Meta en la cuenta publicitaria de su tienda.</li>
+              <li>Guiones escritos para sus anuncios en video.</li>
+              <li>Cotizadora de iPhone con sus modelos y precios, conectada a su WhatsApp.</li>
+              <li>CRM configurado, con el registro de cada venta y su campaña de origen.</li>
+              <li>5 sesiones de capacitación de ventas de 1 hora para quien atiende el WhatsApp.</li>
+              <li>Hasta 4 horas al mes de mantenimiento, con la actualización mensual de precios.</li>
+              <li>Un reporte mensual: ventas atribuidas, costo por venta y cuánto le quedó después de la pauta y la cuota.</li>
+            </ul>
+          </div>
+          <div class="tarjeta tarjeta--no revelar">
+            <h3>No incluye</h3>
+            <ul class="lista-hex lista-hex--gris" role="list">
+              <li>La pauta. Usted se la paga directamente a Meta, con su tarjeta.</li>
+              <li>La grabación de los videos. Nosotros escribimos los guiones; los graba usted, alguien de su equipo o un creador de contenido.</li>
+              <li>Los costos de uso de terceros, como la API de WhatsApp.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cronograma revelar">
+          <h3>Cómo arrancamos (unos 7 días hábiles)</h3>
+          <ol class="linea-tiempo" role="list">
+            <li><strong>Día 1:</strong> reunión de conexión. Conectamos su cuenta de Meta, su Instagram y su WhatsApp, y le entregamos los guiones.</li>
+            <li><strong>Días 2 a 6:</strong> 5 sesiones de capacitación, una por día, mientras su tienda graba los videos.</li>
+            <li><strong>Días 7 y 8:</strong> prueba completa del sistema, de la cotizadora a la venta registrada.</li>
+            <li><strong>Día 0:</strong> los anuncios salen al aire y empieza a contar el plazo de los 30 días.</li>
+          </ol>
+          <p class="nota">Si los videos llegan tarde, el día 0 se corre. El sistema depende de que su tienda entregue a tiempo.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         06) PARA QUIÉN ES Y PARA QUIÉN NO
+         =================================================================== -->
+    <section class="seccion para-quien" id="para-quien" aria-labelledby="para-quien-titulo">
+      <div class="contenedor">
+        <div class="seccion__cabecera revelar">
+          <p class="numero-seccion">06)</p>
+          <h2 id="para-quien-titulo">No trabajamos con cualquier tienda</h2>
+        </div>
+
+        <div class="grilla-2">
+          <div class="tarjeta revelar">
+            <h3>Es para usted si:</h3>
+            <ul class="lista-hex" role="list">
+              <li>Tiene una tienda de iPhone en Colombia y el iPhone es lo que más vende.</li>
+              <li>Ya pauta en Meta y puede sumar USD 1.000 al mes de pauta nueva, pagados directamente a Meta.</li>
+              <li>Cada iPhone le deja en promedio USD 81 o más de utilidad.</li>
+              <li>Tiene a alguien que pueda grabar los anuncios: usted, alguien del equipo o un creador.</li>
+              <li>Su equipo puede responder un WhatsApp en 15 minutos o menos en horario comercial.</li>
+              <li>Decide usted, o con un socio que puede estar en la llamada.</li>
+            </ul>
+          </div>
+          <div class="tarjeta tarjeta--no revelar">
+            <h3>No es para usted si:</h3>
+            <ul class="lista-hex lista-hex--gris" role="list">
+              <li>No puede sumar USD 1.000 al mes de pauta nueva.</li>
+              <li>Sus iPhones le dejan menos de USD 81 de utilidad. Con nuestra cuenta conservadora, el sistema no le deja ganancia, y más pauta no lo arregla.</li>
+              <li>Quiere tocar las campañas por su cuenta.</li>
+              <li>No tiene quién grabe ni quién responda rápido.</li>
+            </ul>
+          </div>
+        </div>
+
+        <p class="seccion__cierre revelar">Trabajamos con máximo 5 tiendas por ciudad. Preferimos decírselo antes que venderle algo que no le va a funcionar.</p>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         07) INVERSIÓN Y CUENTA DE RENTABILIDAD
+         =================================================================== -->
+    <section class="seccion seccion--suave" id="inversion" aria-labelledby="inversion-titulo">
+      <div class="contenedor">
+        <div class="seccion__cabecera revelar">
+          <p class="numero-seccion">07)</p>
+          <h2 id="inversion-titulo">Lo que cuesta, y la cuenta que tiene que cerrar</h2>
+        </div>
+
+        <div class="precio">
+          <div class="tarjeta revelar">
+            <p class="precio__principal">USD 210 al mes.</p>
+            <p class="precio__ghl">Si su tienda ya tiene GoHighLevel propio: USD 150 al mes.</p>
+            <ul class="lista-hex" role="list">
+              <li>Se cobra en dólares por débito automático, con tarjeta Visa o Mastercard.</li>
+              <li>Sin permanencia: cancela cuando quiera, con efecto al final del mes ya pagado.</li>
+            </ul>
+            <p class="precio__pauta"><strong>Más la pauta:</strong> USD 1.000 al mes nuevos, que usted le paga directamente a Meta.</p>
+          </div>
+
+          <div class="revelar">
+            <p class="cuenta__texto">Su costo mensual es de USD 1.210 (pauta más cuota). Las ventas que necesita para cubrirlo dependen de cuánto le deja cada iPhone.</p>
+            <table class="tabla tabla--cuenta" id="tabla-cuenta" aria-label="Ventas para cubrir USD 1.210 y lo que le queda con 15 ventas, según la utilidad por iPhone">
+              <thead>
+                <tr>
+                  <th scope="col">Utilidad por iPhone (USD)</th>
+                  <th scope="col">Ventas para cubrir USD 1.210</th>
+                  <th scope="col">Lo que le queda con 15 ventas (USD)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">81</th><td>15</td><td>5</td></tr>
+                <tr><th scope="row">90</th><td>14</td><td>140</td></tr>
+                <tr><th scope="row">100</th><td>13</td><td>290</td></tr>
+                <tr><th scope="row">120</th><td>11</td><td>590</td></tr>
+                <tr><th scope="row">150</th><td>9</td><td>1.040</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Calculadora (main.js). Solo enteros > 0; acepta "1.200" con punto de miles. -->
+        <div class="tarjeta calculadora revelar">
+          <div class="calculadora__pregunta">
+            <label id="calc-etiqueta" for="calc-utilidad">¿Cuánto le deja cada iPhone?</label>
+            <div class="calculadora__entrada">
+              <span id="calc-moneda">USD</span>
+              <input class="control" id="calc-utilidad" type="text" inputmode="numeric" autocomplete="off"
+                     aria-labelledby="calc-etiqueta calc-moneda" aria-describedby="calc-ayuda">
+            </div>
+            <p class="calculadora__ayuda" id="calc-ayuda" hidden>Escriba un número entero mayor que 0.</p>
+          </div>
+          <div class="calculadora__resultados-col" aria-live="polite">
+            <dl class="calculadora__resultados">
+              <div>
+                <dt>Ventas para cubrir USD 1.210 al mes</dt>
+                <dd id="calc-ventas">—</dd>
+              </div>
+              <div>
+                <dt>Lo que le queda con 15 ventas</dt>
+                <dd id="calc-queda">—</dd>
+              </div>
+            </dl>
+            <p class="calculadora__aviso" id="calc-aviso" hidden>Con esta utilidad, nuestra cuenta conservadora no le deja ganancia. Preferimos decírselo antes de cobrarle.</p>
+          </div>
+        </div>
+
+        <p class="cuenta__debajo revelar">Si sus iPhones le dejan menos de USD 81, con esta cuenta el sistema no le deja ganancia, y se lo decimos antes de cobrarle. En la llamada hacemos la cuenta con sus números reales.</p>
+
+        <div class="acciones-seccion">
+          <a class="boton boton--primario boton--bloque-movil" href="#aplicar">Aplicar a un cupo</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         08) GARANTÍA
+         =================================================================== -->
+    <section class="seccion garantia" id="garantia" aria-labelledby="garantia-titulo">
+      <div class="contenedor">
+        <div class="seccion__cabecera revelar">
+          <p class="numero-seccion">08)</p>
+          <h2 id="garantia-titulo">Garantía del día 10</h2>
+        </div>
+
+        <div class="garantia__tarjeta revelar">
+          <p class="garantia__texto">Si a los 10 días de tener los anuncios al aire no hay al menos 1 venta de iPhone o 30 conversaciones calificadas, y usted cumplió las condiciones del sistema, le devolvemos la cuota del primer mes. Sin preguntas.</p>
+        </div>
+
+        <div class="garantia__detalle">
+          <div class="revelar">
+            <p><strong>Usted elige:</strong> si prefiere la devolución, se la hacemos y se cancela la suscripción. Si está conforme con lo que vio, sigue sin devolución.</p>
+            <p><strong>Qué es una conversación calificada:</strong> la persona responde después del saludo, indica un modelo o usa la cotizadora, y confirma su forma de pago o su presupuesto.</p>
+          </div>
+          <div class="revelar">
+            <h3>Las condiciones (las mismas que hacen funcionar el sistema)</h3>
+            <ol class="condiciones" role="list">
+              <li>Asistir a las 5 sesiones de capacitación.</li>
+              <li>Mantener la pauta de USD 1.000 al mes activa desde el día 0.</li>
+              <li>Responder en 15 minutos o menos en horario comercial.</li>
+              <li>Registrar cada venta en el CRM.</li>
+              <li>Seguir el guion de venta.</li>
+              <li>No modificar campañas ni anuncios.</li>
+            </ol>
+          </div>
+        </div>
+
+        <p class="letra-chica revelar">La pauta que usted le paga a Meta no se reembolsa. Las 15 ventas son el objetivo, no una garantía: lo que se garantiza es el hito del día 10.</p>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         09) CUPOS Y FORMULARIO
+         =================================================================== -->
+    <section class="seccion seccion--suave" id="aplicar" aria-labelledby="aplicar-titulo">
+      <div class="contenedor aplicar__grid">
+        <div class="seccion__cabecera">
+          <p class="numero-seccion">09)</p>
+          <h2 id="aplicar-titulo">Máximo 5 tiendas por ciudad</h2>
+          <p>Durante el año de lanzamiento trabajamos con un máximo de 5 tiendas por ciudad, y el cupo se reserva con el pago. Complete la aplicación: si su tienda califica, elige un horario para una videollamada de 30 minutos.</p>
+        </div>
+
+        <div class="tarjeta aplicar__tarjeta">
+          <form class="formulario" id="form-aplicacion" method="post" novalidate>
+            <div class="formulario__progreso" aria-hidden="true">
+              <p class="formulario__paso-texto" data-paso-texto>Paso 1 de 2</p>
+              <div class="progreso"><span class="progreso__barra" data-progreso-barra></span></div>
+            </div>
+
+            <!-- Paso 1: datos -->
+            <fieldset class="formulario__paso" data-paso="1">
+              <legend class="formulario__leyenda" tabindex="-1" data-paso-titulo>Sus datos</legend>
+
+              <div class="campo">
+                <label for="f-nombre">Su nombre</label>
+                <input class="control" id="f-nombre" name="nombre" type="text" autocomplete="name" required aria-describedby="error-nombre">
+                <p class="campo__error" id="error-nombre" data-error-de="nombre" hidden></p>
+              </div>
+
+              <div class="campo">
+                <label for="f-whatsapp">Su WhatsApp</label>
+                <div class="telefono">
+                  <div class="prefijo">
+                    <select class="prefijo__select" id="f-prefijo" name="prefijo" aria-label="Prefijo del país" autocomplete="tel-country-code">
+                      <option value="57" selected>+57 Colombia</option>
+                      <option value="54">+54 Argentina</option>
+                      <option value="56">+56 Chile</option>
+                      <option value="593">+593 Ecuador</option>
+                      <option value="34">+34 España</option>
+                      <option value="1">+1 Estados Unidos</option>
+                      <option value="52">+52 México</option>
+                      <option value="507">+507 Panamá</option>
+                      <option value="51">+51 Perú</option>
+                      <option value="58">+58 Venezuela</option>
+                      <option value="otro">Otro país</option>
+                    </select>
+                    <span class="control prefijo__valor" aria-hidden="true" data-prefijo-valor>+57</span>
+                  </div>
+                  <input class="control" id="f-whatsapp" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" required aria-describedby="error-whatsapp">
+                </div>
+                <p class="campo__error" id="error-whatsapp" data-error-de="whatsapp" hidden></p>
+              </div>
+
+              <div class="campo">
+                <label for="f-tienda">Nombre de la tienda</label>
+                <input class="control" id="f-tienda" name="tienda" type="text" autocomplete="organization" required aria-describedby="error-tienda">
+                <p class="campo__error" id="error-tienda" data-error-de="tienda" hidden></p>
+              </div>
+
+              <div class="campo">
+                <label for="f-instagram">Instagram de la tienda</label>
+                <input class="control" id="f-instagram" name="instagram" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" required aria-describedby="error-instagram">
+                <p class="campo__error" id="error-instagram" data-error-de="instagram" hidden></p>
+              </div>
+
+              <div class="campo">
+                <label for="f-ciudad">Ciudad</label>
+                <input class="control" id="f-ciudad" name="ciudad" type="text" autocomplete="address-level2" required aria-describedby="error-ciudad">
+                <p class="campo__error" id="error-ciudad" data-error-de="ciudad" hidden></p>
+              </div>
+            </fieldset>
+
+            <!-- Paso 2: calificación -->
+            <fieldset class="formulario__paso" data-paso="2">
+              <legend class="formulario__leyenda" tabindex="-1" data-paso-titulo>Sobre su tienda</legend>
+
+              <fieldset class="campo">
+                <legend>¿El iPhone es lo que más venden?</legend>
+                <div class="opciones opciones--2">
+                  <label class="opcion"><input type="radio" name="iphone_principal" value="Sí" required aria-describedby="error-iphone_principal"><span>Sí</span></label>
+                  <label class="opcion"><input type="radio" name="iphone_principal" value="No" aria-describedby="error-iphone_principal"><span>No</span></label>
+                </div>
+                <p class="campo__error" id="error-iphone_principal" data-error-de="iphone_principal" hidden></p>
+              </fieldset>
+
+              <fieldset class="campo">
+                <legend>¿Cuánto invierten hoy en pauta al mes?</legend>
+                <div class="opciones">
+                  <label class="opcion"><input type="radio" name="pauta_actual" value="Nada" required aria-describedby="error-pauta_actual"><span>Nada</span></label>
+                  <label class="opcion"><input type="radio" name="pauta_actual" value="Menos de USD 300" aria-describedby="error-pauta_actual"><span>Menos de USD&nbsp;300</span></label>
+                  <label class="opcion"><input type="radio" name="pauta_actual" value="USD 300 a 1.000" aria-describedby="error-pauta_actual"><span>USD&nbsp;300 a&nbsp;1.000</span></label>
+                  <label class="opcion"><input type="radio" name="pauta_actual" value="Más de USD 1.000" aria-describedby="error-pauta_actual"><span>Más de USD&nbsp;1.000</span></label>
+                </div>
+                <p class="campo__error" id="error-pauta_actual" data-error-de="pauta_actual" hidden></p>
+              </fieldset>
+
+              <fieldset class="campo">
+                <legend>¿Pueden sumar USD 1.000 al mes de pauta nueva, pagados a Meta?</legend>
+                <div class="opciones opciones--2">
+                  <label class="opcion"><input type="radio" name="suma_1000" value="Sí" required aria-describedby="error-suma_1000"><span>Sí</span></label>
+                  <label class="opcion"><input type="radio" name="suma_1000" value="No" aria-describedby="error-suma_1000"><span>No</span></label>
+                </div>
+                <p class="campo__error" id="error-suma_1000" data-error-de="suma_1000" hidden></p>
+              </fieldset>
+
+              <fieldset class="campo">
+                <legend>¿Cuánto le deja en promedio cada iPhone?</legend>
+                <div class="opciones">
+                  <label class="opcion"><input type="radio" name="utilidad" value="Menos de USD 60" required aria-describedby="error-utilidad"><span>Menos de USD&nbsp;60</span></label>
+                  <label class="opcion"><input type="radio" name="utilidad" value="USD 60 a 80" aria-describedby="error-utilidad"><span>USD&nbsp;60 a&nbsp;80</span></label>
+                  <label class="opcion"><input type="radio" name="utilidad" value="USD 81 a 100" aria-describedby="error-utilidad"><span>USD&nbsp;81 a&nbsp;100</span></label>
+                  <label class="opcion"><input type="radio" name="utilidad" value="USD 101 a 150" aria-describedby="error-utilidad"><span>USD&nbsp;101 a&nbsp;150</span></label>
+                  <label class="opcion"><input type="radio" name="utilidad" value="Más de USD 150" aria-describedby="error-utilidad"><span>Más de USD&nbsp;150</span></label>
+                  <label class="opcion"><input type="radio" name="utilidad" value="No sé" aria-describedby="error-utilidad"><span>No sé</span></label>
+                </div>
+                <p class="campo__error" id="error-utilidad" data-error-de="utilidad" hidden></p>
+              </fieldset>
+
+              <fieldset class="campo">
+                <legend>¿Quién grabaría los anuncios?</legend>
+                <div class="opciones">
+                  <label class="opcion"><input type="radio" name="graba" value="Yo" required aria-describedby="error-graba"><span>Yo</span></label>
+                  <label class="opcion"><input type="radio" name="graba" value="Alguien del equipo" aria-describedby="error-graba"><span>Alguien del equipo</span></label>
+                  <label class="opcion"><input type="radio" name="graba" value="Un creador de contenido" aria-describedby="error-graba"><span>Un creador de contenido</span></label>
+                  <label class="opcion"><input type="radio" name="graba" value="Nadie todavía" aria-describedby="error-graba"><span>Nadie todavía</span></label>
+                </div>
+                <p class="campo__error" id="error-graba" data-error-de="graba" hidden></p>
+              </fieldset>
+
+              <fieldset class="campo">
+                <legend>¿Quién toma la decisión?</legend>
+                <div class="opciones opciones--2">
+                  <label class="opcion"><input type="radio" name="decisor" value="Yo" required aria-describedby="error-decisor"><span>Yo</span></label>
+                  <label class="opcion"><input type="radio" name="decisor" value="Yo con un socio" aria-describedby="error-decisor"><span>Yo con un socio</span></label>
+                </div>
+                <p class="campo__error" id="error-decisor" data-error-de="decisor" hidden></p>
+              </fieldset>
+
+              <div class="campo">
+                <label class="check">
+                  <input id="f-privacidad" name="privacidad" type="checkbox" required aria-describedby="error-privacidad">
+                  <span>Acepto la <a href="privacidad.html" target="_blank" rel="noopener" data-link-privacidad>política de privacidad</a></span>
+                </label>
+                <p class="campo__error" id="error-privacidad" data-error-de="privacidad" hidden></p>
+              </div>
+            </fieldset>
+
+            <div class="formulario__acciones">
+              <button class="boton boton--primario" type="button" data-accion="siguiente" hidden disabled>Siguiente</button>
+              <button class="boton boton--primario" type="submit" data-accion="enviar" disabled>Enviar mi aplicación</button>
+              <button class="boton boton--secundario" type="button" data-accion="volver" hidden>Volver</button>
+            </div>
+
+            <div role="status" aria-live="polite">
+              <div class="formulario__estado" data-estado hidden></div>
+            </div>
+            <p class="aviso-dev" data-aviso-dev hidden>Webhook no configurado</p>
+            <noscript><p>Para enviar la aplicación, active JavaScript en su navegador.</p></noscript>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         10) PREGUNTAS FRECUENTES
+         =================================================================== -->
+    <section class="seccion" id="preguntas" aria-labelledby="preguntas-titulo">
+      <div class="contenedor contenedor--angosto">
+        <div class="seccion__cabecera revelar">
+          <p class="numero-seccion">10)</p>
+          <h2 id="preguntas-titulo">Preguntas frecuentes</h2>
+        </div>
+
+        <div class="faq revelar">
+          <details>
+            <summary>¿Garantizan las 15 ventas?</summary>
+            <div><p>No. Las 15 ventas atribuidas en 30 días son el objetivo. Lo que garantizamos es el hito del día 10: al menos 1 venta de iPhone o 30 conversaciones calificadas, o le devolvemos la cuota del primer mes.</p></div>
+          </details>
+          <details>
+            <summary>¿La pauta la pagan ustedes?</summary>
+            <div><p>No. La pauta la paga usted directamente a Meta, con su tarjeta y en su cuenta publicitaria. Nosotros la gestionamos.</p></div>
+          </details>
+          <details>
+            <summary>¿Ustedes graban los videos?</summary>
+            <div><p>No. Le escribimos todos los guiones. Los graba alguien de su lado: usted, su equipo o un creador de contenido.</p></div>
+          </details>
+          <details>
+            <summary>¿Hay permanencia?</summary>
+            <div><p>No. Cancela cuando quiera, con efecto al final del mes ya pagado.</p></div>
+          </details>
+          <details>
+            <summary>¿Qué pasa si cancelo?</summary>
+            <div><p>Se dan de baja las campañas, el CRM y la cotizadora. <span data-continuidad hidden>Si quiere conservar el CRM y la cotizadora, puede mantenerlos por USD <span data-precio-continuidad></span> al mes.</span></p></div>
+          </details>
+          <details>
+            <summary>¿Necesito tener GoHighLevel?</summary>
+            <div><p>No, va incluido. Si ya lo tiene, el precio baja a USD 150 al mes.</p></div>
+          </details>
+          <details>
+            <summary>¿Cuánto tarda en arrancar?</summary>
+            <div><p>Unos 7 días hábiles desde el pago. Depende de que nos dé los accesos y entregue los videos a tiempo.</p></div>
+          </details>
+          <details>
+            <summary>¿Trabajan con otras tiendas de mi ciudad?</summary>
+            <div><p>Con máximo 5 por ciudad durante el año de lanzamiento.</p></div>
+          </details>
+          <details>
+            <summary>¿Por qué cobran en dólares?</summary>
+            <div><p>La cuota se cobra en dólares por débito automático, con tarjeta Visa o Mastercard. Su banco puede aplicar recargos por compras en moneda extranjera.</p></div>
+          </details>
+          <details>
+            <summary>¿Quién me atiende?</summary>
+            <div><p>Jared, de Marketing Masters Group, y su equipo. Hablamos por WhatsApp y nos reunimos por videollamada.</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cierre -->
+    <div class="seccion seccion--oscura cierre">
+      <div class="contenedor">
+        <p>Máximo 5 tiendas por ciudad. El cupo se reserva con el pago.</p>
+        <a class="boton boton--claro" href="#aplicar">Aplicar a un cupo</a>
+      </div>
+    </div>
+  </main>
+
+  <div id="pie"></div>
+
+  <!-- Botón fijo inferior (solo móvil): aparece después del hero y se oculta con el formulario a la vista. -->
+  <div class="cta-movil" id="cta-movil">
+    <a class="boton boton--primario" href="#aplicar" data-cta="fijo-movil">Aplicar a un cupo</a>
+  </div>
+</body>
+</html>
