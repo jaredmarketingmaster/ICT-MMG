@@ -60,7 +60,7 @@
 <body class="con-cta-movil">
   <a class="saltar-al-contenido" href="#contenido">Saltar al contenido</a>
 
-  <div id="encabezado" data-cta="#aplicar"></div>
+  <div id="encabezado" data-cta="#aplicar" data-tema="oscuro" data-progreso></div>
 
   <main id="contenido">
 
@@ -75,29 +75,46 @@
             <span class="hero__antetitulo-texto">Para tiendas de iPhone en Colombia que ya pautan en Meta</span>
           </p>
           <h1 id="hero-titulo">
-            <span class="titular titular--a">15 ventas de iPhone atribuidas a su pauta en 30 días, medidas una por una.</span>
-            <span class="titular titular--b">Un chat no es una venta. Sepa cuántos iPhones le vende cada anuncio.</span>
+            <span class="titular titular--a">15 ventas de iPhone atribuidas a su pauta en 30 días, <span class="resalte">medidas una por una.</span></span>
+            <span class="titular titular--b">Un chat no es una venta. <span class="resalte">Sepa cuántos iPhones le vende cada anuncio.</span></span>
           </h1>
           <p class="hero__subtitulo">I.C.T. conecta su anuncio, una cotizadora y su WhatsApp para que cada venta quede registrada con la campaña que la generó. Así la plata va a la campaña que vende.</p>
-          <a class="boton boton--primario boton--bloque-movil" href="#aplicar" data-cta="hero">Aplicar a un cupo</a>
+          <a class="boton boton--primario boton--flecha boton--bloque-movil" href="#aplicar" data-cta="hero">Aplicar a un cupo<svg class="boton__flecha" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
           <p class="hero__debajo-boton">2 minutos. Si su tienda califica, agendamos una videollamada de 30 minutos. Máximo 5 tiendas por ciudad.</p>
         </div>
 
         <!-- Si CONFIG.videoHero tiene URL, main.js reemplaza el mock por el video. -->
         <div class="hero__visual" id="hero-visual">
-          <div class="telefono-mock" role="img" aria-label="Ilustración de una cotizadora de iPhone conectada a WhatsApp">
-            <div class="telefono-mock__pantalla">
-              <div class="mock__tienda"><span class="mock__tienda-logo"></span><span class="mock__tienda-linea"></span></div>
-              <p class="mock__titulo">Cotice su iPhone</p>
-              <div class="mock__producto"><span></span></div>
-              <div class="mock__selector">
-                <span>iPhone 17 Pro · 256 GB · Negro</span>
-                <svg width="12" height="8" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1l5 5 5-5" fill="none" stroke="#2D3748" stroke-width="2"/></svg>
+          <div class="escena" data-inclinar>
+            <div class="telefono-mock" role="img" aria-label="Ilustración de una cotizadora de iPhone conectada a WhatsApp">
+              <div class="telefono-mock__pantalla">
+                <div class="mock__tienda"><span class="mock__tienda-logo"></span><span class="mock__tienda-linea"></span></div>
+                <p class="mock__titulo">Cotice su iPhone</p>
+                <div class="mock__producto"><span></span></div>
+                <div class="mock__selector">
+                  <span>iPhone 17 Pro · 256 GB · Negro</span>
+                  <svg width="12" height="8" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1l5 5 5-5" fill="none" stroke="#2D3748" stroke-width="2"/></svg>
+                </div>
+                <p class="mock__precio">$ X.XXX.XXX</p>
+                <div class="mock__boton">
+                  <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v12H8l-4 4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+                  Enviar por WhatsApp
+                </div>
               </div>
-              <p class="mock__precio">$ X.XXX.XXX</p>
-              <div class="mock__boton">
-                <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v12H8l-4 4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
-                Enviar por WhatsApp
+            </div>
+            <div class="flotante flotante--anuncio" aria-hidden="true">
+              <div class="flotante__interior">
+                <span class="flotante__icono"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M4 10v4h3l5 4V6L7 10H4zM16 9a4 4 0 0 1 0 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Anuncio
+              </div>
+            </div>
+            <div class="flotante flotante--whatsapp" aria-hidden="true">
+              <div class="flotante__interior">
+                <span class="flotante__icono"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M4 4h16v12H8l-4 4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>WhatsApp
+              </div>
+            </div>
+            <div class="flotante flotante--venta" aria-hidden="true">
+              <div class="flotante__interior">
+                <span class="flotante__icono"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Venta registrada
               </div>
             </div>
           </div>
@@ -153,17 +170,17 @@
         </div>
 
         <div class="tarjetas-ict">
-          <article class="tarjeta tarjeta-ict revelar">
+          <article class="tarjeta tarjeta--foco tarjeta-ict revelar">
             <span class="hex" aria-hidden="true">I</span>
             <h3>I de Interrupción.</h3>
             <p>Campañas en Meta con la estrategia de un caso que ya funcionó. Nosotros escribimos los guiones de los anuncios; los graba alguien de su tienda.</p>
           </article>
-          <article class="tarjeta tarjeta-ict revelar">
+          <article class="tarjeta tarjeta--foco tarjeta-ict revelar">
             <span class="hex" aria-hidden="true">C</span>
             <h3>C de Captura.</h3>
             <p>Su cliente entra a una cotizadora, elige el modelo, la capacidad y el color, ve el precio y le llega al WhatsApp con todo definido. Su equipo lo atiende con un guion de venta, entrenado en 5 sesiones.</p>
           </article>
-          <article class="tarjeta tarjeta-ict revelar">
+          <article class="tarjeta tarjeta--foco tarjeta-ict revelar">
             <span class="hex" aria-hidden="true">T</span>
             <h3>T de Tracking.</h3>
             <p>Cada venta que su equipo registra en el CRM queda atribuida a la campaña que la generó.</p>
@@ -186,30 +203,30 @@
                 <path d="M0 0L10 5L0 10z" fill="#247571"/>
               </marker>
             </defs>
-            <g fill="url(#flujo-h-grad)">
-              <polygon points="120,20 158.1,42 158.1,86 120,108 81.9,86 81.9,42"/>
-              <polygon points="360,20 398.1,42 398.1,86 360,108 321.9,86 321.9,42"/>
-              <polygon points="600,20 638.1,42 638.1,86 600,108 561.9,86 561.9,42"/>
-              <polygon points="840,20 878.1,42 878.1,86 840,108 801.9,86 801.9,42"/>
+            <g class="flujo__paso" style="--i:0">
+              <polygon points="120,20 158.1,42 158.1,86 120,108 81.9,86 81.9,42" fill="url(#flujo-h-grad)"/>
+              <text class="flujo__numero" x="120" y="75" font-size="30" text-anchor="middle">1</text>
+              <text x="120" y="146" font-size="23" text-anchor="middle">Anuncio</text>
             </g>
-            <g class="flujo__numero" font-size="30" text-anchor="middle">
-              <text class="flujo__numero" x="120" y="75">1</text>
-              <text class="flujo__numero" x="360" y="75">2</text>
-              <text class="flujo__numero" x="600" y="75">3</text>
-              <text class="flujo__numero" x="840" y="75">4</text>
+            <g class="flujo__paso" style="--i:1">
+              <polygon points="360,20 398.1,42 398.1,86 360,108 321.9,86 321.9,42" fill="url(#flujo-h-grad)"/>
+              <text class="flujo__numero" x="360" y="75" font-size="30" text-anchor="middle">2</text>
+              <text x="360" y="146" font-size="23" text-anchor="middle">Cotizadora</text>
             </g>
-            <g stroke="#2D3748" stroke-width="3" marker-end="url(#flujo-h-flecha)">
-              <line x1="172" y1="64" x2="304" y2="64"/>
-              <line x1="412" y1="64" x2="544" y2="64"/>
-              <line x1="652" y1="64" x2="784" y2="64"/>
+            <g class="flujo__paso" style="--i:2">
+              <polygon points="600,20 638.1,42 638.1,86 600,108 561.9,86 561.9,42" fill="url(#flujo-h-grad)"/>
+              <text class="flujo__numero" x="600" y="75" font-size="30" text-anchor="middle">3</text>
+              <text x="600" y="146" font-size="23" text-anchor="middle">WhatsApp</text>
             </g>
-            <g font-size="23" text-anchor="middle">
-              <text x="120" y="146">Anuncio</text>
-              <text x="360" y="146">Cotizadora</text>
-              <text x="600" y="146">WhatsApp</text>
-              <text x="840" y="146">Venta registrada</text>
+            <g class="flujo__paso" style="--i:3">
+              <polygon points="840,20 878.1,42 878.1,86 840,108 801.9,86 801.9,42" fill="url(#flujo-h-grad)"/>
+              <text class="flujo__numero" x="840" y="75" font-size="30" text-anchor="middle">4</text>
+              <text x="840" y="146" font-size="23" text-anchor="middle">Venta registrada</text>
             </g>
-            <path d="M840 166V196Q840 214 822 214H138Q120 214 120 196V172" fill="none" stroke="#247571" stroke-width="3" stroke-dasharray="9 7" marker-end="url(#flujo-h-vuelta)"/>
+            <line class="flujo__linea" style="--i:0" pathLength="1" x1="172" y1="64" x2="304" y2="64" stroke="#2D3748" stroke-width="3" marker-end="url(#flujo-h-flecha)"/>
+            <line class="flujo__linea" style="--i:1" pathLength="1" x1="412" y1="64" x2="544" y2="64" stroke="#2D3748" stroke-width="3" marker-end="url(#flujo-h-flecha)"/>
+            <line class="flujo__linea" style="--i:2" pathLength="1" x1="652" y1="64" x2="784" y2="64" stroke="#2D3748" stroke-width="3" marker-end="url(#flujo-h-flecha)"/>
+            <path class="flujo__vuelta" d="M840 166V196Q840 214 822 214H138Q120 214 120 196V172" fill="none" stroke="#247571" stroke-width="3" stroke-dasharray="9 7" marker-end="url(#flujo-h-vuelta)"/>
           </svg>
 
           <!-- Móvil: vertical -->
@@ -227,30 +244,30 @@
                 <path d="M0 0L10 5L0 10z" fill="#247571"/>
               </marker>
             </defs>
-            <g fill="url(#flujo-v-grad)">
-              <polygon points="104,16 138.64,36 138.64,76 104,96 69.36,76 69.36,36"/>
-              <polygon points="104,152 138.64,172 138.64,212 104,232 69.36,212 69.36,172"/>
-              <polygon points="104,288 138.64,308 138.64,348 104,368 69.36,348 69.36,308"/>
-              <polygon points="104,424 138.64,444 138.64,484 104,504 69.36,484 69.36,444"/>
+            <g class="flujo__paso" style="--i:0">
+              <polygon points="104,16 138.64,36 138.64,76 104,96 69.36,76 69.36,36" fill="url(#flujo-v-grad)"/>
+              <text class="flujo__numero" x="104" y="66" font-size="28" text-anchor="middle">1</text>
+              <text x="160" y="64" font-size="23">Anuncio</text>
             </g>
-            <g font-size="28" text-anchor="middle">
-              <text class="flujo__numero" x="104" y="66">1</text>
-              <text class="flujo__numero" x="104" y="202">2</text>
-              <text class="flujo__numero" x="104" y="338">3</text>
-              <text class="flujo__numero" x="104" y="474">4</text>
+            <g class="flujo__paso" style="--i:1">
+              <polygon points="104,152 138.64,172 138.64,212 104,232 69.36,212 69.36,172" fill="url(#flujo-v-grad)"/>
+              <text class="flujo__numero" x="104" y="202" font-size="28" text-anchor="middle">2</text>
+              <text x="160" y="200" font-size="23">Cotizadora</text>
             </g>
-            <g stroke="#2D3748" stroke-width="3" marker-end="url(#flujo-v-flecha)">
-              <line x1="104" y1="104" x2="104" y2="140"/>
-              <line x1="104" y1="240" x2="104" y2="276"/>
-              <line x1="104" y1="376" x2="104" y2="412"/>
+            <g class="flujo__paso" style="--i:2">
+              <polygon points="104,288 138.64,308 138.64,348 104,368 69.36,348 69.36,308" fill="url(#flujo-v-grad)"/>
+              <text class="flujo__numero" x="104" y="338" font-size="28" text-anchor="middle">3</text>
+              <text x="160" y="336" font-size="23">WhatsApp</text>
             </g>
-            <g font-size="23">
-              <text x="160" y="64">Anuncio</text>
-              <text x="160" y="200">Cotizadora</text>
-              <text x="160" y="336">WhatsApp</text>
-              <text x="160" y="472">Venta registrada</text>
+            <g class="flujo__paso" style="--i:3">
+              <polygon points="104,424 138.64,444 138.64,484 104,504 69.36,484 69.36,444" fill="url(#flujo-v-grad)"/>
+              <text class="flujo__numero" x="104" y="474" font-size="28" text-anchor="middle">4</text>
+              <text x="160" y="472" font-size="23">Venta registrada</text>
             </g>
-            <path d="M62 464H32Q22 464 22 454V66Q22 56 32 56H58" fill="none" stroke="#247571" stroke-width="3" stroke-dasharray="9 7" marker-end="url(#flujo-v-vuelta)"/>
+            <line class="flujo__linea" style="--i:0" pathLength="1" x1="104" y1="104" x2="104" y2="140" stroke="#2D3748" stroke-width="3" marker-end="url(#flujo-v-flecha)"/>
+            <line class="flujo__linea" style="--i:1" pathLength="1" x1="104" y1="240" x2="104" y2="276" stroke="#2D3748" stroke-width="3" marker-end="url(#flujo-v-flecha)"/>
+            <line class="flujo__linea" style="--i:2" pathLength="1" x1="104" y1="376" x2="104" y2="412" stroke="#2D3748" stroke-width="3" marker-end="url(#flujo-v-flecha)"/>
+            <path class="flujo__vuelta" d="M62 464H32Q22 464 22 454V66Q22 56 32 56H58" fill="none" stroke="#247571" stroke-width="3" stroke-dasharray="9 7" marker-end="url(#flujo-v-vuelta)"/>
           </svg>
 
           <figcaption>
@@ -269,7 +286,7 @@
         </div>
 
         <div class="acciones-seccion">
-          <a class="boton boton--primario boton--bloque-movil" href="#aplicar">Aplicar a un cupo</a>
+          <a class="boton boton--primario boton--flecha boton--bloque-movil" href="#aplicar">Aplicar a un cupo<svg class="boton__flecha" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
       </div>
     </section>
@@ -285,51 +302,68 @@
           <p>Entre el 1 de julio y el 12 de octubre de 2026, la tienda invirtió USD 6.280 en Meta y reportó 240 ventas, unos USD 26 por venta.</p>
         </div>
 
-        <div class="revelar">
-          <table class="tabla tabla--caso" role="table" aria-labelledby="caso-titulo">
-            <thead role="rowgroup">
-              <tr role="row">
-                <th scope="col" role="columnheader">Mes</th>
-                <th scope="col" role="columnheader">Pauta (USD)</th>
-                <th scope="col" role="columnheader">Ventas reportadas</th>
-                <th scope="col" role="columnheader">Costo por venta (USD)</th>
-              </tr>
-            </thead>
-            <tbody role="rowgroup">
-              <tr role="row">
-                <th scope="row" role="rowheader">Julio</th>
-                <td role="cell" data-etiqueta="Pauta (USD)">1.522</td>
-                <td role="cell" data-etiqueta="Ventas reportadas">70</td>
-                <td role="cell" data-etiqueta="Costo por venta (USD)">21,75</td>
-              </tr>
-              <tr role="row">
-                <th scope="row" role="rowheader">Agosto</th>
-                <td role="cell" data-etiqueta="Pauta (USD)">1.786</td>
-                <td role="cell" data-etiqueta="Ventas reportadas">80</td>
-                <td role="cell" data-etiqueta="Costo por venta (USD)">22,33</td>
-              </tr>
-              <tr role="row" class="es-destacada">
-                <th scope="row" role="rowheader">Septiembre <span class="etiqueta-mes">el mes que más enseña</span></th>
-                <td role="cell" data-etiqueta="Pauta (USD)">2.100</td>
-                <td role="cell" data-etiqueta="Ventas reportadas">50</td>
-                <td role="cell" data-etiqueta="Costo por venta (USD)">42,00</td>
-              </tr>
-              <tr role="row">
-                <th scope="row" role="rowheader">Octubre (1 al 12)</th>
-                <td role="cell" data-etiqueta="Pauta (USD)">871</td>
-                <td role="cell" data-etiqueta="Ventas reportadas">40</td>
-                <td role="cell" data-etiqueta="Costo por venta (USD)">21,78</td>
-              </tr>
-            </tbody>
-            <tfoot role="rowgroup">
-              <tr role="row">
-                <th scope="row" role="rowheader">Total</th>
-                <td role="cell" data-etiqueta="Pauta (USD)">6.280</td>
-                <td role="cell" data-etiqueta="Ventas reportadas">240</td>
-                <td role="cell" data-etiqueta="Costo por venta (USD)">26,17</td>
-              </tr>
-            </tfoot>
-          </table>
+        <div class="caso__datos">
+          <div class="revelar">
+            <table class="tabla tabla--caso" role="table" aria-labelledby="caso-titulo">
+              <thead role="rowgroup">
+                <tr role="row">
+                  <th scope="col" role="columnheader">Mes</th>
+                  <th scope="col" role="columnheader">Pauta (USD)</th>
+                  <th scope="col" role="columnheader">Ventas reportadas</th>
+                  <th scope="col" role="columnheader">Costo por venta (USD)</th>
+                </tr>
+              </thead>
+              <tbody role="rowgroup">
+                <tr role="row">
+                  <th scope="row" role="rowheader">Julio</th>
+                  <td role="cell" data-etiqueta="Pauta (USD)">1.522</td>
+                  <td role="cell" data-etiqueta="Ventas reportadas">70</td>
+                  <td role="cell" data-etiqueta="Costo por venta (USD)">21,75</td>
+                </tr>
+                <tr role="row">
+                  <th scope="row" role="rowheader">Agosto</th>
+                  <td role="cell" data-etiqueta="Pauta (USD)">1.786</td>
+                  <td role="cell" data-etiqueta="Ventas reportadas">80</td>
+                  <td role="cell" data-etiqueta="Costo por venta (USD)">22,33</td>
+                </tr>
+                <tr role="row" class="es-destacada">
+                  <th scope="row" role="rowheader">Septiembre <span class="etiqueta-mes">el mes que más enseña</span></th>
+                  <td role="cell" data-etiqueta="Pauta (USD)">2.100</td>
+                  <td role="cell" data-etiqueta="Ventas reportadas">50</td>
+                  <td role="cell" data-etiqueta="Costo por venta (USD)">42,00</td>
+                </tr>
+                <tr role="row">
+                  <th scope="row" role="rowheader">Octubre (1 al 12)</th>
+                  <td role="cell" data-etiqueta="Pauta (USD)">871</td>
+                  <td role="cell" data-etiqueta="Ventas reportadas">40</td>
+                  <td role="cell" data-etiqueta="Costo por venta (USD)">21,78</td>
+                </tr>
+              </tbody>
+              <tfoot role="rowgroup">
+                <tr role="row">
+                  <th scope="row" role="rowheader">Total</th>
+                  <td role="cell" data-etiqueta="Pauta (USD)">6.280</td>
+                  <td role="cell" data-etiqueta="Ventas reportadas">240</td>
+                  <td role="cell" data-etiqueta="Costo por venta (USD)">26,17</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+          <figure class="grafico revelar">
+            <figcaption class="grafico__titulo">Costo por venta (USD)</figcaption>
+            <div class="grafico__lienzo" role="img" aria-label="Costo por venta (USD): Julio 21,75; Agosto 22,33; Septiembre 42,00; Octubre (1 al 12) 21,78; Total 26,17">
+              <div class="grafico__ejes" aria-hidden="true">
+                <span style="--v:40">40</span><span style="--v:30">30</span><span style="--v:20">20</span><span style="--v:10">10</span><span style="--v:0">0</span>
+              </div>
+              <div class="grafico__plano" aria-hidden="true">
+                <div class="grafico__total" style="--v:26.17"><span>Total 26,17</span></div>
+                <div class="grafico__col" style="--v:21.75; --i:0" data-valor="USD 21,75"><span class="grafico__barra"></span><span class="grafico__mes">Julio</span></div>
+                <div class="grafico__col" style="--v:22.33; --i:1" data-valor="USD 22,33"><span class="grafico__barra"></span><span class="grafico__mes">Agosto</span></div>
+                <div class="grafico__col es-destacada" style="--v:42; --i:2" data-valor="USD 42,00"><span class="grafico__valor">42,00</span><span class="grafico__barra"></span><span class="grafico__mes">Septiembre</span></div>
+                <div class="grafico__col" style="--v:21.78; --i:3" data-valor="USD 21,78"><span class="grafico__barra"></span><span class="grafico__mes">Octubre <small>(1 al 12)</small></span></div>
+              </div>
+            </div>
+          </figure>
         </div>
 
         <p class="caso__ensena revelar"><strong>El mes que más enseña:</strong> en septiembre el sistema se aplicó a medias. El costo por venta subió de USD 22,33 a USD 42,00, aun invirtiendo un 17,6% más.</p>
@@ -339,7 +373,7 @@
         <figure class="caso__captura" id="caso-captura" hidden></figure>
 
         <div class="acciones-seccion">
-          <a class="boton boton--primario boton--bloque-movil" href="#aplicar">Aplicar a un cupo</a>
+          <a class="boton boton--primario boton--flecha boton--bloque-movil" href="#aplicar">Aplicar a un cupo<svg class="boton__flecha" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
       </div>
     </section>
@@ -355,7 +389,7 @@
         </div>
 
         <div class="grilla-2 incluye">
-          <div class="tarjeta revelar">
+          <div class="tarjeta tarjeta--foco revelar">
             <h3>Incluye</h3>
             <ul class="lista-hex" role="list">
               <li>Estrategia, configuración y gestión de campañas de Meta en la cuenta publicitaria de su tienda.</li>
@@ -401,7 +435,7 @@
         </div>
 
         <div class="grilla-2">
-          <div class="tarjeta revelar">
+          <div class="tarjeta tarjeta--foco revelar">
             <h3>Es para usted si:</h3>
             <ul class="lista-hex" role="list">
               <li>Tiene una tienda de iPhone en Colombia y el iPhone es lo que más vende.</li>
@@ -438,7 +472,7 @@
         </div>
 
         <div class="precio">
-          <div class="tarjeta revelar">
+          <div class="tarjeta precio__tarjeta revelar">
             <p class="precio__principal">USD 210 al mes.</p>
             <p class="precio__ghl">Si su tienda ya tiene GoHighLevel propio: USD 150 al mes.</p>
             <ul class="lista-hex" role="list">
@@ -478,19 +512,24 @@
               <input class="control" id="calc-utilidad" type="text" inputmode="numeric" autocomplete="off"
                      aria-labelledby="calc-etiqueta calc-moneda" aria-describedby="calc-ayuda">
             </div>
+            <!-- Deslizador sincronizado con el campo (40 a 250). Sin valor hasta que el usuario lo mueve. -->
+            <input class="calculadora__rango" id="calc-rango" type="range" min="40" max="250" step="1" value="40"
+                   aria-labelledby="calc-etiqueta calc-moneda" data-sin-valor>
             <p class="calculadora__ayuda" id="calc-ayuda" hidden>Escriba un número entero mayor que 0.</p>
           </div>
           <div class="calculadora__resultados-col" aria-live="polite">
             <dl class="calculadora__resultados">
               <div>
-                <dt>Ventas para cubrir USD 1.210 al mes</dt>
+                <dt><span class="muestra muestra--costo" aria-hidden="true"></span>Ventas para cubrir USD 1.210 al mes</dt>
                 <dd id="calc-ventas">—</dd>
               </div>
               <div>
-                <dt>Lo que le queda con 15 ventas</dt>
+                <dt><span class="muestra muestra--ganancia" aria-hidden="true"></span>Lo que le queda con 15 ventas</dt>
                 <dd id="calc-queda">—</dd>
               </div>
             </dl>
+            <!-- Medidor: 15 hexágonos = las 15 ventas. Azul = la parte que cubre los USD 1.210; celeste = lo que queda. -->
+            <div class="medidor" id="calc-medidor" aria-hidden="true"></div>
             <p class="calculadora__aviso" id="calc-aviso" hidden>Con esta utilidad, nuestra cuenta conservadora no le deja ganancia. Preferimos decírselo antes de cobrarle.</p>
           </div>
         </div>
@@ -498,7 +537,7 @@
         <p class="cuenta__debajo revelar">Si sus iPhones le dejan menos de USD 81, con esta cuenta el sistema no le deja ganancia, y se lo decimos antes de cobrarle. En la llamada hacemos la cuenta con sus números reales.</p>
 
         <div class="acciones-seccion">
-          <a class="boton boton--primario boton--bloque-movil" href="#aplicar">Aplicar a un cupo</a>
+          <a class="boton boton--primario boton--flecha boton--bloque-movil" href="#aplicar">Aplicar a un cupo<svg class="boton__flecha" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
       </div>
     </section>
@@ -514,6 +553,7 @@
         </div>
 
         <div class="garantia__tarjeta revelar">
+          <div class="garantia__sello" aria-hidden="true"><small>Día</small><span>10</span></div>
           <p class="garantia__texto">Si a los 10 días de tener los anuncios al aire no hay al menos 1 venta de iPhone o 30 conversaciones calificadas, y usted cumplió las condiciones del sistema, le devolvemos la cuota del primer mes. Sin preguntas.</p>
         </div>
 
@@ -760,7 +800,7 @@
     <div class="seccion seccion--oscura cierre">
       <div class="contenedor">
         <p>Máximo 5 tiendas por ciudad. El cupo se reserva con el pago.</p>
-        <a class="boton boton--claro" href="#aplicar">Aplicar a un cupo</a>
+        <a class="boton boton--claro boton--flecha" href="#aplicar">Aplicar a un cupo<svg class="boton__flecha" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
     </div>
   </main>
@@ -769,7 +809,7 @@
 
   <!-- Botón fijo inferior (solo móvil): aparece después del hero y se oculta con el formulario a la vista. -->
   <div class="cta-movil" id="cta-movil">
-    <a class="boton boton--primario" href="#aplicar" data-cta="fijo-movil">Aplicar a un cupo</a>
+    <a class="boton boton--primario boton--flecha" href="#aplicar" data-cta="fijo-movil">Aplicar a un cupo<svg class="boton__flecha" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
   </div>
 </body>
 </html>

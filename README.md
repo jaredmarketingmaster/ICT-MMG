@@ -10,6 +10,15 @@ La página tiene un solo objetivo: que la tienda que califica complete la aplica
 
 Es un sitio estático: HTML, CSS y JavaScript vanilla (ES modules). No tiene build, ni npm, ni frameworks; la única dependencia externa es Google Fonts.
 
+**Diseño:** capa premium con interacciones en CSS y JS propios, sin librerías:
+- Hero oscuro con una demo de la cotizadora.
+- Encabezado que pasa de transparente a sólido.
+- Gráfico del caso.
+- Calculadora con deslizador y medidor.
+- Línea de tiempo que se enciende al pasar.
+
+Con `prefers-reduced-motion` se ve igual de completa, pero sin movimiento. El detalle está en `CLAUDE.md`.
+
 ## Estructura
 
 ```
@@ -74,6 +83,8 @@ Para probar la variante B del titular y los UTM:
 | `cupos` | `[{ ciudad: "Medellín", disponibles: 4 }]`, **solo datos reales** | La franja de cupos no se muestra |
 | `terminosUrl` / `privacidadUrl` | Links legales | El link no se muestra |
 | `prestador` | Datos legales del pie | Se ve `[PENDIENTE]` |
+
+Los datos del caso (sección 04) están dos veces en `index.html`: en la tabla y en el gráfico (`style="--v:…"`, `data-valor` y `aria-label`). Si cambian, hay que actualizar ambos.
 
 El precio (USD 210 / 150), la pauta (USD 1.000) y la cuenta de 1.210 están en el **copy**, no en `config.js`. Si cambian, hay que tocar `index.html` (texto y tabla de la sección 07) y las constantes de `assets/js/main.js` (`COSTO_MENSUAL`, `VENTAS_OBJETIVO`, `UTILIDAD_MINIMA`).
 

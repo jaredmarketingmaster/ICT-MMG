@@ -157,7 +157,8 @@ function auditarContraste() {
     if (i < 0) return null;
     let n = 0, j = i + 8;
     for (; j < img.length; j++) { if (img[j] === "(") n++; if (img[j] === ")" && --n === 0) break; }
-    return (img.slice(i, j + 1).match(/rgba?\([^)]+\)/g) || []).map(leer);
+    // Los tramos transparentes no son fondo (ej.: líneas de guía de 1 px).
+    return (img.slice(i, j + 1).match(/rgba?\([^)]+\)/g) || []).map(leer).filter((c) => c.a > 0.1);
   };
   const esBlanco = (c) => c.r > 250 && c.g > 250 && c.b > 250;
   const esCeleste = (c) => Math.abs(c.r - 55) < 4 && Math.abs(c.g - 177) < 4 && Math.abs(c.b - 171) < 4;
@@ -179,6 +180,8 @@ function auditarContraste() {
     let fondos = null;
     for (let n = el; n; n = n.parentElement) {
       const s = getComputedStyle(n);
+      // Texto en degradado (background-clip: text): su fondo es la letra, no el fondo.
+      if (s.backgroundClip === "text" || s.webkitBackgroundClip === "text") continue;
       const deg = s.backgroundImage !== "none" ? primerDegradado(s.backgroundImage) : null;
       if (deg && deg.length) { fondos = deg; break; }
       const c = leer(s.backgroundColor);
@@ -365,6 +368,48 @@ function auditarContraste() {
       await p.fill("#calc-utilidad", malo);
       igual(await p.textContent("#calc-ventas"), "—", `no calcula con "${malo}"`);
     }
+    await cerrar(p);
+  });
+
+  await prueba("Calculadora interactiva: deslizador sincronizado y medidor de 15 ventas exacto", async () => {
+    const p = await abrir("index.html", { ancho: 1440, alto: 900 });
+    igual(await p.$$eval("#calc-medidor .medidor__hex", (h) => h.length), 15, "hexágonos del medidor");
+    igual(await p.getAttribute("#calc-rango", "data-sin-valor"), "", "deslizador sin valor al inicio");
+    await p.fill("#calc-utilidad", "100");
+    igual(await p.inputValue("#calc-rango"), "100", "deslizador sigue al campo");
+    // 1.210 / 100 = 12,1 ventas cubren el costo: 12 hexágonos azules, el 13 al 10 %, el resto celeste.
+    const p100 = await p.$$eval("#calc-medidor .medidor__relleno", (r) => r.map((x) => Number(x.style.getPropertyValue("--p"))));
+    igual(p100, [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.1, 0, 0], "relleno con U=100");
+    await p.$eval("#calc-rango", (r) => { r.value = "150"; r.dispatchEvent(new Event("input", { bubbles: true })); });
+    igual(await p.inputValue("#calc-utilidad"), "150", "el campo sigue al deslizador");
+    igual(await p.textContent("#calc-ventas"), "9", "ventas con el deslizador en 150");
+    igual(await p.textContent("#calc-queda"), "USD 1.040", "queda con el deslizador en 150");
+    await p.fill("#calc-utilidad", "70");
+    const p70 = await p.$$eval("#calc-medidor .medidor__relleno", (r) => r.map((x) => Number(x.style.getPropertyValue("--p"))));
+    igual(p70.every((v) => v === 1), true, "con U=70 las 15 ventas no alcanzan a cubrir el costo");
+    await cerrar(p);
+  });
+
+  await prueba("Encabezado: transparente sobre el hero y sólido al bajar; con reduced-motion la escena no se inclina", async () => {
+    let p = await abrir("index.html", { ancho: 1440, alto: 900 });
+    const clases = () => p.$eval(".encabezado", (e) => e.className);
+    afirmar((await clases()).includes("encabezado--sobre-oscuro") && !(await clases()).includes("es-solido"), "arriba: " + await clases());
+    await p.evaluate(() => scrollTo(0, 600));
+    await p.waitForTimeout(200);
+    afirmar((await clases()).includes("es-solido"), "abajo: " + await clases());
+    await cerrar(p);
+    p = await abrir("agenda.html", { ancho: 1440, alto: 900 });
+    afirmar(!(await p.$eval(".encabezado", (e) => e.className)).includes("sobre-oscuro"), "agenda con encabezado transparente");
+    await cerrar(p);
+    p = await abrir("index.html", { ancho: 1440, alto: 900, movimientoReducido: true });
+    await p.mouse.move(1300, 200);
+    await p.waitForTimeout(200);
+    igual(await p.$eval("[data-inclinar]", (e) => e.style.getPropertyValue("--ry")), "", "inclinación con reduced-motion");
+    await cerrar(p);
+    p = await abrir("index.html", { ancho: 1440, alto: 900, movimientoReducido: false });
+    await p.mouse.move(1300, 200);
+    await p.waitForTimeout(200);
+    afirmar((await p.$eval("[data-inclinar]", (e) => e.style.getPropertyValue("--ry"))) !== "", "sin inclinación con mouse");
     await cerrar(p);
   });
 

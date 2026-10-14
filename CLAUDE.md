@@ -50,6 +50,8 @@ Degradados:
 - **Nunca texto blanco sobre celeste** (2,61:1). Texto sobre celeste: `#2D3748` (4,59:1).
 - **Celeste como texto sobre blanco también falla** (2,61:1). Para texto en tono celeste sobre fondos claros, usar `--mmg-celeste-texto` (`#247571`: 5,44:1 sobre blanco y 5,07:1 sobre fondo suave). El celeste puro como texto solo va sobre `#2D3748` (4,59:1).
 - Azul `#1A73E8` como texto sobre `#F5F7FA`: 4,2:1. Solo vale para texto grande.
+- Sobre los fondos oscuros (hero, franja, pie: `--oscuro-1/2/3`, de `#141B27` a `#232E40`) el texto va en blanco, `--texto-sobre-oscuro` (`#CBD5E0`) o `--texto-suave-sobre-oscuro` (`#A9B4C4`). Los acentos van en `--mmg-azul-claro` (`#8FBEFF`) y `--mmg-celeste-claro` (`#6FD1CB`), que son tintes aclarados de la marca con 5,5:1 o más.
+- Los brillos y patrones decorativos van en `::before` / `::after`, nunca en el fondo del elemento que tiene texto. Así no bajan el contraste y la auditoría los puede medir.
 - Letra chica gris: `--color-texto-suave` (`#5A6170`), del mismo tamaño que el cuerpo.
 
 **Tipografía:**
@@ -64,7 +66,25 @@ Degradados:
 - Sombras frías `rgba(45,55,72,.08)`.
 - Foco: outline celeste de 3 px más un anillo `#2D3748`, para cumplir 3:1 en cualquier fondo.
 
-**Estética:** sobria, técnica y basada en datos. Sin emojis en el cuerpo, sin stock de gente, sin parallax ni cursores. Animación: solo fade + 8 px al entrar y transiciones de botones, y nada con `prefers-reduced-motion`.
+**Estética:** premium, sobria, técnica y basada en datos. Sin emojis en el cuerpo, sin stock de gente, sin parallax, sin cursores personalizados, sin librerías de animación y sin pantalla de carga.
+
+**Interacciones aprobadas** (pedido de Jared: "premium, profesional e interactivo"):
+- Hero oscuro con brillos de marca y una demo de la cotizadora que se reproduce una vez al cargar. Las tarjetas flotantes son "Anuncio", "WhatsApp" y "Venta registrada": rótulos del diagrama, no copy nuevo.
+- Escena del hero que se inclina hasta 6° con el mouse.
+- Encabezado transparente sobre el hero que se vuelve sólido al hacer scroll, con barra de progreso.
+- Tarjetas `.tarjeta--foco` con un foco de luz que sigue al puntero y una leve elevación.
+- Diagrama 03 que se dibuja en orden; la flecha de vuelta se mueve lento.
+- Gráfico del caso con barras que crecen.
+- Línea de tiempo que se enciende al pasar.
+- Deslizador y medidor de 15 hexágonos en la calculadora.
+- Sello del día 10, FAQ con apertura suave, y listas que aparecen escalonadas.
+
+**Política de `prefers-reduced-motion`:** sin movimiento (ni apariciones, ni bucles, ni inclinación, ni desplazamientos al pasar el mouse), pero se conservan los cambios de color y sombra como respuesta. Ojo: Windows suele traerlo activado, así que esos usuarios ven la versión quieta, completa y visible. Todo el `:hover` va dentro de `@media (hover: hover)`. Los movimientos al pasar el mouse van además dentro de `(prefers-reduced-motion: no-preference)`.
+
+**Robustez:**
+- Cada inicialización corre dentro de `seguro(fn, nombre)`: si falla una, siguen las demás.
+- `.revelar` tiene una red de seguridad: a los 6 s todo se muestra.
+- La clase `.animar` la pone el JS, así que sin JS nada queda oculto.
 
 **Logo:** `assets/img/logo-mmg.svg` es una recreación provisoria del PNG de 70 px. Se reemplaza por el vector oficial cuando exista. El nombre oficial es **Marketing Masters Group** (con S).
 
@@ -85,11 +105,19 @@ En cualquier otro caso, **califica**. "No sé" en utilidad y "Nadie todavía" en
 
 Ambos eventos llevan `eventID` igual al `event_id` del payload. Desde el navegador **nunca** se mandan a Meta nombre ni teléfono.
 
+**Gráfico del caso (sección 04):**
+- Es HTML/CSS en `index.html`: cada barra lleva su valor en `style="--v:…"`, con escala fija de 0 a 45.
+- Forma "énfasis": septiembre en azul, el resto en `--barra-contexto`, y un solo rótulo directo (42,00) más la línea "Total 26,17".
+- La tabla de al lado es la vista accesible.
+- **Si cambian los datos del caso, hay que actualizar a la vez la tabla, los `--v`, los `data-valor` y el `aria-label` del gráfico.**
+
 **Calculadora (sección 07):**
 - Ventas para cubrir = `Math.ceil(1210 / U)`.
 - Lo que queda = `15 × U − 1210`.
 - Aviso si `U < 81`. Solo acepta enteros mayores que 0; "1.200" se lee como 1200.
 - La tabla estática y la calculadora deben coincidir para 81, 90, 100, 120 y 150.
+- El deslizador (de 40 a 250) y el campo se sincronizan en los dos sentidos. El deslizador arranca "sin valor" hasta que se usa.
+- El medidor tiene 15 hexágonos, uno por venta. La parte azul de cada hexágono es `1210 / U − i` (fracción exacta de lo que cubre el costo) y el resto, celeste, es lo que queda.
 
 ## Cómo verificar antes de cada commit
 
@@ -113,9 +141,17 @@ Ambos eventos llevan `eventID` igual al `event_id` del payload. Desde el navegad
    - Botón fijo en móvil.
    - Copy prohibido: tú/vos, "nuestros clientes", la manzana, urgencia falsa, y "ventas de iPhone" en el caso.
    - Contraste AA y nada de texto blanco sobre celeste.
+   - Deslizador y medidor exactos.
+   - Encabezado transparente que pasa a sólido, e inclinación desactivada con reduced-motion.
 4. Revisión manual rápida:
    ```bash
    grep -rniE "\btú\b|\bvos\b|nuestros clientes|solo hoy" --include=*.html --include=*.js .
    ```
 5. Si se cambia el copy de precios, actualizar a la vez el texto, la tabla de la sección 07 y las constantes de `main.js`.
-6. Peso objetivo: menos de 150 KB sin fuentes ni video. Lighthouse móvil: 90 o más en rendimiento, accesibilidad y buenas prácticas. El SEO da bajo a propósito mientras esté el `noindex` de la beta.
+6. **Peso:** el brief pedía menos de 150 KB sin fuentes ni video.
+   - Desde la capa premium, lo propio pesa unos 160 KB sin comprimir y unos 39 KB transferidos con gzip.
+   - No sumar peso sin necesidad; si se agrega algo, medirlo.
+7. **Lighthouse móvil:** 90 o más en rendimiento, accesibilidad y buenas prácticas.
+   - Mide con un servidor que comprima (`npx serve .`), no con `python3 -m http.server`.
+   - En este tipo de contenedor el resultado varía entre corridas; correrlo 3 veces.
+   - El SEO da bajo a propósito mientras esté el `noindex` de la beta.
