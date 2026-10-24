@@ -1708,14 +1708,20 @@ html[data-h="b"] .titular--b { display: inline; }
 }
 .calendario__pendiente p { margin: 0; font-weight: 700; color: var(--color-texto-suave); }
 
-.pendiente-legal {
-  padding: 1.25rem 1.5rem;
-  border: 2px dashed var(--color-borde-campo);
+/* Textos legales (borradores) */
+.legal { max-width: 46em; }
+.legal h2 { margin-top: 2.25rem; margin-bottom: .75rem; font-size: clamp(1.25rem, 1.1rem + .6vw, 1.5rem); }
+.legal p, .legal li { max-width: 42em; }
+.legal ul, .legal ol { padding-left: 1.5rem; display: grid; gap: .5rem; }
+.legal__fecha { color: var(--color-texto-suave); }
+.legal__pendiente { font-weight: 700; }
+.borrador {
+  margin-block: 1rem 1.5rem;
+  padding: 1rem 1.25rem;
+  border: 2px dashed var(--mmg-azul-2);
   border-radius: var(--radio-tarjeta);
   background: var(--mmg-blanco);
-  font-weight: 700;
 }
-
 /* -----------------------------------------------------------------------------
    6) UTILIDADES
    -------------------------------------------------------------------------- */

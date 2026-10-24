@@ -567,7 +567,7 @@ function auditarContraste() {
   });
 
   console.log("\n7) Contraste");
-  for (const ruta of ["index.html", "agenda.html", "no-califica.html", "terminos.html"]) {
+  for (const ruta of ["index.html", "agenda.html", "no-califica.html", "terminos.html", "privacidad.html"]) {
     await prueba(`${ruta}: contraste AA y nada de texto blanco sobre celeste`, async () => {
       for (const ancho of [360, 1440]) {
         const p = await abrir(ruta, { ancho, alto: 900 });

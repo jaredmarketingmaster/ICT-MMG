@@ -25,8 +25,8 @@ Con `prefers-reduced-motion` se ve igual de completa, pero sin movimiento. El de
 index.html            Landing (secciones 01 a 10 + formulario)
 agenda.html           "Su tienda califica" + calendario de GHL
 no-califica.html      "Gracias por su sinceridad"
-terminos.html         [PENDIENTE] texto legal
-privacidad.html       [PENDIENTE] texto legal
+terminos.html         BORRADOR de términos (Argentina, Mercado Pago), en revisión legal
+privacidad.html       BORRADOR de privacidad (Ley 25.326), en revisión legal
 config.js             ← TODO lo editable (links, precios, cupos, píxel, datos legales)
 assets/
   css/styles.css      variables · base · layout · componentes · secciones · utilidades
@@ -148,7 +148,7 @@ La verificación cubre:
 **En el contenido y la técnica:**
 - [ ] Texto de la **C de Cierre** en la sección 03 (lo define Jared). ICTC tiene cuatro letras y la sección explica tres; hay un comentario `[PENDIENTE]` sobre las tarjetas.
 - [ ] Validar el punto "Si trabaja con una agencia…" de la sección 02 (`data-pendiente="validar-agencias"`).
-- [ ] Textos legales de `terminos.html` y `privacidad.html` (revisión del abogado).
+- [ ] Revisión del abogado de los borradores de `terminos.html` y `privacidad.html`: resolver cada `[PENDIENTE]` y quitar el aviso de BORRADOR.
 - [ ] Banner de consentimiento del píxel: lo define el abogado.
 - [ ] Apuntar `ictc.marketingmaster.top` a GitHub Pages (registro CNAME en el DNS y dominio personalizado en Settings → Pages). Las URLs absolutas de `og:url`, `og:image` y `twitter:image` ya usan ese subdominio.
 - [ ] Vector oficial del logo.
