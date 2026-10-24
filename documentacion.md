@@ -211,7 +211,7 @@ Diario de trabajo de la landing de **ICTC** (Marketing Masters Group). Registra 
 
 ### 2026-10-24 — Publicación en GitHub Pages desde la rama de trabajo
 
-**Pedido por:** dueña del repo
+**Pedido por:** la persona que administra el sitio en GitHub Pages
 
 **Qué se hizo**
 - Se confirmó que el trabajo se hace en la rama `claude/zealous-fermi-rhv2dx`. GitHub Pages se configura para servir esa rama (carpeta `/ (root)`), así los cambios se pueden revisar en línea.
