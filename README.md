@@ -68,7 +68,7 @@ Para probar la variante B del titular y los UTM:
 2. Ir a **Settings → Pages**. En **Source**, elegir *Deploy from a branch*, la rama `main` y la carpeta `/ (root)`.
    Durante la beta, el sitio de prueba se publica desde la rama `claude/zealous-fermi-rhv2dx`, que es donde se suben los cambios.
 3. La URL queda en `https://<usuario>.github.io/<repo>/`. Si se usa un dominio propio, se configura en la misma pantalla.
-4. Con la URL definitiva, completar en `index.html` las URLs **absolutas** de `og:image`, `twitter:image` y `og:url` (ver la lista de pendientes).
+4. El subdominio definitivo es `ictc.marketingmaster.top`. `og:url`, `og:image` y `twitter:image` ya apuntan ahí con URL **absoluta**; si cambia el dominio, hay que cambiarlas.
 
 ## Qué se edita en `config.js`
 
@@ -150,7 +150,7 @@ La verificación cubre:
 - [ ] Validar el punto "Si trabaja con una agencia…" de la sección 02 (`data-pendiente="validar-agencias"`).
 - [ ] Textos legales de `terminos.html` y `privacidad.html` (revisión del abogado).
 - [ ] Banner de consentimiento del píxel: lo define el abogado.
-- [ ] URLs absolutas de `og:image`, `twitter:image` y `og:url` cuando haya dominio.
+- [ ] Apuntar `ictc.marketingmaster.top` a GitHub Pages (registro CNAME en el DNS y dominio personalizado en Settings → Pages). Las URLs absolutas de `og:url`, `og:image` y `twitter:image` ya usan ese subdominio.
 - [ ] Vector oficial del logo.
 - [ ] **Probar el webhook real desde el navegador.** Si GHL no responde con encabezados CORS, el navegador bloquea el envío y todo cae al plan B de WhatsApp. No se pudo verificar desde este entorno.
 - [ ] Confirmar si el embed del calendario necesita el script de autoajuste de GHL (`form_embed.js`). Hoy el iframe tiene un alto fijo responsive.
