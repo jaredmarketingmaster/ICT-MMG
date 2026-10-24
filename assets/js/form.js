@@ -23,22 +23,21 @@ const ETIQUETAS = {
   iphone_principal: "¿El iPhone es lo que más venden?",
   pauta_actual: "¿Cuánto invierten hoy en pauta al mes?",
   suma_1000: "¿Pueden sumar USD 1.000 al mes de pauta nueva, pagados a Meta?",
-  utilidad: "¿Cuánto le deja en promedio cada iPhone?",
+  utilidad: "¿Cuánto te deja en promedio cada iPhone?",
   graba: "¿Quién grabaría los anuncios?",
   decisor: "¿Quién toma la decisión?"
 };
 
 const MENSAJES = {
-  nombre: "Escriba su nombre.",
-  whatsappColombia: "Escriba un celular de 10 dígitos que empiece por 3.",
-  whatsappOtro: "Escriba un número válido, solo con dígitos.",
-  whatsappCompleto: "Escriba el número completo con el código del país, solo con dígitos.",
-  tienda: "Escriba el nombre de la tienda.",
-  instagram: "Escriba el usuario de Instagram de la tienda.",
-  instagramFormato: "Revise el usuario: solo letras, números, puntos y guiones bajos.",
-  ciudad: "Escriba la ciudad.",
-  opcion: "Elija una opción.",
-  privacidad: "Para enviar la aplicación, acepte la política de privacidad."
+  nombre: "Escribí tu nombre.",
+  whatsapp: "Escribí el código de área y el número: 10 dígitos, sin el 0 ni el 15.",
+  whatsapp15: "Sacale el 15: solo el código de área y el número.",
+  tienda: "Escribí el nombre de la tienda.",
+  instagram: "Escribí el usuario de Instagram de la tienda.",
+  instagramFormato: "Revisá el usuario: solo letras, números, puntos y guiones bajos.",
+  ciudad: "Escribí la ciudad.",
+  opcion: "Elegí una opción.",
+  privacidad: "Para enviar la aplicación, aceptá la política de privacidad."
 };
 
 // -----------------------------------------------------------------------------
@@ -50,6 +49,25 @@ export function calificar(respuestas) {
   if (respuestas.suma_1000 === "No") motivos.push("no_puede_sumar_1000");
   if (UTILIDADES_BAJAS.includes(respuestas.utilidad)) motivos.push("utilidad_menor_a_81");
   return { califica: motivos.length === 0, motivo_no_califica: motivos };
+}
+
+/**
+ * Celular argentino en formato internacional para WhatsApp: +54 9 + código de
+ * área sin 0 + número sin 15 (10 dígitos). Acepta que escriban 54, 9 o 0
+ * adelante. Si después de eso quedan 12 dígitos, el número trae el 15 adentro:
+ * se pide sacarlo en vez de adivinar dónde está. Los códigos de área empiezan
+ * por 1, 2 o 3, así que un 54 o un 9 al principio nunca son parte del número.
+ */
+export function normalizarCelularArgentino(valor) {
+  let digitos = String(valor || "").replace(/\D/g, "");
+  if (digitos.startsWith("54") && digitos.length >= 12) digitos = digitos.slice(2);
+  if (digitos.startsWith("9") && digitos.length === 11) digitos = digitos.slice(1);
+  if (digitos.startsWith("0")) digitos = digitos.slice(1);
+  return {
+    valido: /^[1-3]\d{9}$/.test(digitos),
+    con15: digitos.length === 12 && /^\d{2,4}15/.test(digitos),
+    numero: "+549" + digitos
+  };
 }
 
 /** Instagram con o sin @, o pegado como link. Se guarda sin @. */
@@ -92,19 +110,6 @@ export function iniciarFormulario({ obtenerVariante }) {
   // formulario no se envíe con los datos en la URL.
   btnSiguiente.disabled = false;
   btnEnviar.disabled = false;
-
-  // Ejemplo de formato solo para celulares de Colombia.
-  const inputWhatsApp = form.elements.namedItem("whatsapp");
-  const selectPrefijo = form.elements.namedItem("prefijo");
-  const valorPrefijo = form.querySelector("[data-prefijo-valor]");
-  const actualizarEjemplo = () => {
-    const otro = selectPrefijo.value === "otro";
-    if (valorPrefijo) valorPrefijo.textContent = otro ? "Otro" : "+" + selectPrefijo.value;
-    inputWhatsApp.placeholder = selectPrefijo.value === "57" ? "300 000 0000"
-      : otro ? "Código de país y número" : "";
-  };
-  selectPrefijo.addEventListener("change", actualizarEjemplo);
-  actualizarEjemplo();
 
   // ---------------------------------------------------------------------------
   // Pasos (solo en móvil)
@@ -164,24 +169,12 @@ export function iniciarFormulario({ obtenerVariante }) {
   }
 
   function telefonoE164() {
-    const prefijo = campo("prefijo").value; // "57", "54"… o "otro"
-    let digitos = campo("whatsapp").value.replace(/\D/g, "");
-    if (prefijo === "otro") return { valido: /^\d{8,15}$/.test(digitos), numero: "+" + digitos };
-    if (prefijo === "57") {
-      // Si pegó el número con el 57 adelante, lo aceptamos igual.
-      if (digitos.length === 12 && digitos.startsWith("57")) digitos = digitos.slice(2);
-      return { valido: /^3\d{9}$/.test(digitos), numero: "+57" + digitos };
-    }
-    if (digitos.startsWith(prefijo) && digitos.length > 10) digitos = digitos.slice(prefijo.length);
-    return { valido: /^\d{6,14}$/.test(digitos), numero: "+" + prefijo + digitos };
+    return normalizarCelularArgentino(campo("whatsapp").value);
   }
 
   function validarWhatsApp() {
-    const prefijo = campo("prefijo").value;
-    const { valido } = telefonoE164();
-    const mensaje = prefijo === "57" ? MENSAJES.whatsappColombia
-      : prefijo === "otro" ? MENSAJES.whatsappCompleto : MENSAJES.whatsappOtro;
-    return mostrarError("whatsapp", valido ? "" : mensaje);
+    const { valido, con15 } = telefonoE164();
+    return mostrarError("whatsapp", valido ? "" : con15 ? MENSAJES.whatsapp15 : MENSAJES.whatsapp);
   }
 
   function validarInstagram() {
@@ -237,7 +230,7 @@ export function iniciarFormulario({ obtenerVariante }) {
   // "Siguiente" se mueve en medio del toque y el toque no le llega.
   const TODOS = new Map([...VALIDADORES[1], ...VALIDADORES[2]]);
   function revalidar(e) {
-    const nombre = e.target.name === "prefijo" ? "whatsapp" : e.target.name;
+    const nombre = e.target.name;
     const control = campo(nombre);
     const el = control instanceof RadioNodeList ? control[0] : control;
     if (el && el.getAttribute("aria-invalid") === "true" && TODOS.has(nombre)) TODOS.get(nombre)();
@@ -328,8 +321,8 @@ export function iniciarFormulario({ obtenerVariante }) {
     const href = linkWhatsApp(CONFIG.whatsappAgencia, resumenWhatsApp(payload));
     const mensaje = document.createElement("p");
     mensaje.textContent = href
-      ? "No pudimos enviar su aplicación. Puede enviarla por WhatsApp: sus respuestas ya van escritas."
-      : "No pudimos enviar su aplicación. Revise su conexión e intente de nuevo.";
+      ? "No pudimos enviar tu aplicación. Podés enviarla por WhatsApp: tus respuestas ya van escritas."
+      : "No pudimos enviar tu aplicación. Revisá tu conexión e intentá de nuevo.";
     estado.replaceChildren(mensaje);
     if (href) {
       const boton = document.createElement("a");

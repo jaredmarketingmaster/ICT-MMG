@@ -13,15 +13,21 @@ export const CONFIG = {
   titularPorDefecto: "A",               // "A" | "B". La URL manda: ?h=a o ?h=b
   webhookUrl: "",                       // [PENDIENTE] Inbound Webhook del workflow de GHL
   calendarioUrl: "",                    // [PENDIENTE] URL de embed del calendario de GHL (30 min)
-  whatsappAgencia: "",                  // [PENDIENTE] formato internacional sin "+", ej. 5491100000000
-  emailContacto: "",                    // [PENDIENTE] ej. jared@marketingmaster.top
+  whatsappAgencia: "",                  // [PENDIENTE] WhatsApp laboral de Jared: 549 + código de área sin 0 + número sin 15
+  emailContacto: "",                    // [PENDIENTE] email laboral de Jared
   metaPixelId: "",                      // [PENDIENTE] píxel de Marketing Master Top
   videoHero: "",                        // [PENDIENTE] URL del video del hero (YouTube, Vimeo o .mp4)
   precioContinuidad: 60,                // [PENDIENTE] propuesta, a confirmar
-  cupos: [],                            // ej. [{ ciudad: "Medellín", disponibles: 4 }] — solo datos reales
+  cupos: [],                            // ej. [{ ciudad: "Tucumán", disponibles: 4 }] — solo datos reales
   terminosUrl: "terminos.html",
   privacidadUrl: "privacidad.html",
-  prestador: { nombre: "[PENDIENTE]", nif: "[PENDIENTE]", domicilio: "[PENDIENTE]" },
+  // Datos del prestador: se usan en el pie y en las páginas legales.
+  prestador: {
+    nombre: "Jared Ezequiel Farfán Borges",
+    condicion: "monotributista",
+    cuit: "20-40331496-0",
+    domicilio: "San Martín 1500, T4107 Yerba Buena, Tucumán, Argentina"
+  },
 
   // ---------------------------------------------------------------------------
   // Campos opcionales agregados en la beta (no estaban en el brief original)

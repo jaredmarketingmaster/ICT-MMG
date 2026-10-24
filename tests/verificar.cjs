@@ -103,7 +103,7 @@ const erroresConsola = (pagina) => pagina.consola
 // --- Formulario ---------------------------------------------------------------
 const DATOS = {
   nombre: "Prueba Automática",
-  whatsapp: "300 123 4567",
+  whatsapp: "11 2345 6789",
   tienda: "Tienda de Prueba",
   instagram: "@tiendaprueba",
   ciudad: "Medellín"
@@ -271,7 +271,7 @@ function auditarContraste() {
       igual(payload.utm_campaign, "test", "utm_campaign");
       igual(payload.fbclid, "abc", "fbclid");
       igual(payload.variante_titular, "B", "variante_titular");
-      igual(payload.whatsapp, "+573001234567", "whatsapp");
+      igual(payload.whatsapp, "+5491123456789", "whatsapp");
       igual(payload.instagram, "tiendaprueba", "instagram sin @");
       igual(payload.privacidad, true, "privacidad");
       for (const clave of ["nombre", "tienda", "ciudad", "iphone_principal", "pauta_actual", "suma_1000", "utilidad", "graba", "decisor",
@@ -283,14 +283,14 @@ function auditarContraste() {
       if (caso.destino === "agenda.html") {
         const q = new URL(destino).searchParams;
         igual(q.get("nombre"), DATOS.nombre, "nombre en la URL de agenda");
-        igual(q.get("whatsapp"), "+573001234567", "whatsapp en la URL de agenda");
+        igual(q.get("whatsapp"), "+5491123456789", "whatsapp en la URL de agenda");
       }
       igual(erroresConsola(p), [], "errores");
       await cerrar(p);
     });
   }
 
-  await prueba("Validación: errores en usted, aria-invalid y foco al primer error", async () => {
+  await prueba("Validación: errores en voseo, aria-invalid y foco al primer error", async () => {
     const p = await abrir("index.html");
     await p.click('[data-accion="siguiente"]');
     const r = await p.evaluate(() => ({
@@ -300,19 +300,29 @@ function auditarContraste() {
       describe: document.getElementById("f-nombre").getAttribute("aria-describedby")
     }));
     igual(r.foco, "f-nombre", "foco");
-    igual(r.error, "Escriba su nombre.", "mensaje");
+    igual(r.error, "Escribí tu nombre.", "mensaje");
     igual(r.invalido, "true", "aria-invalid");
     igual(r.describe, "error-nombre", "aria-describedby");
-    await p.fill("#f-whatsapp", "2001234567");
+    await p.fill("#f-whatsapp", "12345");
     await p.fill("#f-nombre", "Ana");
     await p.click('[data-accion="siguiente"]');
-    igual(await p.textContent("#error-whatsapp"), "Escriba un celular de 10 dígitos que empiece por 3.", "WhatsApp +57");
+    igual(await p.textContent("#error-whatsapp"), "Escribí el código de área y el número: 10 dígitos, sin el 0 ni el 15.", "WhatsApp corto");
+    await p.fill("#f-whatsapp", "11 15 2345 6789");
+    await p.click('[data-accion="siguiente"]');
+    igual(await p.textContent("#error-whatsapp"), "Sacale el 15: solo el código de área y el número.", "WhatsApp con 15");
+    // Formatos que se aceptan y se normalizan a +54 9 + 10 dígitos.
+    const normalizados = await p.evaluate(async () => {
+      const { normalizarCelularArgentino } = await import("/assets/js/form.js");
+      return ["11 2345 6789", "+54 9 11 2345-6789", "011 2345 6789", "9 11 2345 6789", "549 381 555 1234", "0381 15 555 1234"]
+        .map((v) => { const r = normalizarCelularArgentino(v); return r.valido ? r.numero : (r.con15 ? "15" : "inválido"); });
+    });
+    igual(normalizados, ["+5491123456789", "+5491123456789", "+5491123456789", "+5491123456789", "+5493815551234", "15"], "normalización");
     // Regresión: corregir los errores y tocar "Siguiente" UNA vez tiene que avanzar
     // (antes el error se borraba al perder el foco y el botón se movía bajo el dedo).
-    await p.fill("#f-whatsapp", "3001234567");
+    await p.fill("#f-whatsapp", "11 2345 6789");
     await p.fill("#f-tienda", "Tienda X");
     await p.fill("#f-instagram", "tiendax");
-    await p.fill("#f-ciudad", "Cali");
+    await p.fill("#f-ciudad", "Tucumán");
     await p.click('[data-accion="siguiente"]');
     igual(await p.isVisible('[data-paso="2"]'), true, "paso 2 visible tras un solo toque");
     await cerrar(p);
@@ -331,13 +341,13 @@ function auditarContraste() {
   console.log("\n3) Titular A/B");
   await prueba("?h=b muestra la variante B; sin parámetro, la A (config por defecto)", async () => {
     let p = await abrir("index.html?h=b");
-    igual((await p.locator("h1").innerText()).trim(), "Un chat no es una venta. Sepa cuántos iPhones le vende cada anuncio.", "titular B");
+    igual((await p.locator("h1").innerText()).trim(), "Un chat no es una venta. Sabé cuántos iPhones te vende cada anuncio.", "titular B");
     await cerrar(p);
     p = await abrir("index.html");
-    igual((await p.locator("h1").innerText()).trim(), "15 ventas de iPhone atribuidas a su pauta en 30 días, medidas una por una.", "titular A");
+    igual((await p.locator("h1").innerText()).trim(), "El objetivo: 15 ventas de iPhone en 30 días, atribuidas a Meta y registradas una por una en tu CRM.", "titular A");
     await cerrar(p);
     p = await abrir("index.html", { config: { titularPorDefecto: "B" } });
-    igual((await p.locator("h1").innerText()).trim(), "Un chat no es una venta. Sepa cuántos iPhones le vende cada anuncio.", "titular B por config");
+    igual((await p.locator("h1").innerText()).trim(), "Un chat no es una venta. Sabé cuántos iPhones te vende cada anuncio.", "titular B por config");
     await cerrar(p);
   });
 
@@ -436,9 +446,9 @@ function auditarContraste() {
   });
 
   await prueba("Cupos con datos: chips con singular, plural y 'completo'", async () => {
-    const p = await abrir("index.html", { config: { cupos: [{ ciudad: "Medellín", disponibles: 4 }, { ciudad: "Cali", disponibles: 1 }, { ciudad: "Bogotá", disponibles: 0 }] } });
+    const p = await abrir("index.html", { config: { cupos: [{ ciudad: "Tucumán", disponibles: 4 }, { ciudad: "Córdoba", disponibles: 1 }, { ciudad: "Rosario", disponibles: 0 }] } });
     igual(await p.$$eval("#cupos .chip", (c) => c.map((x) => x.textContent)),
-      ["Medellín: 4 cupos disponibles", "Cali: 1 cupo disponible", "Bogotá: completo"], "chips");
+      ["Tucumán: 4 cupos disponibles", "Córdoba: 1 cupo disponible", "Rosario: completo"], "chips");
     await cerrar(p);
   });
 
@@ -515,7 +525,7 @@ function auditarContraste() {
     const href = await boton.getAttribute("href");
     afirmar(href.startsWith("https://wa.me/5491100000000?text="), "href: " + href);
     const texto = decodeURIComponent(href.split("text=")[1]);
-    afirmar(texto.includes("Nombre: " + DATOS.nombre) && texto.includes("¿Cuánto le deja en promedio cada iPhone? USD 81 a 100"), "resumen incompleto:\n" + texto);
+    afirmar(texto.includes("Nombre: " + DATOS.nombre) && texto.includes("¿Cuánto te deja en promedio cada iPhone? USD 81 a 100"), "resumen incompleto:\n" + texto);
     igual(await p.isEnabled('[data-accion="enviar"]'), true, "botón Enviar rehabilitado");
     igual(await p.textContent('[data-accion="enviar"]'), "Enviar mi aplicación", "texto del botón");
     await cerrar(p);
@@ -543,12 +553,14 @@ function auditarContraste() {
   });
 
   console.log("\n6) Copy");
-  await prueba("Sin tú/vos/'nuestros clientes'/manzana; el caso dice 'ventas' a secas", async () => {
+  await prueba("Sin usted/tú/'nuestros clientes'/manzana; el caso dice 'ventas' a secas", async () => {
     const archivos = ["index.html", "agenda.html", "no-califica.html", "terminos.html", "privacidad.html",
       "assets/js/comun.js", "assets/js/form.js", "assets/js/main.js", "assets/js/agenda.js"];
     const malos = [];
     const prohibidos = [
-      [/(^|[^\wáéíóúñ])(tú|tu |tus |te |ti |contigo|vos|vosotros|tenés|podés|querés|sabés)([^\wáéíóúñ]|$)/i, "tuteo/voseo"],
+      // Registro rioplatense con voseo: "usted" (singular) y el tuteo quedan prohibidos.
+      // "ustedes" sí vale: es el plural en Argentina.
+      [/(^|[^\wáéíóúñ])(usted|tú|tienes|puedes|quieres|sabes|escríbanos|cancela cuando)([^\wáéíóúñ]|$)/i, "usted/tuteo"],
       [/nuestros clientes|cientos de tiendas/i, "plural de casos"],
       [/|🍎|apple-logo|logo de apple/i, "manzana de Apple"],
       [/solo hoy|últimas horas|cuenta regresiva/i, "urgencia falsa"]

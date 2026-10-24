@@ -1,7 +1,7 @@
 // Utilidades compartidas. Sin dependencias.
 
 /**
- * Formato numérico colombiano: punto de miles y coma decimal.
+ * Formato numérico argentino (rioplatense): punto de miles y coma decimal.
  * No usa Intl a propósito: según la versión de ICU, el español puede no
  * agrupar los números de 4 cifras (1040 en vez de 1.040).
  *   formatearNumero(6280)        → "6.280"

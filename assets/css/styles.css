@@ -594,38 +594,16 @@ select.control {
   background-position: right .875rem center;
 }
 
-.telefono { display: grid; grid-template-columns: 6.25rem 1fr; gap: .5rem; }
-
-/* Prefijo compacto: se ve "+57 ▾" y al tocarlo abre el selector nativo con
-   el nombre del país. El <select> real queda encima, transparente. */
-.prefijo { position: relative; }
-.prefijo__valor {
+.telefono { display: grid; grid-template-columns: auto 1fr; gap: .5rem; }
+/* Prefijo fijo de Argentina (+54 9): no se edita, solo orienta el formato. */
+.telefono__prefijo {
   display: flex;
   align-items: center;
-  padding-right: 2.25rem;
   font-weight: 700;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%232D3748' stroke-width='2'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right .875rem center;
+  background: var(--mmg-fondo-suave);
+  white-space: nowrap;
 }
-.prefijo__select {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  cursor: pointer;
-  font-size: 1rem;
-}
-.prefijo:hover .prefijo__valor { border-color: var(--mmg-azul-2); }
-.prefijo__select:focus-visible { outline: none; box-shadow: none; }
-.prefijo:has(.prefijo__select:focus-visible) .prefijo__valor,
-.prefijo__select:focus-visible + .prefijo__valor {
-  outline: 3px solid var(--mmg-celeste);
-  outline-offset: 3px;
-  box-shadow: 0 0 0 3px var(--mmg-azul-2);
-}
+.campo__ayuda { margin: 0; color: var(--color-texto-suave); }
 
 .campo__error {
   margin: 0;
@@ -1099,7 +1077,9 @@ html[data-h="b"] .titular--b { display: inline; }
 
 /* --- 03) Contraste e ICTC -------------------------------------------------- */
 .tarjetas-ict { display: grid; gap: 1rem; margin-block: 2rem; }
-@media (min-width: 900px) { .tarjetas-ict { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; } }
+/* Cuatro letras (I, C, T, C): 2 × 2 en tablet, en fila en escritorio ancho. */
+@media (min-width: 640px) { .tarjetas-ict { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; } }
+@media (min-width: 1100px) { .tarjetas-ict { grid-template-columns: repeat(4, 1fr); } }
 .tarjeta-ict { display: grid; gap: .875rem; align-content: start; }
 .tarjeta-ict h3 { margin: 0; }
 .tarjeta-ict p { margin: 0; }

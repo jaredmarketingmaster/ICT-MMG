@@ -1,10 +1,13 @@
-# CLAUDE.md — Landing ICTC (Marketing Masters Group)
+# CLAUDE.md — Landing ICTC (Marketing Master Top)
 
 Guía para las próximas sesiones de Claude Code en este repo. Leer completa antes de tocar nada.
 
 ## Qué es
 
-Landing estática (HTML + CSS + JS vanilla con ES modules, **sin build ni npm en producción**, solo Google Fonts como dependencia externa) para vender ICTC a dueños de tiendas de iPhone. El tráfico es tibio y llega casi todo desde el celular. Hay un solo objetivo y un solo CTA: **"Aplicar a un cupo"**, que lleva al formulario `#aplicar`.
+Landing estática (HTML + CSS + JS vanilla con ES modules, **sin build ni npm en producción**, solo Google Fonts como dependencia externa) para vender ICTC a tiendas que venden principalmente iPhone (revendedores oficiales o no oficiales, y tiendas de electrónica). El mercado inicial es **Argentina**; más adelante, el resto de Latinoamérica. El tráfico es tibio y llega casi todo desde el celular. Hay un solo objetivo y un solo CTA: **"Aplicar a un cupo"**, que lleva al formulario `#aplicar`.
+
+- **Marca:** ICTC es un producto de **Marketing Master Top**, la marca personal de Jared Farfán ("El Marketing Master"). Marketing Masters Group es el equipo de Jared, pero **no aparece en el sitio**.
+- Subdominio definitivo: `ictc.marketingmaster.top`.
 
 - Toda la configuración está en `config.js`. Nunca se hardcodean links, IDs ni datos legales en el HTML o el JS.
 - Encabezado y pie: una sola plantilla en `assets/js/comun.js`.
@@ -12,23 +15,35 @@ Landing estática (HTML + CSS + JS vanilla con ES modules, **sin build ni npm en
 - **Publicación:** el sitio de prueba se sirve con GitHub Pages desde la rama `claude/zealous-fermi-rhv2dx`, carpeta `/ (root)`. Cada cambio verificado se sube a esa rama para que se vea en línea; Pages tarda uno o dos minutos en actualizar.
 - `documentacion.md` es el diario de trabajo: al terminar cada sesión, agregar una entrada al final con la plantilla del archivo (qué se hizo, decisiones, verificación, pendientes y commits).
 
-## El copy se cambia solo si Jared lo pide, y siempre en "usted"
+## El copy se cambia solo si Jared lo pide, y siempre con voseo
 
-El texto visible es literal del brief. Se pueden ajustar saltos de línea y jerarquía visual, pero **no** reescribir, resumir, "mejorar" ni agregar frases de venta. Si algo del copy parece mal, se le avisa a Jared; no se corrige por cuenta propia.
+El texto visible es el aprobado por Jared. Se pueden ajustar saltos de línea y jerarquía visual, pero **no** reescribir, resumir, "mejorar" ni agregar frases de venta. Si algo del copy parece mal, se le avisa a Jared; no se corrige por cuenta propia. Ningún texto nuevo se publica sin su aprobación, salvo que él delegue la decisión de forma explícita (como hizo el 2026-10-24 con la versión para Argentina; ver `documentacion.md`).
 
 ## Reglas de contenido (no se rompen)
 
 1. El copy aprobado se usa literal (ver arriba).
-2. Trato de "usted" y español de Colombia en todo el texto visible. Nada de voseo ni de "tú". Esto incluye mensajes de error, textos de ayuda y `aria-label`.
+2. Español rioplatense con **voseo** en todo el texto visible ("vos tenés", "aplicá", "escribinos"). Esto incluye mensajes de error, textos de ayuda y `aria-label`. Nada de "usted" (singular) ni de tuteo ("tú", "tienes", "puedes"). "Ustedes" sí vale: es el plural en Argentina. Los textos legales van en tercera persona ("la Tienda", "el Prestador").
 3. El caso dice "ventas", nunca "ventas de iPhone", porque no se conoce el mix.
-4. Hay un solo caso: una tienda en Argentina. Nunca "nuestros clientes" ni "cientos de tiendas".
-5. Las 15 ventas son el objetivo, no una garantía. La garantía siempre va con sus condiciones.
+4. Hay un solo caso: una tienda anónima en Argentina. Nunca "nuestros clientes" ni "cientos de tiendas". Ya no se dice "en otro país": el caso es del país donde se lanza.
+5. La promesa es **15 ventas de iPhone atribuidas a Meta y registradas en el CRM en 30 días, contados desde el día 0** (el día en que se encienden los anuncios). Es el objetivo, no una garantía; ningún texto puede sugerir lo contrario. Una venta solo de accesorios no cuenta. La garantía siempre va con sus condiciones.
 6. Sin logo de Apple, sin imágenes oficiales de Apple, sin la manzana. "iPhone" se usa solo como nombre del producto que venden las tiendas.
 7. Sin testimonios, logos de clientes, contadores falsos, temporizadores ni "solo hoy".
-8. Números en formato colombiano: punto de miles y coma decimal (USD 6.280, USD 26,17). En JS, usar `formatearNumero` / `formatearUSD` de `assets/js/utils.js`; no usar `Intl`, que en español puede no agrupar los números de 4 cifras.
+8. Números con punto de miles y coma decimal (USD 6.280, USD 26,17), como se usa en Argentina. En JS, usar `formatearNumero` / `formatearUSD` de `assets/js/utils.js`; no usar `Intl`, que en español puede no agrupar los números de 4 cifras.
 9. No inventar datos, cifras, testimonios ni logos. Lo que falta se deja como `[PENDIENTE]` visible o vacío en `config.js`.
 10. Los cupos por ciudad (`CONFIG.cupos`) solo llevan datos reales. Vacío = la franja no se muestra.
-11. El copy no limita el servicio a Colombia (pedido de Jared): nada de "en Colombia" ni "solo trabajamos en Colombia". Se mantienen el español de Colombia, el formato numérico, "(hora Colombia)" en la agenda y el +57 por defecto en el WhatsApp.
+11. Argentina: `lang="es-AR"`, horarios en hora Argentina (UTC-3) y WhatsApp con prefijo fijo +54 9 en el formulario, sin selector de país. El copy no dice "solo trabajamos en Argentina", porque después se suma el resto de Latinoamérica.
+12. No se dice que Marketing Master Hub está basado en GoHighLevel, ni se explica qué recibe la tienda que ya tiene GoHighLevel propio (plan de USD 150). Solo se dice el precio.
+13. Cobro: suscripción de **Mercado Pago** con débito automático. Los precios se muestran en USD (210 o 150 por mes). No se promete en qué moneda se debita, porque las suscripciones de Mercado Pago en Argentina parecen admitir solo pesos (sin confirmar). Nada de Stripe, de "Visa o Mastercard" ni de cobro desde España.
+14. El cupo (máximo 5 tiendas por ciudad durante el año de lanzamiento) es un límite que se pone el prestador, **no una exclusividad**.
+
+## Producto (resumen; el detalle está en `documentacion.md`, entrada del 2026-10-24)
+
+- **ICTC:** Interrupción, Captura, Tracking y Cierre. La "C" de Cierre es el playbook de cierre de ventas.
+- **Entregables:** estructura validada de campañas en Meta y el pedido de anuncios (ángulos y estilos); landing con cotizadora y panel de administración; acceso a Marketing Master Hub (CRM, conversaciones, dashboards y contactos, usuarios ilimitados); tracking por servidor con la API de Conversiones; playbook de cierre; mantenimiento de hasta 4 h por mes, que incluye los guiones de los anuncios. Ya **no** hay "5 sesiones de capacitación", reporte mensual ni actualización de precios de la cotizadora (la tienda la autogestiona).
+- **Onboarding:** hasta 10 h, unas 2 h por día durante 5 días, entre el pago y el día 0. La tienda graba los anuncios apenas recibe los guiones.
+- **Precio:** USD 210 por mes, o USD 150 si la tienda ya tiene GoHighLevel propio. Más USD 1.000 por mes de pauta nueva que la tienda paga directo a Meta, y los costos de terceros (API de WhatsApp). Sin permanencia: la cancelación vale al final del mes pagado.
+- **Garantía del día 10:** si no hay al menos 1 venta de iPhone o 30 conversaciones calificadas (llegó por la cotizadora con un modelo elegido, vio el precio y lo aprobó), la tienda **elige**: reembolso de la cuota del primer mes y fin de la relación, o seguir sin reembolso. Condiciones: onboarding completo; USD 1.000 por mes activos desde el día 0; responder en 10 minutos o menos en horario comercial; registrar cada venta en el CRM; no alterar la estructura validada de campañas; usar la cotizadora, el CRM y el playbook como se explicaron. Se verifica con una llamada, el historial de cambios de Meta, el uso del CRM y las conversaciones en el Hub.
+- **Prestador:** Jared Ezequiel Farfán Borges, monotributista (factura C), CUIT y domicilio en `config.js` (`CONFIG.prestador`). El pie y las páginas legales leen esos datos de ahí (`data-prestador`); no se escriben en el HTML.
 
 ## Identidad visual (resumen)
 
@@ -63,7 +78,7 @@ Degradados:
 - Nunca texto de menos de 14 px.
 
 **Formas:**
-- **Hexágono vertical** (`--hexagono`, `clip-path`) como sistema: marco de I/C/T, viñetas celestes de las listas importantes (grises en "no es para usted" y "no incluye"), hitos de la línea de tiempo, números de las condiciones y patrón del hero al 5 %.
+- **Hexágono vertical** (`--hexagono`, `clip-path`) como sistema: marco de I/C/T/C, viñetas celestes de las listas importantes (grises en "no es para vos" y "no incluye"), hitos de la línea de tiempo, números de las condiciones y patrón del hero al 5 %.
 - Antetítulos "01)" a "10)" en la fuente de títulos.
 - Radios de 12 px en tarjetas y 10 px en botones.
 - Sombras frías `rgba(45,55,72,.08)`.
@@ -89,7 +104,7 @@ Degradados:
 - `.revelar` tiene una red de seguridad: a los 6 s todo se muestra.
 - La clase `.animar` la pone el JS, así que sin JS nada queda oculto.
 
-**Logo de la empresa:** `assets/img/logo-mmg.svg` es una recreación provisoria del PNG de 70 px. Se reemplaza por el vector oficial cuando exista. El nombre oficial es **Marketing Masters Group** (con S).
+**Logo de Marketing Master Top:** el hexágono "MM" de `assets/img/logo-mmg.svg` (el nombre del archivo quedó de antes). Es una recreación provisoria del PNG de 70 px; se reemplaza por el vector oficial cuando exista. Va en el pie y en la imagen para compartir.
 
 **Logotipo del producto** ("iCTC", solo texto):
 - `assets/img/ictc-logotipo.svg`: para fondos claros ("CTC" en `#2D3748`).
@@ -97,7 +112,7 @@ Degradados:
 - En el encabezado va en línea, desde `comun.js`, con "CTC" en `currentColor`: toma el color de `.marca` (blanco sobre el hero y `#2D3748` con el encabezado sólido). Alto de 28 px en móvil y 32 px desde 768 px.
 - Colores: la "i" en degradado `#1A73E8` → `#37B1AB`; "CTC" en `#2D3748` o en blanco.
 - No se redibuja ni se recolorea.
-- El pie, los favicons y el apple-touch-icon siguen con el isotipo de Marketing Masters Group, que es la empresa que presta el servicio.
+- El favicon (`ictc-favicon.svg`, `favicon-32.png`) y el apple-touch-icon son la "i" del logotipo, con su degradado. El pie lleva el isotipo y el nombre de Marketing Master Top.
 - En los textos, el nombre del producto se escribe **"ICTC"**, en mayúsculas y sin puntos; "iCTC" es solo la forma del logotipo.
 
 ## Lógica de calificación (`assets/js/form.js` → `calificar`)
@@ -110,7 +125,9 @@ Degradados:
 | `suma_1000` | "No" | `no_puede_sumar_1000` |
 | `utilidad` | "Menos de USD 60" o "USD 60 a 80" | `utilidad_menor_a_81` |
 
-En cualquier otro caso, **califica**. "No sé" en utilidad y "Nadie todavía" en graba **no** descalifican, porque se resuelven en la llamada.
+En cualquier otro caso, **califica**. "No sé" en utilidad y "Nadie todavía" en graba **no** descalifican, porque se resuelven en la llamada. Los anuncios activos en Meta y el Instagram los revisa el equipo antes de la llamada (biblioteca de anuncios); el formulario no los usa para calificar.
+
+**WhatsApp (`normalizarCelularArgentino`):** se guarda como `+549` + código de área sin 0 + número sin 15 (10 dígitos, el primero de 1 a 3). Acepta 54, 9 o 0 adelante. Si quedan 12 dígitos con un 15 después del código de área, pide sacarlo en vez de adivinar.
 
 - Califica → `agenda.html?nombre=…&whatsapp=…` y evento `Lead` del píxel.
 - No califica → `no-califica.html` y evento personalizado `AplicacionNoCalifica`.
@@ -151,17 +168,17 @@ Ambos eventos llevan `eventID` igual al `event_id` del payload. Desde el navegad
    - Calculadora contra la tabla, incluido el borde U = 80.
    - Configuración vacía y con datos: cupos, video, píxel, webhook OK y caído, calendario.
    - Botón fijo en móvil.
-   - Copy prohibido: tú/vos, "nuestros clientes", la manzana, urgencia falsa, y "ventas de iPhone" en el caso.
+   - Copy prohibido: "usted" y tuteo, "nuestros clientes", la manzana, urgencia falsa, y "ventas de iPhone" en el caso.
    - Contraste AA y nada de texto blanco sobre celeste.
    - Deslizador y medidor exactos.
    - Encabezado transparente que pasa a sólido, e inclinación desactivada con reduced-motion.
 4. Revisión manual rápida:
    ```bash
-   grep -rniE "\btú\b|\bvos\b|nuestros clientes|solo hoy" --include=*.html --include=*.js .
+   grep -rniE "\busted\b|\btú\b|nuestros clientes|solo hoy|stripe|colombia" --include=*.html --include=*.js .
    ```
 5. Si se cambia el copy de precios, actualizar a la vez el texto, la tabla de la sección 07 y las constantes de `main.js`.
 6. **Peso:** el brief pedía menos de 150 KB sin fuentes ni video.
-   - Desde la capa premium, lo propio pesa unos 160 KB sin comprimir y unos 39 KB transferidos con gzip.
+   - Lo propio de las 5 páginas (HTML, CSS y JS) pesa unos 189 KB sin comprimir y unos 46 KB con gzip desde la versión para Argentina; los borradores legales suman unos 14 KB.
    - No sumar peso sin necesidad; si se agrega algo, medirlo.
 7. **Lighthouse móvil:** 90 o más en rendimiento, accesibilidad y buenas prácticas.
    - Mide con un servidor que comprima (`npx serve .`), no con `python3 -m http.server`.

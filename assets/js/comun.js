@@ -89,6 +89,7 @@ function renderPie() {
 
   const prestador = CONFIG.prestador || {};
   const dato = (valor) => escapar(tieneValor(valor) ? valor : "[PENDIENTE]");
+  const faltaPrestador = ["nombre", "condicion", "cuit", "domicilio"].some((c) => !tieneValor(prestador[c]));
   const anio = new Date().getFullYear();
 
   const links = [
@@ -103,9 +104,9 @@ function renderPie() {
           <img src="assets/img/logo-mmg.svg" alt="" width="35" height="40">
           <span>Marketing Master Top</span>
         </div>
-        <p class="pie__tagline"><em>Paid Media Buying · Whole Funnel CRO · Analytics · Tracking · Reporting</em></p>
+        <p class="pie__tagline">ICTC es un producto de Marketing Master Top, la marca de Jared Farfán, “El Marketing Master”.</p>
         ${contactos.length ? `<p class="pie__contacto">Contacto: ${contactos.join(" · ")}</p>` : ""}
-        <p class="pie__prestador" data-pendiente="prestador">Prestador del servicio: ${dato(prestador.nombre)}, NIF ${dato(prestador.nif)}, ${dato(prestador.domicilio)}, España.</p>
+        <p class="pie__prestador"${faltaPrestador ? ' data-pendiente="prestador"' : ""}>Prestador del servicio: ${dato(prestador.nombre)}, ${dato(prestador.condicion)}, CUIT ${dato(prestador.cuit)}. ${dato(prestador.domicilio)}.</p>
         ${links.length ? `<nav class="pie__links" aria-label="Información legal">${links.join(' <span aria-hidden="true">·</span> ')}</nav>` : ""}
         <div class="pie__avisos">
           <p>Las cifras del caso son ventas reportadas por una tienda en Argentina. Los resultados de cada tienda dependen de su mercado, sus precios y su atención.</p>
@@ -198,9 +199,28 @@ export function seguro(fn, nombre) {
 }
 
 // -----------------------------------------------------------------------------
+// Datos del prestador y de contacto en las páginas legales: salen de config.js
+// para no repetirlos en el HTML. Lo que falta queda como [PENDIENTE].
+function completarDatosLegales() {
+  const prestador = CONFIG.prestador || {};
+  document.querySelectorAll("[data-prestador]").forEach((el) => {
+    const valor = prestador[el.dataset.prestador];
+    el.textContent = tieneValor(valor) ? valor : "[PENDIENTE]";
+  });
+  const whatsapp = String(CONFIG.whatsappAgencia || "").replace(/\D/g, "");
+  const email = String(CONFIG.emailContacto || "").trim();
+  document.querySelectorAll("[data-contacto]").forEach((el) => {
+    const soloEmail = el.dataset.contacto === "email";
+    const partes = soloEmail ? [email] : [email, whatsapp ? "WhatsApp +" + whatsapp : ""];
+    const texto = partes.filter(Boolean).join(" · ");
+    el.textContent = texto || (soloEmail ? "[PENDIENTE: email laboral]" : "[PENDIENTE: email y WhatsApp laborales]");
+  });
+}
+
 export function iniciarPagina() {
   seguro(renderEncabezado, "encabezado");
   seguro(renderPie, "pie");
+  seguro(completarDatosLegales, "datos legales");
   seguro(capturarOrigen, "origen");
   seguro(conectarLinksWhatsApp, "links de WhatsApp");
   seguro(animarAlEntrar, "animaciones");
