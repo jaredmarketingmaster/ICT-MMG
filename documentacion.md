@@ -206,3 +206,19 @@ Diario de trabajo de la landing de **ICTC** (Marketing Masters Group). Registra 
 - [ ] Decidir si la "i" de la og-image necesita más contraste (fondo más oscuro detrás del logotipo o la versión clara), sin recolorear el logotipo.
 - [ ] Al conectar el píxel, tener en cuenta que el `content_name` de `ViewContent` ahora es "Inversión ICTC".
 - [ ] Siguen los pendientes del README.
+
+---
+
+### 2026-10-24 — Publicación en GitHub Pages desde la rama de trabajo
+
+**Pedido por:** dueña del repo
+
+**Qué se hizo**
+- Se confirmó que el trabajo se hace en la rama `claude/zealous-fermi-rhv2dx`. GitHub Pages se configura para servir esa rama (carpeta `/ (root)`), así los cambios se pueden revisar en línea.
+- Se anotó en CLAUDE.md y en el README que cada cambio verificado se sube a esa rama para que se vea en el sitio.
+
+**Decisiones y por qué**
+- Pages sirve la rama de trabajo, no `main`, para revisar cada cambio en línea apenas se sube.
+
+**Pendientes**
+- [ ] Cuando la beta se apruebe, pasar los cambios a `main` y apuntar Pages a `main`.

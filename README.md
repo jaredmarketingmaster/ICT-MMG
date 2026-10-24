@@ -66,6 +66,7 @@ Para probar la variante B del titular y los UTM:
 
 1. Subir el repo a GitHub.
 2. Ir a **Settings → Pages**. En **Source**, elegir *Deploy from a branch*, la rama `main` y la carpeta `/ (root)`.
+   Durante la beta, el sitio de prueba se publica desde la rama `claude/zealous-fermi-rhv2dx`, que es donde se suben los cambios.
 3. La URL queda en `https://<usuario>.github.io/<repo>/`. Si se usa un dominio propio, se configura en la misma pantalla.
 4. Con la URL definitiva, completar en `index.html` las URLs **absolutas** de `og:image`, `twitter:image` y `og:url` (ver la lista de pendientes).
 
