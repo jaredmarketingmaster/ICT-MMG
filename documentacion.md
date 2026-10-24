@@ -167,3 +167,42 @@ Diario de trabajo de la landing de **ICTC** (Marketing Masters Group). Registra 
 - Beta funcional y publicable, con `noindex` en las 5 páginas.
 - `config.js` sin datos reales todavía: webhook, calendario, WhatsApp, email, píxel, video, cupos y datos legales siguen `[PENDIENTE]`. El sitio funciona en modo desarrollo (el formulario muestra el payload en la consola).
 - Pendientes abiertos: los de la lista del README.
+
+---
+
+### 2026-10-24 — El producto pasa a llamarse ICTC, con logotipo nuevo
+
+**Commits:** `592ffa1`
+**Pedido por:** Jared
+
+**Qué se hizo**
+- Logotipo de solo texto "iCTC" en dos archivos, con el contenido entregado por Jared y sin redibujar:
+  - `assets/img/ictc-logotipo.svg`: para fondos claros ("CTC" en `#2D3748`).
+  - `assets/img/ictc-logotipo-fondo-oscuro.svg`: para fondos oscuros ("CTC" en blanco).
+- Encabezado (`comun.js` → `renderEncabezado`): el isotipo y el nombre de MMG se reemplazan por el logotipo, en línea, con `aria-label="ICTC, inicio"`. Se borró el CSS de `.marca__isotipo` y `.marca__nombre`.
+- Nombre del producto cambiado a "ICTC" en `<title>` y metadatos (index, agenda y no-califica), texto visible, títulos de los dos diagramas del flujo, mensaje de WhatsApp, título del reproductor, `content_name` de `ViewContent` ("Inversión ICTC"), prefijos de consola, comentarios, `config.js`, README y CLAUDE.md.
+- Sección 03: solo cambia el nombre. Se agregó el comentario `[PENDIENTE]` sobre las tarjetas porque falta el texto de la C de Cierre.
+- `og-image.png`: el texto de abajo a la derecha pasa a ser el logotipo para fondo oscuro, a la misma altura.
+- CLAUDE.md: apartado "Logotipo del producto". README: los dos SVG en la estructura y la C de Cierre en pendientes.
+
+**Decisiones y por qué**
+- **Logotipo en línea con `currentColor` en "CTC":** toma el color de `.marca` (blanco sobre el hero, `#2D3748` con el encabezado sólido) sin cambiar de archivo. La "i" lleva un degradado con id propio (`ictc-i-encabezado`) para no chocar con otros SVG.
+- **Alto de 28 px en móvil y 32 px desde 768 px:** el ancho sale del viewBox (1550 × 605). El encabezado mantiene su alto (56 px en móvil, 68 px en escritorio).
+- **Pie, favicons y apple-touch-icon sin cambios:** el pie es de Marketing Masters Group, que presta el servicio, y el logotipo es demasiado ancho para leerse en 32 px.
+- **Sin inventar la C de Cierre:** no se agregó una cuarta tarjeta y se mantiene "los tres tramos" hasta que Jared defina el texto.
+- **ids, clases, nombres de archivo y variables (`#ict`, `.tarjetas-ict`, `ICT_URL`) no cambian**, para no romper anclas, estilos ni la suite.
+- **og-image retocada, no rehecha:** el script original no está en el repo. Se tapó el texto viejo con el mismo patrón de hexágonos tomado 128 px a la izquierda (dos períodos del patrón), con la corrección del degradado, y se compuso encima el logotipo renderizado a 4x. Se guardó en paleta de 256 colores, como la anterior (unos 128 KB).
+
+**Verificación**
+- `tests/verificar.cjs`: 29/29 OK.
+- grep del nombre anterior: solo queda en la primera entrada del diario.
+- Grep manual de copy prohibido: sin coincidencias.
+- Capturas a 360 y 1280 px: "CTC" se ve blanco (`rgb(255, 255, 255)`) sobre el hero y `#2D3748` (`rgb(45, 55, 72)`) con el encabezado sólido. El alto del encabezado no cambió.
+- Peso propio (HTML + CSS + JS): de 174.726 a 175.126 bytes (+400) y de 41.750 a 42.248 bytes con gzip.
+- **Contraste de la "i" en la og-image:** sobre el fondo de esa esquina (`#2A3F5D`), el extremo azul `#1A73E8` da 2,37:1 y el celeste `#37B1AB` 4,09:1. "CTC" en blanco da 10,67:1. No se cambiaron los colores; se le avisó a Jared.
+
+**Pendientes**
+- [ ] Texto de la C de Cierre en la sección 03 (lo define Jared).
+- [ ] Decidir si la "i" de la og-image necesita más contraste (fondo más oscuro detrás del logotipo o la versión clara), sin recolorear el logotipo.
+- [ ] Al conectar el píxel, tener en cuenta que el `content_name` de `ViewContent` ahora es "Inversión ICTC".
+- [ ] Siguen los pendientes del README.
