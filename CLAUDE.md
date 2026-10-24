@@ -79,6 +79,7 @@ Degradados:
 
 **Formas:**
 - **Hexágono vertical** (`--hexagono`, `clip-path`) como sistema: marco de I/C/T/C, viñetas celestes de las listas importantes (grises en "no es para vos" y "no incluye"), hitos de la línea de tiempo, números de las condiciones y patrón del hero al 5 %.
+- Listas con ícono (`.lista-hex--iconos`, secciones 02 y 05): cada punto lleva un hexágono con el degradado del logo y un ícono blanco de trazo (SVG en línea, decorativo, `aria-hidden`), y las frases clave en negrita. La negrita no cambia el copy.
 - Antetítulos "01)" a "10)" en la fuente de títulos.
 - Radios de 12 px en tarjetas y 10 px en botones.
 - Sombras frías `rgba(45,55,72,.08)`.

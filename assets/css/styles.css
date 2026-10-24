@@ -325,6 +325,24 @@ a:hover { color: var(--mmg-azul); }
   background: var(--mmg-celeste);
 }
 .lista-hex--gris > li::before { background: #A0AAB8; }
+/* Variante con ícono: un hexágono con el degradado del logo y un ícono blanco
+   por punto (problema y "qué incluye"). Los íconos son decorativos. */
+.lista-hex--iconos { gap: 1.125rem; }
+.lista-hex--iconos > li { padding-left: 3.25rem; min-height: 2.6rem; }
+.lista-hex--iconos > li::before { content: none; }
+.lista-hex__icono {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: grid;
+  place-items: center;
+  width: 2.25rem;  /* hexágono regular: ancho = alto × 0,866 */
+  height: 2.6rem;
+  clip-path: var(--hexagono);
+  background: var(--mmg-grad-logo);
+  color: var(--mmg-blanco);
+}
+.lista-hex__icono svg { width: 1.25rem; height: 1.25rem; }
 
 /* --- Hexágono con letra o número ------------------------------------------- */
 .hex {
