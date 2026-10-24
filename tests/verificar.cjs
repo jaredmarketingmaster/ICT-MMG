@@ -58,7 +58,7 @@ async function abrir(ruta, { ancho = 360, alto = 800, config = {}, movimientoRed
   const contexto = await navegador.newContext({
     viewport: { width: ancho, height: alto },
     reducedMotion: movimientoReducido ? "reduce" : "no-preference",
-    locale: "es-CO"
+    locale: "es-AR"
   });
   // Solo en la prueba: guarda el último console.info y la cola del píxel en
   // sessionStorage para leerlos después de la redirección.

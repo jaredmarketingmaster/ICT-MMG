@@ -101,7 +101,7 @@ function renderPie() {
       <div class="contenedor pie__interior">
         <div class="pie__marca">
           <img src="assets/img/logo-mmg.svg" alt="" width="35" height="40">
-          <span>Marketing Masters Group</span>
+          <span>Marketing Master Top</span>
         </div>
         <p class="pie__tagline"><em>Paid Media Buying · Whole Funnel CRO · Analytics · Tracking · Reporting</em></p>
         ${contactos.length ? `<p class="pie__contacto">Contacto: ${contactos.join(" · ")}</p>` : ""}
@@ -113,7 +113,7 @@ function renderPie() {
           ${CONFIG.metaPixelId ? `<p data-pendiente="consentimiento-pixel">Este sitio usa el píxel de Meta para medir anuncios.</p>` : ""}
         </div>
         <p class="pie__firma"><em>By marketingmaster.top</em></p>
-        <p class="pie__copy">© ${anio} Marketing Masters Group</p>
+        <p class="pie__copy">© ${anio} Marketing Master Top</p>
       </div>
     </footer>`;
 }

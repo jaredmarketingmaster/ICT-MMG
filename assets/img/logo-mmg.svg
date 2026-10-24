@@ -1,11 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 86.6 100" width="86.6" height="100" role="img" aria-labelledby="mmg-logo-titulo">
   <!--
-    Recreación provisoria; reemplazar por el vector oficial cuando exista.
+    Logo de Marketing Master Top. Recreación provisoria; reemplazar por el vector oficial cuando exista.
     Calcada a partir de assets/img/logo-mmg-isotipo-70px.png (70×70 px):
     hexágono vertical regular con degradado azul (#1A73E8) arriba → gris (#4A4A4A) abajo
     y monograma "MM" en blanco, trazado como líneas (no depende de ninguna fuente).
   -->
-  <title id="mmg-logo-titulo">Marketing Masters Group</title>
+  <title id="mmg-logo-titulo">Marketing Master Top</title>
   <defs>
     <linearGradient id="mmg-grad-logo" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0" stop-color="#1A73E8"/>

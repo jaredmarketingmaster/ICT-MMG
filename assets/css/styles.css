@@ -1,5 +1,5 @@
 /* =============================================================================
-   ICTC — Marketing Masters Group
+   ICTC — Marketing Master Top
    Orden: 1) variables · 2) base · 3) layout · 4) componentes · 5) secciones ·
           6) utilidades · 7) movimiento
    ============================================================================= */
@@ -8,7 +8,7 @@
    1) VARIABLES
    -------------------------------------------------------------------------- */
 :root {
-  /* Marca (manual de Marketing Masters Group) */
+  /* Marca (colores del logo de Marketing Master Top) */
   --mmg-azul:        #1A73E8; /* primario */
   --mmg-gris:        #4A4A4A; /* primario */
   --mmg-azul-2:      #2D3748; /* secundario */

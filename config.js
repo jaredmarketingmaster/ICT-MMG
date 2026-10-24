@@ -1,5 +1,5 @@
 // =============================================================================
-// Configuración del sitio ICTC — Marketing Masters Group
+// Configuración del sitio ICTC — Marketing Master Top
 // -----------------------------------------------------------------------------
 // Este es el ÚNICO archivo que hay que tocar para cambiar links, precios,
 // cupos o datos legales. El resto del código lee de aquí.
@@ -15,7 +15,7 @@ export const CONFIG = {
   calendarioUrl: "",                    // [PENDIENTE] URL de embed del calendario de GHL (30 min)
   whatsappAgencia: "",                  // [PENDIENTE] formato internacional sin "+", ej. 5491100000000
   emailContacto: "",                    // [PENDIENTE] ej. jared@marketingmaster.top
-  metaPixelId: "",                      // [PENDIENTE] píxel de Marketing Masters Group
+  metaPixelId: "",                      // [PENDIENTE] píxel de Marketing Master Top
   videoHero: "",                        // [PENDIENTE] URL del video del hero (YouTube, Vimeo o .mp4)
   precioContinuidad: 60,                // [PENDIENTE] propuesta, a confirmar
   cupos: [],                            // ej. [{ ciudad: "Medellín", disponibles: 4 }] — solo datos reales
