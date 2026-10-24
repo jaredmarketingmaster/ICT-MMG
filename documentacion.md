@@ -12,14 +12,14 @@ Diario de trabajo de la landing de **ICTC** (Marketing Master Top). Tiene dos pa
 
 ## Handoff: estado actual (leer primero)
 
-> **Última actualización:** 2026-10-24. **Último commit de código:** `7e48e67`. Rama: `claude/zealous-fermi-rhv2dx`.
+> **Última actualización:** 2026-10-24. **Último commit de código:** `47446eb`. Rama: `claude/zealous-fermi-rhv2dx`.
 > Si `git log` muestra commits posteriores que no aparecen acá, este bloque está desactualizado: leé esos commits y las entradas del registro antes de tocar nada.
 
 ### 1. Cómo retomar (checklist)
 
 1. Leer completos este bloque, `CLAUDE.md` y `README.md`. Después, las entradas del registro desde la del 2026-10-24 "Versión para Argentina".
 2. `git fetch origin claude/zealous-fermi-rhv2dx` y trabajar en esa rama. Es la que publica GitHub Pages.
-3. Levantar el servidor y correr la suite (comandos en `CLAUDE.md`, "Cómo verificar"). Resultado esperado al commit `7e48e67`: **30/30 pruebas OK**.
+3. Levantar el servidor y correr la suite (comandos en `CLAUDE.md`, "Cómo verificar"). Resultado esperado al commit `47446eb`: **30/30 pruebas OK**.
 4. Antes de escribir un dato, revisar la sección 6 ("Datos que no existen"). Lo que no está acá ni en `config.js` **no se inventa**: se pregunta a Jared o se deja `[PENDIENTE: …]`.
 5. Al terminar: suite en verde, commit, `git push -u origin claude/zealous-fermi-rhv2dx` (así se ve en Pages en 1 o 2 minutos), **reescribir este bloque** y agregar una entrada al registro.
 
@@ -30,12 +30,13 @@ Diario de trabajo de la landing de **ICTC** (Marketing Master Top). Tiene dos pa
 - Prefiere opciones concretas para elegir y que se publique cada cambio en Pages para revisarlo en línea.
 - **Regla de copy:** ningún texto visible nuevo se publica sin su aprobación, salvo delegación explícita. El 2026-10-24 delegó todo el copy de la versión para Argentina ("tomá vos todas las decisiones y luego voy a chequear"). **Ese copy todavía no lo revisó.**
 
-### 3. Estado del sitio al commit `7e48e67`
+### 3. Estado del sitio al commit `47446eb`
 
 | Parte | Estado | Origen del texto |
 |---|---|---|
 | Hero, metadatos y og-image | Hecho, en voseo, con la promesa como objetivo | Claude, por delegación; falta revisión de Jared |
 | 02 a 10 (problema, ICTC con 4 tarjetas, caso, entregables, para quién, inversión, garantía, formulario, FAQ) | Hecho | Claude, por delegación; falta revisión de Jared |
+| Listas de 02 y 05 | Íconos por punto y frases clave en negrita | Pedido de Jared (formato); el texto no cambió |
 | Pie | Marketing Master Top + prestador desde `config.js` | Claude, por delegación |
 | agenda.html y no-califica.html | Hecho, en voseo y hora Argentina | Claude, por delegación |
 | terminos.html y privacidad.html | **Borradores** con aviso visible y `[PENDIENTE]` | Claude, a pedido de Jared; falta el abogado |
@@ -66,7 +67,7 @@ Diario de trabajo de la landing de **ICTC** (Marketing Master Top). Tiene dos pa
 
 ### 5. Verificado y no verificado
 
-**Verificado al commit `7e48e67`:** suite 30/30; capturas de cada sección a 360 y 1440 px sin desbordes; grep sin "usted", tú, Stripe ni Colombia en HTML y JS.
+**Verificado al commit `47446eb`:** suite 30/30; capturas de cada sección a 360 y 1440 px sin desbordes; grep sin "usted", tú, Stripe ni Colombia en HTML y JS.
 
 **No verificado (no darlo por hecho):**
 - **Moneda de las suscripciones de Mercado Pago en Argentina.** Indicios de que es solo ARS (ejemplo oficial con `currency_id: "ARS"`, listas de terceros sin USD). La red del contenedor bloquea mercadopago.com.ar, así que no se leyó la documentación oficial.
@@ -410,3 +411,29 @@ Diario de trabajo de la landing de **ICTC** (Marketing Master Top). Tiene dos pa
 
 **Pendientes**
 - [ ] Los mismos del bloque Handoff, sección 7.
+
+---
+
+### 2026-10-24 — Íconos y negritas en las listas de 02 y 05
+
+**Commits:** `47446eb`
+**Pedido por:** Jared ("cambiá el ítem de color por un ícono que ejemplifique mejor el punto y agregá negritas a las palabras o frases clave")
+
+**Qué se hizo**
+- Sección 02 ("¿Te pasa esto?") y lista "Incluye" de la sección 05: cada viñeta celeste pasa a ser un hexágono con el degradado del logo y un ícono blanco de trazo.
+- Íconos de 02: billete (inversión sin clientes), chat (no contestan), calendario (fin de mes), anuncio (qué anuncio vendió), reloj (cada vendedor a su tiempo), reporte (agencia).
+- Íconos de 05: estructura (campañas), celular (landing con cotizadora), panel (Hub), pulso (tracking por servidor), libro (playbook), llave (mantenimiento).
+- Frases clave en negrita, por ejemplo "los clientes no llegan", "Tracking avanzado por servidor" o "Hasta 4 horas al mes de mantenimiento".
+
+**Decisiones y por qué**
+- **Íconos en SVG en línea, de trazo y propios**, sin librería, para no sumar peso ni dependencias. Son decorativos (`aria-hidden`), porque el texto ya dice todo.
+- **Hexágono con el degradado del logo**, el mismo sistema que las letras I/C/T/C, para que se vea parte de la marca. El blanco sobre ese degradado supera 3:1.
+- **"No incluye" y las demás listas quedan con la viñeta de siempre.** El pedido era solo para estas dos.
+- **La negrita no cambia el copy:** solo se marcaron frases que ya estaban.
+
+**Verificación**
+- Suite 30/30.
+- Capturas a 360 y 1440 px: los íconos se leen y no hay desbordes.
+
+**Pendientes**
+- [ ] Revisión de Jared de los íconos elegidos y de las frases en negrita.
