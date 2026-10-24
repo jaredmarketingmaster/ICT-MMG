@@ -13,7 +13,7 @@ Landing estática (HTML + CSS + JS vanilla con ES modules, **sin build ni npm en
 - Encabezado y pie: una sola plantilla en `assets/js/comun.js`.
 - Ver el README para la estructura y la lista de pendientes.
 - **Publicación:** el sitio de prueba se sirve con GitHub Pages desde la rama `claude/zealous-fermi-rhv2dx`, carpeta `/ (root)`. Cada cambio verificado se sube a esa rama para que se vea en línea; Pages tarda uno o dos minutos en actualizar.
-- `documentacion.md` es el diario de trabajo: al terminar cada sesión, agregar una entrada al final con la plantilla del archivo (qué se hizo, decisiones, verificación, pendientes y commits).
+- `documentacion.md` es el diario de trabajo y el **handoff**: al empezar, leer su bloque "Handoff: estado actual"; al terminar cada sesión, reescribir ese bloque y agregar una entrada al final del registro con la plantilla del archivo (qué se hizo, decisiones, verificación, pendientes y commits).
 
 ## El copy se cambia solo si Jared lo pide, y siempre con voseo
 

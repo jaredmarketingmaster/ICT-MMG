@@ -1,18 +1,134 @@
-# Documentación — Diario de trabajo
+# Documentación — Diario de trabajo y handoff
 
-Diario de trabajo de la landing de **ICTC** (Marketing Masters Group). Registra qué se hizo, cuándo, por qué y qué quedó pendiente, en orden cronológico.
+Diario de trabajo de la landing de **ICTC** (Marketing Master Top). Tiene dos partes:
+
+1. **Handoff (abajo, primero):** el estado actual del proyecto. Es lo que tiene que leer cualquier persona o agente que retome el trabajo, por ejemplo otra cuenta de Claude Code, para seguir como si fuera la misma conversación. Es una sección viva: se **reescribe** al final de cada sesión.
+2. **Registro:** la historia, en orden cronológico. Solo se **agregan** entradas al final; las viejas no se editan.
 
 - El **README** explica cómo está armado el sitio y cómo se usa.
 - **CLAUDE.md** tiene las reglas que no se rompen.
-- Este archivo cuenta **la historia**: decisiones, cambios, pedidos de Jared y aprendizajes.
+
+---
+
+## Handoff: estado actual (leer primero)
+
+> **Última actualización:** 2026-10-24. **Último commit de código:** `7e48e67`. Rama: `claude/zealous-fermi-rhv2dx`.
+> Si `git log` muestra commits posteriores que no aparecen acá, este bloque está desactualizado: leé esos commits y las entradas del registro antes de tocar nada.
+
+### 1. Cómo retomar (checklist)
+
+1. Leer completos este bloque, `CLAUDE.md` y `README.md`. Después, las entradas del registro desde la del 2026-10-24 "Versión para Argentina".
+2. `git fetch origin claude/zealous-fermi-rhv2dx` y trabajar en esa rama. Es la que publica GitHub Pages.
+3. Levantar el servidor y correr la suite (comandos en `CLAUDE.md`, "Cómo verificar"). Resultado esperado al commit `7e48e67`: **30/30 pruebas OK**.
+4. Antes de escribir un dato, revisar la sección 6 ("Datos que no existen"). Lo que no está acá ni en `config.js` **no se inventa**: se pregunta a Jared o se deja `[PENDIENTE: …]`.
+5. Al terminar: suite en verde, commit, `git push -u origin claude/zealous-fermi-rhv2dx` (así se ve en Pages en 1 o 2 minutos), **reescribir este bloque** y agregar una entrada al registro.
+
+### 2. Personas y forma de trabajo
+
+- **Jared Farfán** ("El Marketing Master") es el dueño del producto. Aprueba el copy y define el producto.
+- Escribe en español rioplatense y a veces **dicta por voz**: pueden llegar palabras mal transcritas o mezcladas con otro idioma. Ejemplos ya vistos: "IDICTC" = "la i de iCTC" (favicon); "quit" = "CUIT". Ante la duda, se confirma con él.
+- Prefiere opciones concretas para elegir y que se publique cada cambio en Pages para revisarlo en línea.
+- **Regla de copy:** ningún texto visible nuevo se publica sin su aprobación, salvo delegación explícita. El 2026-10-24 delegó todo el copy de la versión para Argentina ("tomá vos todas las decisiones y luego voy a chequear"). **Ese copy todavía no lo revisó.**
+
+### 3. Estado del sitio al commit `7e48e67`
+
+| Parte | Estado | Origen del texto |
+|---|---|---|
+| Hero, metadatos y og-image | Hecho, en voseo, con la promesa como objetivo | Claude, por delegación; falta revisión de Jared |
+| 02 a 10 (problema, ICTC con 4 tarjetas, caso, entregables, para quién, inversión, garantía, formulario, FAQ) | Hecho | Claude, por delegación; falta revisión de Jared |
+| Pie | Marketing Master Top + prestador desde `config.js` | Claude, por delegación |
+| agenda.html y no-califica.html | Hecho, en voseo y hora Argentina | Claude, por delegación |
+| terminos.html y privacidad.html | **Borradores** con aviso visible y `[PENDIENTE]` | Claude, a pedido de Jared; falta el abogado |
+| Formulario | Solo Argentina, prefijo fijo +54 9 | Decisión de Jared; mensajes de Claude |
+| Caso (sección 04) y calculadora (07) | Números sin cambios | Brief original |
+| Publicación | GitHub Pages desde esta rama. Jared dijo que lo configuraba; **no se verificó desde el contenedor** | — |
+| Subdominio `ictc.marketingmaster.top` | Usado en `og:url` y `og:image`; **todavía no apunta al sitio** (falta el DNS) | Jared |
+
+### 4. Decisiones vigentes (no reabrir sin que Jared lo pida)
+
+| Decisión | La tomó | Dónde se aplica |
+|---|---|---|
+| Producto ICTC = Interrupción, Captura, Tracking y Cierre; la C de Cierre es el playbook | Jared | `index.html` sección 03 |
+| Marca Marketing Master Top. Marketing Masters Group **desaparece** del sitio | Jared | Títulos, pie, FAQ |
+| El hexágono "MM" es el logo de Marketing Master Top (archivo `logo-mmg.svg`); el favicon es la "i" de iCTC | Jared | `assets/img/` |
+| Mercado: Argentina; voseo; hora Argentina; formulario sin selector de país | Jared | Todo el sitio |
+| Precios en **USD** (210 / 150); no decir en qué moneda debita Mercado Pago | Jared ("dejalos todo en USD") | Sección 07, FAQ, términos |
+| Plan USD 150: no explicar la transferencia de recursos ni que el Hub es GoHighLevel | Jared | — |
+| Garantía: la tienda **elige** reembolso y fin, o seguir sin reembolso | Jared | Sección 08, términos |
+| Instagram no es filtro; los anuncios activos los revisa el equipo; la calificación automática no cambia | Jared | `form.js` (sin cambios) |
+| Sin reporte mensual; la tienda autogestiona los precios de la cotizadora; los guiones van dentro del mantenimiento de 4 h | Jared | Sección 05 |
+| Día 0 = día en que se encienden los anuncios; la tienda graba apenas recibe los guiones | Jared | Secciones 01, 05 y FAQ |
+| Sin permanencia; la cancelación vale al final del mes pagado | Jared | 07, FAQ, términos |
+| Legales: borrador publicado con aviso de BORRADOR | Jared | `terminos.html`, `privacidad.html` |
+| Titular A con "El objetivo:"; línea de "30 días desde que se encienden los anuncios"; frase C1 del pie; firma "By marketingmaster.top" | Claude (delegado) | Hero, pie |
+| Texto de no-califica válido para cualquier motivo | Claude (delegado) | `no-califica.html` |
+| Validación de celular argentino (acepta 54/9/0, pide sacar el 15) | Claude | `form.js` → `normalizarCelularArgentino` |
+
+### 5. Verificado y no verificado
+
+**Verificado al commit `7e48e67`:** suite 30/30; capturas de cada sección a 360 y 1440 px sin desbordes; grep sin "usted", tú, Stripe ni Colombia en HTML y JS.
+
+**No verificado (no darlo por hecho):**
+- **Moneda de las suscripciones de Mercado Pago en Argentina.** Indicios de que es solo ARS (ejemplo oficial con `currency_id: "ARS"`, listas de terceros sin USD). La red del contenedor bloquea mercadopago.com.ar, así que no se leyó la documentación oficial.
+- **Formato de celulares argentinos:** 54 + 9 + código de área sin 0 + número sin 15. Las fuentes de terceros coinciden; ENACOM no se consultó.
+- **Webhook de GoHighLevel** desde el navegador (CORS) y los **parámetros de prellenado del calendario** (`first_name`, `phone`).
+- Que GitHub Pages ya sirva esta rama, y la URL exacta.
+
+### 6. Datos que no existen todavía (no inventar)
+
+| Dato | Dónde va | Estado |
+|---|---|---|
+| WhatsApp laboral de Jared | `config.js` → `whatsappAgencia` (549 + área sin 0 + número sin 15) | Se pidió; no llegó |
+| Email laboral de Jared | `config.js` → `emailContacto` | Se pidió; no llegó |
+| Píxel de Meta, webhook de GHL, calendario, video del hero, captura del caso | `config.js` | Vacíos |
+| Precio para conservar CRM y cotizadora al cancelar | `config.js` → `precioContinuidad` (USD 60 es **propuesta**) | Sin confirmar |
+| Cupos por ciudad | `config.js` → `cupos` | Solo con datos reales |
+| Categoría de monotributo | No se muestra | Jared no la pasó |
+| Moneda del débito y tipo de cambio | Términos (punto 7) | Sin confirmar |
+| Texto legal final | `terminos.html`, `privacidad.html` | Lo define el abogado |
+| Vector oficial del logo MM | `assets/img/logo-mmg.svg` | El actual es una recreación |
+
+### 7. Próximos pasos (en orden)
+
+1. Esperar la revisión de Jared de la versión para Argentina y aplicar sus cambios.
+2. Cargar WhatsApp y email cuando lleguen. Eso muestra el botón de respaldo del formulario y el contacto del pie y de las legales.
+3. Confirmar la moneda del débito en Mercado Pago y completar el punto 7 de los términos.
+4. Precio de continuidad: confirmarlo o quitar la frase de la FAQ.
+5. Validar o quitar el punto de agencias de la sección 02 (`data-pendiente="validar-agencias"`).
+6. Subdominio: CNAME `ictc` → `jaredmarketingmaster.github.io` en el DNS y dominio personalizado en Settings → Pages. GitHub crea un archivo `CNAME` en la rama; **no crearlo a mano antes del DNS**, porque deja de verse el sitio de Pages.
+7. Al lanzar: quitar el `noindex` de las 5 páginas, quitar el aviso de BORRADOR de las legales y pasar los cambios a `main`.
+
+### 8. Entorno y trampas conocidas
+
+- **El servidor local no sobrevive entre sesiones.** Si todas las pruebas fallan con `ERR_CONNECTION_REFUSED`, hay que relanzar `python3 -m http.server 8080` en la raíz.
+- Playwright y Chromium vienen instalados: usar `NODE_PATH="$(npm root -g)"` y no reinstalarlos. Con proxy, exportar `HTTPS_PROXY` para Google Fonts.
+- La red del contenedor bloquea algunos dominios (mercadopago.com.ar, wikipedia). Si una fuente no se puede abrir, se dice así y se marca como no verificado.
+- La imagen para compartir se regenera con `herramientas/og-image.cjs` desde `herramientas/og-image.html` y después se cuantiza a 256 colores.
+- **No renombrar** ids, clases ni archivos heredados (`#ict`, `.tarjetas-ict`, `logo-mmg.svg`, `ict_origen`): los usan el CSS, el JS y las pruebas.
+- La prueba de copy prohíbe "usted" y el tuteo; "ustedes" está permitido. Las legales van en tercera persona.
+- Los datos del prestador y del contacto salen de `config.js` (`data-prestador`, `data-contacto`); no se escriben en el HTML.
+- Los commits terminan con las líneas de atribución de la sesión y **no** llevan nombres de modelos.
+
+### 9. Dónde está cada cosa
+
+- **Copy de la landing:** `index.html` (secciones marcadas `01)` a `10)`).
+- **Mensajes del formulario y del plan B:** `assets/js/form.js` (`MENSAJES`, `mostrarFallo`).
+- **Encabezado y pie:** `assets/js/comun.js` (`renderEncabezado`, `renderPie`).
+- **Configuración y datos legales:** `config.js`.
+- **Pruebas:** `tests/verificar.cjs`.
+- **Estructura completa:** README, "Estructura".
+
+---
 
 ## Cómo se usa
 
-- Cada sesión de trabajo agrega una entrada **al final** del registro. Las entradas viejas no se editan; si algo cambió, se aclara en una entrada nueva.
+- Al final de cada sesión: **reescribir el bloque Handoff** para que refleje el estado real, y agregar una entrada **al final** del registro.
+- Las entradas viejas del registro no se editan; si algo cambió, se aclara en una entrada nueva.
 - Fechas en formato `AAAA-MM-DD`. Horas en UTC si se anotan.
 - Cada entrada referencia los commits que la respaldan (hash corto).
-- Las decisiones se anotan con su motivo. Si la pidió Jared, se dice.
-- Lo que queda abierto va en "Pendientes" de la entrada y, si es duradero, también en la lista de pendientes del README.
+- Las decisiones se anotan con su motivo y con quién las tomó (Jared o Claude por delegación).
+- Lo que no se pudo verificar se marca como tal; nunca se presenta como hecho.
+- Lo que queda abierto va en "Pendientes" de la entrada, en el bloque Handoff y, si es duradero, en la lista de pendientes del README.
 
 ### Plantilla
 
@@ -272,3 +388,25 @@ Diario de trabajo de la landing de **ICTC** (Marketing Masters Group). Registra 
 - [ ] Precio de continuidad al cancelar (`precioContinuidad`), o quitar esa frase de la FAQ.
 - [ ] Apuntar `ictc.marketingmaster.top` a GitHub Pages (CNAME en el DNS y dominio personalizado en Settings → Pages).
 - [ ] Validar el punto de agencias de la sección 02 (`data-pendiente="validar-agencias"`).
+
+---
+
+### 2026-10-24 — El diario pasa a servir también de handoff
+
+**Pedido por:** Jared
+
+**Qué se hizo**
+- Se agregó al principio de este archivo el bloque **"Handoff: estado actual"**. Incluye cómo retomar, personas y forma de trabajo, estado del sitio, decisiones vigentes con quién las tomó, qué está verificado y qué no, datos que no existen todavía, próximos pasos, trampas del entorno y dónde está cada cosa.
+- "Cómo se usa" ahora pide reescribir el Handoff al final de cada sesión y marcar siempre lo no verificado.
+- CLAUDE.md apunta al Handoff como lectura obligatoria al empezar.
+- Se corrigió la introducción, que todavía decía "Marketing Masters Group".
+
+**Decisiones y por qué**
+- **Handoff vivo arriba y registro de solo agregado abajo.** Quien retoma, otra cuenta de Claude Code u otro agente, encuentra el estado actual sin reconstruirlo desde la historia, y la historia queda intacta.
+- **Decisiones con su origen (Jared o Claude por delegación)** y **lista de datos inexistentes**, para que el próximo agente no reabra lo ya decidido ni invente datos.
+
+**Verificación**
+- Solo cambió documentación. La suite sigue en 30/30.
+
+**Pendientes**
+- [ ] Los mismos del bloque Handoff, sección 7.
