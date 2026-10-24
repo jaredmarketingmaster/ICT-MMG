@@ -222,3 +222,53 @@ Diario de trabajo de la landing de **ICTC** (Marketing Masters Group). Registra 
 
 **Pendientes**
 - [ ] Cuando la beta se apruebe, pasar los cambios a `main` y apuntar Pages a `main`.
+
+---
+
+### 2026-10-24 — Versión para Argentina: nueva marca, producto, cobro y voseo
+
+**Commits:** `d48f68f`, `e0425d7`, `134c624`, `7e48e67`
+**Pedido por:** Jared
+
+**Contexto (fuente de verdad de esta versión)**
+- ICTC = Interrupción, Captura, Tracking y Cierre. Producto de Marketing Master Top, la marca personal de Jared Farfán ("El Marketing Master"). Marketing Masters Group es su equipo, pero desaparece del sitio.
+- Se vende a tiendas que venden principalmente iPhone (revendedores oficiales o no, y tiendas de electrónica). Mercado inicial: Argentina; después, el resto de Latinoamérica.
+- Promesa no garantizada: 15 ventas de iPhone atribuidas a Meta y registradas en el CRM en 30 días desde el día 0 (encendido de anuncios). Las ventas solo de accesorios no cuentan.
+- Entregables: estructura validada de campañas y pedido de anuncios; landing con cotizadora y panel; Marketing Master Hub (CRM, conversaciones, dashboards, contactos); tracking por servidor (API de Conversiones); playbook de cierre; mantenimiento de hasta 4 h por mes, con los guiones de los anuncios.
+- Onboarding de hasta 10 h (unas 2 h por día, 5 días). Ya no hay 5 sesiones de capacitación, reporte mensual ni actualización de precios de la cotizadora.
+- USD 210 por mes, o USD 150 con GoHighLevel propio (en ese caso se le transfieren los recursos a su cuenta; no se menciona en la landing). Cobro por suscripción de Mercado Pago con débito automático. Pauta de USD 1.000 por mes aparte, pagada a Meta.
+- Garantía del día 10 con condiciones; la tienda elige reembolso y fin de la relación, o seguir sin reembolso.
+- Prestador: Jared Ezequiel Farfán Borges, monotributista, factura C, CUIT 20-40331496-0, San Martín 1500, T4107 Yerba Buena, Tucumán.
+- Subdominio: `ictc.marketingmaster.top`.
+
+**Qué se hizo**
+- `d48f68f`: `lang="es-AR"`, `og:locale` `es_AR`, "Marketing Master Top" en lugar de "Marketing Masters Group" y favicon con la "i" de iCTC.
+- `e0425d7`: `og:url`, `og:image` y `twitter:image` con URL absoluta del subdominio.
+- `134c624`: borradores de Términos y Privacidad para Argentina, con aviso visible de BORRADOR y `[PENDIENTE]` en lo que define el abogado.
+- `7e48e67`: todo el copy en voseo y con el producto nuevo (hero, 02 a 10, agenda, no-califica, errores y pie); cuarta tarjeta "C de Cierre"; formulario solo para Argentina (+54 9 fijo); og-image rehecha; CLAUDE.md y README actualizados.
+
+**Decisiones y por qué**
+- **Jared delegó las decisiones de copy** ("tomá vos todas las decisiones y luego voy a chequear"). Todo el texto nuevo lo escribió Claude siguiendo el brief, sin agregar datos; queda para su revisión.
+- **Titular A con "El objetivo:" adelante**, para que desde la primera línea quede claro que las 15 ventas no son una garantía.
+- **Precios en USD y sin decir en qué moneda se debita.** Pedido de Jared: "dejalos todo en USD". Las fuentes que se encontraron indican que las suscripciones de Mercado Pago en Argentina se crean en ARS (ejemplo oficial con `currency_id: "ARS"`; listas de terceros sin USD). No se pudo abrir la documentación oficial desde el contenedor, porque la red bloquea mercadopago.com.ar. La calculadora sigue en USD 1.210.
+- **Filtros de Instagram y de anuncios activos:** los revisa el equipo antes de la llamada. El de Instagram se descartó y el formulario no cambió su lógica de calificación.
+- **Celulares argentinos:** formato para wa.me 54 + 9 + código de área sin 0 + número sin 15 (fuentes de terceros que coinciden; ENACOM no se pudo consultar). Si el número trae el 15, se pide sacarlo en vez de adivinar dónde está.
+- **no-califica** pasa a un texto que vale para cualquier motivo ("Con esas respuestas, hoy ICTC no es para tu tienda…"). El anterior hablaba solo de ganancia, pero la página también sale si el iPhone no es lo principal o si no puede sumar USD 1.000.
+- **Datos del prestador solo en `config.js`:** el pie y las legales los leen de ahí (`data-prestador`, `data-contacto`).
+- **og-image reconstruida desde una plantilla HTML** (`herramientas/`), porque la original no tenía fuente en el repo.
+- **Legales en tercera persona**, para no depender del registro.
+
+**Verificación**
+- `tests/verificar.cjs`: 30/30 OK, incluida la normalización de celulares (`11 2345 6789`, `+54 9 11 2345-6789`, `011 2345 6789`, `9 11…`, `549 381…` y un número con 15).
+- Grep manual de "usted", tú, Stripe y Colombia en HTML y JS: sin coincidencias.
+- Capturas a 360 y 1440 px de cada sección: sin desbordes; las cuatro tarjetas de la sección 03 quedan en fila en escritorio.
+- Peso propio de las 5 páginas: unos 189 KB sin comprimir y 46 KB con gzip (las legales suman unos 14 KB).
+
+**Pendientes**
+- [ ] Revisión de Jared de toda la versión nueva.
+- [ ] WhatsApp y email laborales de Jared (`config.js`).
+- [ ] Confirmar en Mercado Pago la moneda del débito.
+- [ ] Revisión del abogado de los borradores legales.
+- [ ] Precio de continuidad al cancelar (`precioContinuidad`), o quitar esa frase de la FAQ.
+- [ ] Apuntar `ictc.marketingmaster.top` a GitHub Pages (CNAME en el DNS y dominio personalizado en Settings → Pages).
+- [ ] Validar el punto de agencias de la sección 02 (`data-pendiente="validar-agencias"`).
