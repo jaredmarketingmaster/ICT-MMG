@@ -1,6 +1,6 @@
-# I.C.T. — Landing de venta (beta)
+# ICTC — Landing de venta (beta)
 
-Landing de **I.C.T.**, el sistema de adquisición de clientes de **Marketing Masters Group** para dueños de tiendas de iPhone:
+Landing de **ICTC**, el sistema de adquisición de clientes de **Marketing Masters Group** para dueños de tiendas de iPhone:
 
 - **I**nterrupción: campañas en Meta.
 - **C**aptura: cotizadora conectada al WhatsApp de la tienda y a un CRM.
@@ -38,6 +38,8 @@ assets/
   js/agenda.js        calendario embebido y prellenado
   img/logo-mmg.svg    isotipo (recreación provisoria, ver abajo)
   img/logo-mmg-isotipo-70px.png   original
+  img/ictc-logotipo.svg          logotipo iCTC para fondos claros
+  img/ictc-logotipo-fondo-oscuro.svg   logotipo iCTC para fondos oscuros
   img/og-image.png    1200×630 para compartir
   img/favicon-32.png, apple-touch-icon.png
 tests/verificar.cjs   verificación automática (Playwright), no se usa en producción
@@ -106,7 +108,7 @@ Después del envío: si califica, va a `agenda.html?nombre=…&whatsapp=…`; si
 
 ## Logo provisorio
 
-`assets/img/logo-mmg.svg` es una **recreación provisoria; reemplazar por el vector oficial cuando exista**. Se calcó del PNG de 70 px: hexágono regular vertical con el degradado azul→gris y "MM" trazado como líneas. Para cambiarlo, basta con reemplazar el archivo (se usa en el encabezado, el pie y el favicon) y regenerar `favicon-32.png`, `apple-touch-icon.png` y `og-image.png`.
+`assets/img/logo-mmg.svg` es una **recreación provisoria; reemplazar por el vector oficial cuando exista**. Se calcó del PNG de 70 px: hexágono regular vertical con el degradado azul→gris y "MM" trazado como líneas. Para cambiarlo, basta con reemplazar el archivo (se usa en el pie y el favicon; el encabezado lleva el logotipo iCTC) y regenerar `favicon-32.png`, `apple-touch-icon.png` y `og-image.png`.
 
 ## Verificar antes de cada commit
 
@@ -143,6 +145,7 @@ La verificación cubre:
 - [ ] `capturaCaso`: captura del Administrador de anuncios con datos tapados.
 
 **En el contenido y la técnica:**
+- [ ] Texto de la **C de Cierre** en la sección 03 (lo define Jared). ICTC tiene cuatro letras y la sección explica tres; hay un comentario `[PENDIENTE]` sobre las tarjetas.
 - [ ] Validar el punto "Si trabaja con una agencia…" de la sección 02 (`data-pendiente="validar-agencias"`).
 - [ ] Textos legales de `terminos.html` y `privacidad.html` (revisión del abogado).
 - [ ] Banner de consentimiento del píxel: lo define el abogado.

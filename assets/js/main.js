@@ -80,7 +80,7 @@ function renderVideo() {
   const visual = document.getElementById("hero-visual");
   if (!visual || !tieneValor(CONFIG.videoHero)) return;
   const video = analizarVideo(String(CONFIG.videoHero).trim());
-  if (!video) { console.warn("[I.C.T.] videoHero no es de YouTube, Vimeo ni .mp4; se muestra el mock."); return; }
+  if (!video) { console.warn("[ICTC] videoHero no es de YouTube, Vimeo ni .mp4; se muestra el mock."); return; }
 
   const portada = tieneValor(CONFIG.videoPortada) ? CONFIG.videoPortada : video.portada;
   const contenedor = document.createElement("div");
@@ -105,7 +105,7 @@ function renderVideo() {
     if (video.tipo === "iframe") {
       reproductor = document.createElement("iframe");
       reproductor.src = video.src;
-      reproductor.title = "Video de I.C.T.";
+      reproductor.title = "Video de ICTC";
       reproductor.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
       reproductor.allowFullscreen = true;
     } else {
@@ -314,7 +314,7 @@ function observarInversion() {
   if (!seccion || !tieneValor(CONFIG.metaPixelId) || !("IntersectionObserver" in window)) return;
   const observador = new IntersectionObserver(([e]) => {
     if (!e.isIntersecting) return;
-    rastrear("ViewContent", { content_name: "Inversión I.C.T." });
+    rastrear("ViewContent", { content_name: "Inversión ICTC" });
     observador.disconnect();
   }, { threshold: 0.25 });
   observador.observe(seccion);

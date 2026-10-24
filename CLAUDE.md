@@ -1,10 +1,10 @@
-# CLAUDE.md — Landing I.C.T. (Marketing Masters Group)
+# CLAUDE.md — Landing ICTC (Marketing Masters Group)
 
 Guía para las próximas sesiones de Claude Code en este repo. Leer completa antes de tocar nada.
 
 ## Qué es
 
-Landing estática (HTML + CSS + JS vanilla con ES modules, **sin build ni npm en producción**, solo Google Fonts como dependencia externa) para vender I.C.T. a dueños de tiendas de iPhone. El tráfico es tibio y llega casi todo desde el celular. Hay un solo objetivo y un solo CTA: **"Aplicar a un cupo"**, que lleva al formulario `#aplicar`.
+Landing estática (HTML + CSS + JS vanilla con ES modules, **sin build ni npm en producción**, solo Google Fonts como dependencia externa) para vender ICTC a dueños de tiendas de iPhone. El tráfico es tibio y llega casi todo desde el celular. Hay un solo objetivo y un solo CTA: **"Aplicar a un cupo"**, que lleva al formulario `#aplicar`.
 
 - Toda la configuración está en `config.js`. Nunca se hardcodean links, IDs ni datos legales en el HTML o el JS.
 - Encabezado y pie: una sola plantilla en `assets/js/comun.js`.
@@ -88,7 +88,16 @@ Degradados:
 - `.revelar` tiene una red de seguridad: a los 6 s todo se muestra.
 - La clase `.animar` la pone el JS, así que sin JS nada queda oculto.
 
-**Logo:** `assets/img/logo-mmg.svg` es una recreación provisoria del PNG de 70 px. Se reemplaza por el vector oficial cuando exista. El nombre oficial es **Marketing Masters Group** (con S).
+**Logo de la empresa:** `assets/img/logo-mmg.svg` es una recreación provisoria del PNG de 70 px. Se reemplaza por el vector oficial cuando exista. El nombre oficial es **Marketing Masters Group** (con S).
+
+**Logotipo del producto** ("iCTC", solo texto):
+- `assets/img/ictc-logotipo.svg`: para fondos claros ("CTC" en `#2D3748`).
+- `assets/img/ictc-logotipo-fondo-oscuro.svg`: para fondos oscuros ("CTC" en blanco).
+- En el encabezado va en línea, desde `comun.js`, con "CTC" en `currentColor`: toma el color de `.marca` (blanco sobre el hero y `#2D3748` con el encabezado sólido). Alto de 28 px en móvil y 32 px desde 768 px.
+- Colores: la "i" en degradado `#1A73E8` → `#37B1AB`; "CTC" en `#2D3748` o en blanco.
+- No se redibuja ni se recolorea.
+- El pie, los favicons y el apple-touch-icon siguen con el isotipo de Marketing Masters Group, que es la empresa que presta el servicio.
+- En los textos, el nombre del producto se escribe **"ICTC"**, en mayúsculas y sin puntos; "iCTC" es solo la forma del logotipo.
 
 ## Lógica de calificación (`assets/js/form.js` → `calificar`)
 

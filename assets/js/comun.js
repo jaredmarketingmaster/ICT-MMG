@@ -24,6 +24,12 @@ const escapar = (texto) =>
 // -----------------------------------------------------------------------------
 // Encabezado
 // -----------------------------------------------------------------------------
+// Logotipo iCTC en línea (copia de assets/img/ictc-logotipo.svg): "CTC" usa
+// currentColor para tomar el color de .marca (blanco sobre el hero oscuro,
+// #2D3748 con el encabezado sólido). La "i" conserva su degradado, con un id
+// propio para no chocar con otros SVG de la página.
+const LOGOTIPO_ICTC = `<svg class="marca__logotipo" xmlns="http://www.w3.org/2000/svg" viewBox="-40 416 1550 605" aria-hidden="true" focusable="false"><defs><linearGradient id="ictc-i-encabezado" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="130" y2="0"><stop offset="0" stop-color="#1A73E8"/><stop offset="1" stop-color="#37B1AB"/></linearGradient></defs><g fill="url(#ictc-i-encabezado)"><circle cx="65" cy="521" r="65"/><rect x="10" y="623" width="110" height="351"/></g><path fill="currentColor" d="M602 554.92A251 246 0 1 0 602 915.08L532.9 832.73A135 149 0 1 1 532.9 637.27ZM630 496L1020 496L1020 586L882.5 586L882.5 974L767.5 974L767.5 586L630 586ZM1470 554.92A251 246 0 1 0 1470 915.08L1400.9 832.73A135 149 0 1 1 1400.9 637.27Z"/></svg>`;
+
 function renderEncabezado() {
   const contenedor = document.getElementById("encabezado");
   if (!contenedor) return;
@@ -34,11 +40,7 @@ function renderEncabezado() {
   contenedor.outerHTML = `
     <header class="encabezado${sobreOscuro ? " encabezado--sobre-oscuro" : ""}">
       <div class="contenedor encabezado__interior">
-        <a class="marca" href="index.html">
-          <img class="marca__isotipo" src="assets/img/logo-mmg.svg" alt="" width="35" height="40">
-          <span class="marca__nombre marca__nombre--largo">Marketing Masters Group</span>
-          <span class="marca__nombre marca__nombre--corto" aria-hidden="true">MMG</span>
-        </a>
+        <a class="marca" href="index.html" aria-label="ICTC, inicio">${LOGOTIPO_ICTC}</a>
         ${cta ? `<a class="boton boton--primario boton--chico" href="${escapar(cta)}" data-cta="encabezado">Aplicar a un cupo</a>` : ""}
       </div>
       ${conProgreso ? '<span class="encabezado__progreso" aria-hidden="true"></span>' : ""}
@@ -191,7 +193,7 @@ export function seguro(fn, nombre) {
   try {
     fn();
   } catch (error) {
-    console.warn(`[I.C.T.] Falló ${nombre}:`, error);
+    console.warn(`[ICTC] Falló ${nombre}:`, error);
   }
 }
 

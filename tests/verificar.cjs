@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // =============================================================================
-// Verificación de la landing I.C.T. (sección 11 del brief).
+// Verificación de la landing ICTC (sección 11 del brief).
 //
 // Requisitos: Node 18+ y Playwright con Chromium instalados en la máquina
 // (no es dependencia del sitio). Con Playwright instalado global:

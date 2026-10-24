@@ -1,5 +1,5 @@
 /* =============================================================================
-   I.C.T. — Marketing Masters Group
+   ICTC — Marketing Masters Group
    Orden: 1) variables · 2) base · 3) layout · 4) componentes · 5) secciones ·
           6) utilidades · 7) movimiento
    ============================================================================= */
@@ -300,33 +300,15 @@ a:hover { color: var(--mmg-azul); }
 .marca {
   display: inline-flex;
   align-items: center;
-  gap: .625rem;
   min-height: 44px;
   color: var(--mmg-azul-2);
   text-decoration: none;
 }
 .marca:hover { color: var(--mmg-azul-2); }
-.marca__isotipo { width: 28px; height: auto; }
-.marca__nombre {
-  font-family: var(--font-titulos);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .06em;
-  line-height: 1;
-}
-.marca__nombre--largo { font-size: 1rem; }
-.marca__nombre--corto { font-size: 1.125rem; }
-
-@media (max-width: 767.98px) {
-  /* En móvil solo isotipo + "MMG"; el nombre completo queda para lectores de pantalla. */
-  .marca__nombre--largo {
-    position: absolute; width: 1px; height: 1px; overflow: hidden;
-    clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
-  }
-}
+/* Logotipo iCTC: el ancho sale del viewBox (1550 × 605). */
+.marca__logotipo { display: block; height: 28px; width: auto; aspect-ratio: 1550 / 605; }
 @media (min-width: 768px) {
-  .marca__isotipo { width: 35px; }
-  .marca__nombre--corto { display: none; }
+  .marca__logotipo { height: 32px; }
 }
 
 /* --- Viñetas hexagonales --------------------------------------------------- */
@@ -1115,7 +1097,7 @@ html[data-h="b"] .titular--b { display: inline; }
 .problema__lista { max-width: 760px; }
 .problema__lista li { font-size: clamp(1.0625rem, 1rem + .3vw, 1.1875rem); }
 
-/* --- 03) Contraste e I.C.T. ------------------------------------------------ */
+/* --- 03) Contraste e ICTC -------------------------------------------------- */
 .tarjetas-ict { display: grid; gap: 1rem; margin-block: 2rem; }
 @media (min-width: 900px) { .tarjetas-ict { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; } }
 .tarjeta-ict { display: grid; gap: .875rem; align-content: start; }

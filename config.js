@@ -1,5 +1,5 @@
 // =============================================================================
-// Configuración del sitio I.C.T. — Marketing Masters Group
+// Configuración del sitio ICTC — Marketing Masters Group
 // -----------------------------------------------------------------------------
 // Este es el ÚNICO archivo que hay que tocar para cambiar links, precios,
 // cupos o datos legales. El resto del código lee de aquí.

@@ -35,7 +35,7 @@ function renderCalendario() {
   try {
     url = new URL(CONFIG.calendarioUrl, window.location.href);
   } catch (_) {
-    console.warn("[I.C.T.] calendarioUrl no es una URL válida.");
+    console.warn("[ICTC] calendarioUrl no es una URL válida.");
     return;
   }
 

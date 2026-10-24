@@ -292,7 +292,7 @@ export function iniciarFormulario({ obtenerVariante }) {
       const valor = clave === "instagram" ? "@" + payload.instagram : payload[clave];
       return etiqueta.endsWith("?") ? `${etiqueta} ${valor}` : `${etiqueta}: ${valor}`;
     });
-    return ["Hola, quiero aplicar a un cupo de I.C.T. Estas son mis respuestas:", "", ...lineas].join("\n");
+    return ["Hola, quiero aplicar a un cupo de ICTC. Estas son mis respuestas:", "", ...lineas].join("\n");
   }
 
   // ---------------------------------------------------------------------------
@@ -300,7 +300,7 @@ export function iniciarFormulario({ obtenerVariante }) {
   // ---------------------------------------------------------------------------
   async function enviarAlWebhook(payload) {
     if (!tieneValor(CONFIG.webhookUrl)) {
-      console.info("[I.C.T.] Webhook no configurado: no se envió nada. Payload:", payload);
+      console.info("[ICTC] Webhook no configurado: no se envió nada. Payload:", payload);
       return;
     }
     const controlador = new AbortController();
@@ -371,7 +371,7 @@ export function iniciarFormulario({ obtenerVariante }) {
     try {
       await enviarAlWebhook(payload);
     } catch (error) {
-      console.warn("[I.C.T.] Falló el envío al webhook:", error);
+      console.warn("[ICTC] Falló el envío al webhook:", error);
       enviando = false;
       btnEnviar.disabled = false;
       btnVolver.disabled = false;

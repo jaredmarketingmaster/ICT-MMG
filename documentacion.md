@@ -1,6 +1,6 @@
 # Documentación — Diario de trabajo
 
-Diario de trabajo de la landing de **I.C.T.** (Marketing Masters Group). Registra qué se hizo, cuándo, por qué y qué quedó pendiente, en orden cronológico.
+Diario de trabajo de la landing de **ICTC** (Marketing Masters Group). Registra qué se hizo, cuándo, por qué y qué quedó pendiente, en orden cronológico.
 
 - El **README** explica cómo está armado el sitio y cómo se usa.
 - **CLAUDE.md** tiene las reglas que no se rompen.
