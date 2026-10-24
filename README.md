@@ -42,6 +42,7 @@ assets/
   img/favicon-32.png, apple-touch-icon.png
 tests/verificar.cjs   verificación automática (Playwright), no se usa en producción
 CLAUDE.md             reglas para las próximas sesiones de Claude Code
+documentacion.md      diario de trabajo: historia, decisiones y cambios por sesión
 ```
 
 ## Correrlo localmente

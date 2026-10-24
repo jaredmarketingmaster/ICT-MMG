@@ -9,6 +9,7 @@ Landing estática (HTML + CSS + JS vanilla con ES modules, **sin build ni npm en
 - Toda la configuración está en `config.js`. Nunca se hardcodean links, IDs ni datos legales en el HTML o el JS.
 - Encabezado y pie: una sola plantilla en `assets/js/comun.js`.
 - Ver el README para la estructura y la lista de pendientes.
+- `documentacion.md` es el diario de trabajo: al terminar cada sesión, agregar una entrada al final con la plantilla del archivo (qué se hizo, decisiones, verificación, pendientes y commits).
 
 ## El copy se cambia solo si Jared lo pide, y siempre en "usted"
 
