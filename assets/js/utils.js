@@ -1,4 +1,6 @@
-// Utilidades compartidas. Sin dependencias.
+// Utilidades compartidas.
+
+import { traducir } from "./idioma.js";
 
 /**
  * Formato numérico argentino (rioplatense): punto de miles y coma decimal.
@@ -46,7 +48,8 @@ export const almacen = {
 export function linkWhatsApp(numero, texto = "") {
   const limpio = String(numero || "").replace(/\D/g, "");
   if (!limpio) return "";
-  return "https://wa.me/" + limpio + (texto ? "?text=" + encodeURIComponent(texto) : "");
+  // El mensaje precargado sale en la variante de idioma del visitante.
+  return "https://wa.me/" + limpio + (texto ? "?text=" + encodeURIComponent(traducir(texto)) : "");
 }
 
 /** true si el valor tiene contenido real (no vacío, no null). */

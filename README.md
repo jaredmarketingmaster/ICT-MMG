@@ -33,6 +33,7 @@ assets/
   css/styles.css      variables · base · layout · componentes · secciones · utilidades
   js/utils.js         formato de números (punto de miles, coma decimal), sessionStorage seguro
   js/comun.js         encabezado y pie (una sola plantilla), UTM, píxel, links de WhatsApp
+  js/idioma.js        español neutro fuera de Argentina (detección y diccionario)
   js/main.js          index: titular A/B, cupos, video/mock, calculadora, botón fijo
   js/form.js          formulario: pasos, validación, calificación, envío, plan B
   js/pixel.js         píxel de Meta (solo si hay ID)
@@ -69,7 +70,7 @@ Para probar la variante B del titular y los UTM:
 
 1. Subir el repo a GitHub.
 2. Ir a **Settings → Pages**. En **Source**, elegir *Deploy from a branch*, la rama `main` y la carpeta `/ (root)`.
-   Durante la beta, el sitio de prueba se publica desde la rama `claude/zealous-fermi-rhv2dx`, que es donde se suben los cambios.
+   La versión final 1 está en `main`. Hasta que se cambie esta opción, Pages sigue sirviendo la rama de la beta (`claude/zealous-fermi-rhv2dx`).
 3. La URL queda en `https://<usuario>.github.io/<repo>/`. Si se usa un dominio propio, se configura en la misma pantalla.
 4. El subdominio definitivo es `ictc.marketingmaster.top`. `og:url`, `og:image` y `twitter:image` ya apuntan ahí con URL **absoluta**; si cambia el dominio, hay que cambiarlas.
 
@@ -94,6 +95,16 @@ Para probar la variante B del titular y los UTM:
 Los datos del caso (sección 05) están dos veces en `index.html`: en la tabla y en el gráfico (`style="--v:…"`, `data-valor` y `aria-label`). Si cambian, hay que actualizar ambos.
 
 El precio (USD 210 / 150), la pauta (USD 1.000) y la cuenta de 1.210 están en el **copy**, no en `config.js`. Si cambian, hay que tocar `index.html` (texto y tabla de la sección 08) y las constantes de `assets/js/main.js` (`COSTO_MENSUAL`, `VENTAS_OBJETIVO`, `UTILIDAD_MINIMA`).
+
+## Español neutro fuera de Argentina
+
+`assets/js/idioma.js` muestra los textos en español neutro (tuteo) a quien no está en Argentina, y en rioplatense (voseo) a quien sí. El HTML se escribe en rioplatense; el neutro sale de un diccionario.
+
+- **Detección:** zona horaria del dispositivo (`America/Argentina/*`). No usa la IP: no hay servidor, y un servicio externo de geolocalización recibiría la IP de cada visitante.
+- **Probar:** `?es=neutro` o `?es=ar` en la URL (la sesión lo recuerda).
+- **Apagar:** `espanolNeutroFueraDeArgentina: false` en `config.js`.
+- **Texto nuevo con voseo:** sumar su forma neutra en `PALABRAS` o `FRASES` de `idioma.js`.
+- Mientras traduce, la página queda invisible un instante (máximo 1,5 s) para que no se vea un texto y después el otro. Solo pasa fuera de Argentina.
 
 ## Formulario → GoHighLevel
 

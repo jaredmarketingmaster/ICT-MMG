@@ -11,6 +11,7 @@
 import { CONFIG } from "../../config.js";
 import { almacen, linkWhatsApp, tieneValor, reducirMovimiento } from "./utils.js";
 import { iniciarPixel } from "./pixel.js";
+import { aplicarIdioma } from "./idioma.js";
 
 const PARAMETROS_ORIGEN = [
   "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "fbclid", "ref"
@@ -218,6 +219,8 @@ function completarDatosLegales() {
 }
 
 export function iniciarPagina() {
+  // Primero el idioma: lo que se renderice después lo traduce su observador.
+  seguro(aplicarIdioma, "idioma");
   seguro(renderEncabezado, "encabezado");
   seguro(renderPie, "pie");
   seguro(completarDatosLegales, "datos legales");

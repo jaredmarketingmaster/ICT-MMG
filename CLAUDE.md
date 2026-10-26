@@ -12,7 +12,7 @@ Landing estática (HTML + CSS + JS vanilla con ES modules, **sin build ni npm en
 - Toda la configuración está en `config.js`. Nunca se hardcodean links, IDs ni datos legales en el HTML o el JS.
 - Encabezado y pie: una sola plantilla en `assets/js/comun.js`.
 - Ver el README para la estructura y la lista de pendientes.
-- **Publicación:** el sitio de prueba se sirve con GitHub Pages desde la rama `claude/zealous-fermi-rhv2dx`, carpeta `/ (root)`. Cada cambio verificado se sube a esa rama para que se vea en línea; Pages tarda uno o dos minutos en actualizar.
+- **Publicación:** la versión final 1 está en `main` (2026-10-26, pedido de Jared). GitHub Pages tiene que servir `main`, carpeta `/ (root)`; hasta que se cambie en Settings → Pages, sigue mostrando `claude/zealous-fermi-rhv2dx`. Pages tarda uno o dos minutos en actualizar.
 - `documentacion.md` es el diario de trabajo y el **handoff**: al empezar, leer su bloque "Handoff: estado actual"; al terminar cada sesión, reescribir ese bloque y agregar una entrada al final del registro con la plantilla del archivo (qué se hizo, decisiones, verificación, pendientes y commits).
 
 ## El copy se cambia solo si Jared lo pide, y siempre con voseo
@@ -22,7 +22,7 @@ El texto visible es el aprobado por Jared. Se pueden ajustar saltos de línea y 
 ## Reglas de contenido (no se rompen)
 
 1. El copy aprobado se usa literal (ver arriba).
-2. Español rioplatense con **voseo** en todo el texto visible ("vos tenés", "aplicá", "escribinos"). Esto incluye mensajes de error, textos de ayuda y `aria-label`. Nada de "usted" (singular) ni de tuteo ("tú", "tienes", "puedes"). "Ustedes" sí vale: es el plural en Argentina. Los textos legales van en tercera persona ("la Tienda", "el Prestador").
+2. Español rioplatense con **voseo** en todo el texto visible ("vos tenés", "aplicá", "escribinos"). Esto incluye mensajes de error, textos de ayuda y `aria-label`. Nada de "usted" (singular) ni de tuteo ("tú", "tienes", "puedes"). "Ustedes" sí vale: es el plural en Argentina. Los textos legales van en tercera persona ("la Tienda", "el Prestador"). Esto vale para el código; la versión en español neutro la genera `idioma.js` (regla 15).
 3. El caso dice "ventas", nunca "ventas de iPhone", porque no se conoce el mix.
 4. Hay un solo caso: una tienda anónima en Argentina. Nunca "nuestros clientes" ni "cientos de tiendas". Ya no se dice "en otro país": el caso es del país donde se lanza.
 5. La promesa es **15 ventas de iPhone atribuidas a Meta y registradas en el CRM en 30 días, contados desde el día 0** (el día en que se encienden los anuncios). Es el objetivo, no una garantía; ningún texto puede sugerir lo contrario. Una venta solo de accesorios no cuenta. La garantía siempre va con sus condiciones. En el hero, Jared la escribió así, y va literal: "El objetivo: 15 ventas extra de iPhone en 30 días. Cómo: Aplicando el sistema ICTC."
@@ -35,6 +35,11 @@ El texto visible es el aprobado por Jared. Se pueden ajustar saltos de línea y 
 12. No se dice que Marketing Master Hub está basado en GoHighLevel, ni se explica qué recibe la tienda que ya tiene GoHighLevel propio (plan de USD 150). Solo se dice el precio.
 13. Cobro: suscripción de **Mercado Pago** con débito automático. Los precios se muestran en USD (210 o 150 por mes), con la nota "Pesificamos el costo al momento de realizar el pago." (pedido de Jared, 2026-10-26). El tipo de cambio que se usa para pesificar no está definido: no se escribe. Nada de Stripe, de "Visa o Mastercard" ni de cobro desde España.
 14. El cupo (máximo 5 tiendas por ciudad durante el año de lanzamiento) es un límite que se pone el prestador, **no una exclusividad**.
+15. **Español neutro fuera de Argentina** (pedido de Jared, 2026-10-26). El HTML y el JS se escriben **siempre** en rioplatense; `assets/js/idioma.js` pasa los textos a español neutro con tuteo ("tú tienes", "elige", "escríbenos", "para ti", "el dinero") cuando el visitante no está en Argentina.
+   - **Cómo detecta:** por la zona horaria del dispositivo (`America/Argentina/*` y sus alias = Argentina). No por IP: el sitio es estático y no hay servidor que la vea; usar un servicio externo de geolocalización mandaría la IP de cada visitante a un tercero.
+   - `?es=ar` / `?es=neutro` fuerzan una variante y la sesión la recuerda. `CONFIG.espanolNeutroFueraDeArgentina = false` lo apaga.
+   - **Si se agrega texto con voseo o un argentinismo nuevo, hay que sumar su forma neutra al diccionario `PALABRAS` o `FRASES` de `idioma.js`** (con artículo si cambia el género, como "la plata" → "el dinero"). La prueba "Fuera de Argentina" falla si queda voseo en la versión neutra.
+   - Solo cambia el idioma. El contenido argentino (hora Argentina, Mercado Pago, pesificación, formulario +54 9, legales) es igual en las dos variantes.
 
 ## Producto (resumen; el detalle está en `documentacion.md`, entrada del 2026-10-24)
 

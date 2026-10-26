@@ -54,11 +54,14 @@ function igual(real, esperado, que) {
 
 // --- Navegador ----------------------------------------------------------------
 let navegador;
-async function abrir(ruta, { ancho = 360, alto = 800, config = {}, movimientoReducido = true, bloquearMeta = true } = {}) {
+// zona: por defecto Argentina (versión rioplatense). Fuera de Argentina el
+// sitio pasa a español neutro (assets/js/idioma.js).
+async function abrir(ruta, { ancho = 360, alto = 800, config = {}, movimientoReducido = true, bloquearMeta = true, zona = "America/Argentina/Buenos_Aires" } = {}) {
   const contexto = await navegador.newContext({
     viewport: { width: ancho, height: alto },
     reducedMotion: movimientoReducido ? "reduce" : "no-preference",
-    locale: "es-AR"
+    locale: "es-AR",
+    timezoneId: zona
   });
   // Solo en la prueba: guarda el último console.info y la cola del píxel en
   // sessionStorage para leerlos después de la redirección.
@@ -552,7 +555,72 @@ function auditarContraste() {
     await cerrar(p);
   });
 
-  console.log("\n6) Copy");
+  console.log("\n6) Español neutro fuera de Argentina");
+  const VOSEO = /(?<![\p{L}])(\p{L}+(?:ás|és|ís)|completá|cotizá|elegí|escribí|revisá|aceptá|intentá|tené|aplicá|escribinos|contanos|vos|sos|plata)(?![\p{L}])/giu;
+  const NO_VOSEO = /^(más|estás|después|interés|atrás|demás|jamás|además|inglés|país|través)$/i;
+  const restosDeVoseo = (texto) => [...new Set(texto.match(VOSEO) || [])].filter((w) => !NO_VOSEO.test(w));
+  const textoVisible = (p) => p.evaluate(() => {
+    document.querySelectorAll("details").forEach((d) => { d.open = true; });
+    const atributos = [...document.querySelectorAll("[aria-label],[placeholder],[title],[alt]")]
+      .map((e) => ["aria-label", "placeholder", "title", "alt"].map((a) => e.getAttribute(a) || "").join(" ")).join(" ");
+    return document.title + "\n" + document.body.innerText + "\n" + atributos;
+  });
+
+  await prueba("Fuera de Argentina: las 5 páginas sin voseo, lang=es y visibles", async () => {
+    for (const ruta of ["index.html", "agenda.html", "no-califica.html", "terminos.html", "privacidad.html"]) {
+      for (const zona of ["America/Bogota", "America/Mexico_City", "Europe/Madrid", "UTC"]) {
+        const p = await abrir(ruta, { zona });
+        const r = await p.evaluate(() => ({ v: document.documentElement.dataset.idioma, lang: document.documentElement.lang, op: getComputedStyle(document.body).opacity }));
+        igual([r.v, r.lang, r.op], ["neutro", "es", "1"], `${ruta} @${zona}`);
+        igual(restosDeVoseo(await textoVisible(p)), [], `${ruta} @${zona} voseo restante`);
+        igual(erroresConsola(p), [], `${ruta} @${zona} errores`);
+        await cerrar(p);
+      }
+    }
+  });
+
+  await prueba("Argentina (todas sus zonas horarias) ve la versión rioplatense", async () => {
+    for (const zona of ["America/Argentina/Buenos_Aires", "America/Argentina/Tucuman", "America/Argentina/Cordoba", "America/Buenos_Aires"]) {
+      const p = await abrir("index.html", { zona });
+      igual(await p.evaluate(() => [document.documentElement.dataset.idioma, document.documentElement.lang]), ["ar", "es-AR"], zona);
+      afirmar((await textoVisible(p)).includes("Es para vos si:"), zona + ": falta el voseo");
+      await cerrar(p);
+    }
+  });
+
+  await prueba("Neutro: traducciones exactas, formulario y WhatsApp en tuteo", async () => {
+    const p = await abrir("index.html", { zona: "America/Bogota", config: { whatsappAgencia: "5491100000000", webhookUrl: "https://webhook.prueba.local/hook" } });
+    const t = await textoVisible(p);
+    for (const frase of ["Es para ti si:", "Tú eliges: si prefieres la devolución", "Así el dinero va a la campaña que vende.", "los grabas tú", "Cotiza tu iPhone"]) {
+      afirmar(t.includes(frase), "falta: " + frase);
+    }
+    await p.click('[data-accion="siguiente"]');
+    igual(await p.textContent("#error-nombre"), "Escribe tu nombre.", "error dinámico");
+    await p.route("https://webhook.prueba.local/**", (route) => route.abort("failed"));
+    await llenarYEnviar(p, { iphone: "Sí", suma: "Sí", utilidad: "USD 81 a 100", graba: "Yo" });
+    const boton = p.locator(".formulario__estado a.boton--whatsapp");
+    await boton.waitFor({ timeout: 3000 });
+    const estado = await p.textContent(".formulario__estado");
+    igual(restosDeVoseo(estado), [], "mensaje de error del envío");
+    igual(restosDeVoseo(decodeURIComponent((await boton.getAttribute("href")).split("text=")[1])), [], "mensaje precargado de WhatsApp");
+    await cerrar(p);
+  });
+
+  await prueba("?es=ar y ?es=neutro fuerzan la variante y la sesión la recuerda", async () => {
+    let p = await abrir("index.html?es=ar", { zona: "America/Bogota" });
+    igual(await p.evaluate(() => document.documentElement.dataset.idioma), "ar", "?es=ar fuera de Argentina");
+    await p.goto(BASE + "/agenda.html", { waitUntil: "networkidle" });
+    igual(await p.evaluate(() => document.documentElement.dataset.idioma), "ar", "la sesión recuerda ?es=ar");
+    await cerrar(p);
+    p = await abrir("index.html?es=neutro");
+    igual(await p.evaluate(() => document.documentElement.dataset.idioma), "neutro", "?es=neutro en Argentina");
+    await cerrar(p);
+    p = await abrir("index.html", { zona: "America/Bogota", config: { espanolNeutroFueraDeArgentina: false } });
+    igual(await p.evaluate(() => document.documentElement.dataset.idioma), "ar", "interruptor apagado en config.js");
+    await cerrar(p);
+  });
+
+  console.log("\n7) Copy");
   await prueba("Sin usted/tú/'nuestros clientes'/manzana; el caso dice 'ventas' a secas", async () => {
     const archivos = ["index.html", "agenda.html", "no-califica.html", "terminos.html", "privacidad.html",
       "assets/js/comun.js", "assets/js/form.js", "assets/js/main.js", "assets/js/agenda.js"];
@@ -578,7 +646,7 @@ function auditarContraste() {
     igual(malos, [], "problemas de copy");
   });
 
-  console.log("\n7) Contraste");
+  console.log("\n8) Contraste");
   for (const ruta of ["index.html", "agenda.html", "no-califica.html", "terminos.html", "privacidad.html"]) {
     await prueba(`${ruta}: contraste AA y nada de texto blanco sobre celeste`, async () => {
       for (const ancho of [360, 1440]) {

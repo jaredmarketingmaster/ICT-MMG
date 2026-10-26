@@ -128,6 +128,10 @@ a:hover { color: var(--mmg-azul); }
 
 [hidden] { display: none !important; }
 
+/* Español neutro: la página queda invisible un instante, hasta que idioma.js
+   termina de traducir (o hasta 1,5 s como máximo). Solo fuera de Argentina. */
+html[data-idioma="neutro"]:not(.idioma-listo) body { opacity: 0; }
+
 ::selection { background: rgba(55, 177, 171, .3); }
 
 /* -----------------------------------------------------------------------------

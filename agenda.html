@@ -17,7 +17,26 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@700&amp;family=Lato:ital,wght@0,400;0,700;0,900;1,400&amp;display=swap" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@700&amp;family=Lato:ital,wght@0,400;0,700;0,900;1,400&amp;display=swap"></noscript>
   <link rel="stylesheet" href="assets/css/styles.css">
+  <script>
+    // Variante de idioma (ver assets/js/idioma.js): rioplatense en Argentina,
+    // neutro en el resto. Se decide ANTES de pintar para que no parpadee.
+    (function () {
+      var r = document.documentElement, v = "ar";
+      try {
+        var q = new URLSearchParams(location.search).get("es"), s = null;
+        try { s = sessionStorage.getItem("ict_idioma"); } catch (e) {}
+        var z = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
+        v = (q === "ar" || q === "neutro") ? q : (s === "ar" || s === "neutro") ? s
+          : z ? (/^America\/(Argentina\/|Buenos_Aires$|Catamarca$|Cordoba$|Jujuy$|Mendoza$|Rosario$)/.test(z) ? "ar" : "neutro") : "ar";
+      } catch (e) {}
+      r.setAttribute("data-idioma", v);
+      // Red de seguridad: si el JS no llega a traducir, la página se muestra igual.
+      setTimeout(function () { r.classList.add("idioma-listo"); }, 1500);
+    })();
+  </script>
   <link rel="modulepreload" href="config.js">
+  <!-- Idioma primero y por separado: solo depende de config.js, así no espera al resto. -->
+  <script type="module" src="assets/js/idioma.js"></script>
   <script type="module" src="assets/js/agenda.js"></script>
 </head>
 <body>

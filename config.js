@@ -10,6 +10,10 @@
 // =============================================================================
 
 export const CONFIG = {
+  // Fuera de Argentina (según la zona horaria del dispositivo) los textos pasan
+  // a español neutro. false = todos ven la versión rioplatense. ?es=ar o
+  // ?es=neutro en la URL fuerza una u otra.
+  espanolNeutroFueraDeArgentina: true,
   titularPorDefecto: "A",               // "A" | "B". La URL manda: ?h=a o ?h=b
   webhookUrl: "",                       // [PENDIENTE] Inbound Webhook del workflow de GHL
   calendarioUrl: "",                    // [PENDIENTE] URL de embed del calendario de GHL (30 min)
