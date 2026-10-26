@@ -25,7 +25,7 @@ El texto visible es el aprobado por Jared. Se pueden ajustar saltos de línea y 
 2. Español rioplatense con **voseo** en todo el texto visible ("vos tenés", "aplicá", "escribinos"). Esto incluye mensajes de error, textos de ayuda y `aria-label`. Nada de "usted" (singular) ni de tuteo ("tú", "tienes", "puedes"). "Ustedes" sí vale: es el plural en Argentina. Los textos legales van en tercera persona ("la Tienda", "el Prestador").
 3. El caso dice "ventas", nunca "ventas de iPhone", porque no se conoce el mix.
 4. Hay un solo caso: una tienda anónima en Argentina. Nunca "nuestros clientes" ni "cientos de tiendas". Ya no se dice "en otro país": el caso es del país donde se lanza.
-5. La promesa es **15 ventas de iPhone atribuidas a Meta y registradas en el CRM en 30 días, contados desde el día 0** (el día en que se encienden los anuncios). Es el objetivo, no una garantía; ningún texto puede sugerir lo contrario. Una venta solo de accesorios no cuenta. La garantía siempre va con sus condiciones.
+5. La promesa es **15 ventas de iPhone atribuidas a Meta y registradas en el CRM en 30 días, contados desde el día 0**. En el hero, Jared la escribió como "El objetivo: 15 ventas extra de iPhone en 30 días. Cómo: Aplicando el sistema ICTC." (literal) (el día en que se encienden los anuncios). Es el objetivo, no una garantía; ningún texto puede sugerir lo contrario. Una venta solo de accesorios no cuenta. La garantía siempre va con sus condiciones.
 6. Sin logo de Apple, sin imágenes oficiales de Apple, sin la manzana. "iPhone" se usa solo como nombre del producto que venden las tiendas.
 7. Sin testimonios, logos de clientes, contadores falsos, temporizadores ni "solo hoy".
 8. Números con punto de miles y coma decimal (USD 6.280, USD 26,17), como se usa en Argentina. En JS, usar `formatearNumero` / `formatearUSD` de `assets/js/utils.js`; no usar `Intl`, que en español puede no agrupar los números de 4 cifras.
@@ -33,7 +33,7 @@ El texto visible es el aprobado por Jared. Se pueden ajustar saltos de línea y 
 10. Los cupos por ciudad (`CONFIG.cupos`) solo llevan datos reales. Vacío = la franja no se muestra.
 11. Argentina: `lang="es-AR"`, horarios en hora Argentina (UTC-3) y WhatsApp con prefijo fijo +54 9 en el formulario, sin selector de país. El copy no dice "solo trabajamos en Argentina", porque después se suma el resto de Latinoamérica.
 12. No se dice que Marketing Master Hub está basado en GoHighLevel, ni se explica qué recibe la tienda que ya tiene GoHighLevel propio (plan de USD 150). Solo se dice el precio.
-13. Cobro: suscripción de **Mercado Pago** con débito automático. Los precios se muestran en USD (210 o 150 por mes). No se promete en qué moneda se debita, porque las suscripciones de Mercado Pago en Argentina parecen admitir solo pesos (sin confirmar). Nada de Stripe, de "Visa o Mastercard" ni de cobro desde España.
+13. Cobro: suscripción de **Mercado Pago** con débito automático. Los precios se muestran en USD (210 o 150 por mes), con la nota "Pesificamos el costo al momento de realizar el pago." (pedido de Jared, 2026-10-26). El tipo de cambio que se usa para pesificar no está definido: no se escribe. Nada de Stripe, de "Visa o Mastercard" ni de cobro desde España.
 14. El cupo (máximo 5 tiendas por ciudad durante el año de lanzamiento) es un límite que se pone el prestador, **no una exclusividad**.
 
 ## Producto (resumen; el detalle está en `documentacion.md`, entrada del 2026-10-24)
@@ -79,8 +79,10 @@ Degradados:
 
 **Formas:**
 - **Hexágono vertical** (`--hexagono`, `clip-path`) como sistema: marco de I/C/T/C, viñetas celestes de las listas importantes (grises en "no es para vos" y "no incluye"), hitos de la línea de tiempo, números de las condiciones y patrón del hero al 5 %.
-- Listas con ícono (`.lista-hex--iconos`, secciones 02 y 05): cada punto lleva un hexágono con el degradado del logo y un ícono blanco de trazo (SVG en línea, decorativo, `aria-hidden`), y las frases clave en negrita. La negrita no cambia el copy.
-- Antetítulos "01)" a "10)" en la fuente de títulos.
+- Listas con ícono (`.lista-hex--iconos`, secciones 02, 03 y 06): cada punto lleva un hexágono con el degradado del logo y un ícono blanco de trazo (SVG en línea, decorativo, `aria-hidden`), y las frases clave en negrita. La negrita no cambia el copy.
+- Antetítulos "01)" a "11)" en la fuente de títulos. Si se agrega o se quita una sección, se renumeran todas las siguientes (en el HTML y en los comentarios del CSS).
+- Línea de tiempo del onboarding: cada hito hexagonal lleva el número del paso ("01" a "05") con un contador de CSS.
+- `.seccion--continua`: sin espacio arriba, para una sección que sigue a otra del mismo fondo y continúa su tema (la 03 después de la 02).
 - Radios de 12 px en tarjetas y 10 px en botones.
 - Sombras frías `rgba(45,55,72,.08)`.
 - Foco: outline celeste de 3 px más un anillo `#2D3748`, para cumplir 3:1 en cualquier fondo.
@@ -92,7 +94,7 @@ Degradados:
 - Escena del hero que se inclina hasta 6° con el mouse.
 - Encabezado transparente sobre el hero que se vuelve sólido al hacer scroll, con barra de progreso.
 - Tarjetas `.tarjeta--foco` con un foco de luz que sigue al puntero y una leve elevación.
-- Diagrama 03 que se dibuja en orden; la flecha de vuelta se mueve lento.
+- Diagrama de la sección 04 que se dibuja en orden; la flecha de vuelta se mueve lento.
 - Gráfico del caso con barras que crecen.
 - Línea de tiempo que se enciende al pasar.
 - Deslizador y medidor de 15 hexágonos en la calculadora.
@@ -135,13 +137,13 @@ En cualquier otro caso, **califica**. "No sé" en utilidad y "Nadie todavía" en
 
 Ambos eventos llevan `eventID` igual al `event_id` del payload. Desde el navegador **nunca** se mandan a Meta nombre ni teléfono.
 
-**Gráfico del caso (sección 04):**
+**Gráfico del caso (sección 05):**
 - Es HTML/CSS en `index.html`: cada barra lleva su valor en `style="--v:…"`, con escala fija de 0 a 45.
 - Forma "énfasis": septiembre en azul, el resto en `--barra-contexto`, y un solo rótulo directo (42,00) más la línea "Total 26,17".
 - La tabla de al lado es la vista accesible.
 - **Si cambian los datos del caso, hay que actualizar a la vez la tabla, los `--v`, los `data-valor` y el `aria-label` del gráfico.**
 
-**Calculadora (sección 07):**
+**Calculadora (sección 08):**
 - Ventas para cubrir = `Math.ceil(1210 / U)`.
 - Lo que queda = `15 × U − 1210`.
 - Aviso si `U < 81`. Solo acepta enteros mayores que 0; "1.200" se lee como 1200.
@@ -177,7 +179,7 @@ Ambos eventos llevan `eventID` igual al `event_id` del payload. Desde el navegad
    ```bash
    grep -rniE "\busted\b|\btú\b|nuestros clientes|solo hoy|stripe|colombia" --include=*.html --include=*.js .
    ```
-5. Si se cambia el copy de precios, actualizar a la vez el texto, la tabla de la sección 07 y las constantes de `main.js`.
+5. Si se cambia el copy de precios, actualizar a la vez el texto, la tabla de la sección 08 y las constantes de `main.js`.
 6. **Peso:** el brief pedía menos de 150 KB sin fuentes ni video.
    - Lo propio de las 5 páginas (HTML, CSS y JS) pesa unos 189 KB sin comprimir y unos 46 KB con gzip desde la versión para Argentina; los borradores legales suman unos 14 KB.
    - No sumar peso sin necesidad; si se agrega algo, medirlo.

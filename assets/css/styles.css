@@ -142,6 +142,8 @@ a:hover { color: var(--mmg-azul); }
 .contenedor--angosto { max-width: calc(760px + 2 * var(--gutter)); }
 
 .seccion { padding-block: var(--espacio-seccion); }
+/* Sección que sigue a otra del mismo fondo y continúa su tema (03 tras 02): sin hueco doble. */
+.seccion--continua { padding-top: 0; }
 .seccion--suave { background: var(--mmg-fondo-suave); }
 .seccion--oscura { background: var(--mmg-grad-oscuro); color: var(--mmg-blanco); }
 .seccion--oscura h2, .seccion--oscura strong { color: var(--mmg-blanco); }
@@ -1089,11 +1091,11 @@ html[data-h="b"] .titular--b { display: inline; }
 
 .cupos { padding-block: 1.25rem; background: var(--mmg-blanco); border-bottom: 1px solid var(--color-borde); }
 
-/* --- 02) Problema ---------------------------------------------------------- */
+/* --- 02) Problema y 03) Costo del problema (misma estructura) ------------- */
 .problema__lista { max-width: 760px; }
 .problema__lista li { font-size: clamp(1.0625rem, 1rem + .3vw, 1.1875rem); }
 
-/* --- 03) Contraste e ICTC -------------------------------------------------- */
+/* --- 04) Contraste e ICTC -------------------------------------------------- */
 .tarjetas-ict { display: grid; gap: 1rem; margin-block: 2rem; }
 /* Cuatro letras (I, C, T, C): 2 × 2 en tablet, en fila en escritorio ancho. */
 @media (min-width: 640px) { .tarjetas-ict { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; } }
@@ -1158,7 +1160,7 @@ html[data-h="b"] .titular--b { display: inline; }
   line-height: 1.3;
 }
 
-/* --- 04) Caso -------------------------------------------------------------- */
+/* --- 05) Caso -------------------------------------------------------------- */
 .tabla--caso tr.es-destacada > * {
   box-shadow: inset 0 2px 0 var(--mmg-celeste), inset 0 -2px 0 var(--mmg-celeste);
   background: #F2FAF9;
@@ -1338,26 +1340,33 @@ html[data-h="b"] .titular--b { display: inline; }
 .caso__captura { margin: 2rem 0 0; }
 .caso__captura img { border-radius: var(--radio-tarjeta); border: 1px solid var(--color-borde); box-shadow: var(--sombra); }
 
-/* --- 05) Qué incluye ------------------------------------------------------- */
+/* --- 06) Qué incluye ------------------------------------------------------- */
 .incluye h3 { margin-bottom: 1rem; }
-.linea-tiempo { list-style: none; padding: 0; margin: 0; display: grid; gap: 0; }
-.linea-tiempo li { position: relative; padding: 0 0 1.75rem 3.25rem; }
+.linea-tiempo { list-style: none; padding: 0; margin: 0; display: grid; gap: 0; counter-reset: paso; }
+.linea-tiempo li { position: relative; padding: 0 0 1.75rem 3.5rem; counter-increment: paso; }
 .linea-tiempo li:last-child { padding-bottom: 0; }
-.linea-tiempo li::before { /* hito hexagonal */
-  content: "";
+.linea-tiempo li::before { /* hito hexagonal con el número del paso: 01, 02… */
+  content: counter(paso, decimal-leading-zero);
   position: absolute;
   left: 0;
-  top: .1rem;
-  width: 1.95rem;
-  height: 2.25rem;
+  top: 0;
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.6rem;
   clip-path: var(--hexagono);
   background: var(--mmg-grad-logo);
+  color: var(--mmg-blanco); /* negrita sobre #1A73E8→#4A4A4A: ≥4,51:1 */
+  font-family: var(--font-titulos);
+  font-weight: 700;
+  font-size: .9375rem;
+  line-height: 1;
 }
 .linea-tiempo li::after { /* línea que une los hitos */
   content: "";
   position: absolute;
-  left: calc(.975rem - 1px);
-  top: 2.6rem;
+  left: calc(1.125rem - 1px);
+  top: 2.95rem;
   bottom: .35rem;
   width: 2px;
   background: var(--mmg-celeste);
@@ -1366,7 +1375,7 @@ html[data-h="b"] .titular--b { display: inline; }
 .linea-tiempo li::before, .linea-tiempo li::after { transition: background .4s ease, transform .6s ease, opacity .4s ease; }
 .linea-tiempo li::after { transform-origin: 50% 0; }
 @media (prefers-reduced-motion: no-preference) {
-  .animar .linea-tiempo li:not(.es-activo)::before { background: #CBD5E0; }
+  .animar .linea-tiempo li:not(.es-activo)::before { background: #CBD5E0; color: var(--mmg-azul-2); } /* 9,3:1 */
   .animar .linea-tiempo li:not(.es-activo)::after { transform: scaleY(0); }
   .animar .linea-tiempo li.es-activo::before { animation: hito-enciende .5s cubic-bezier(.2, .7, .2, 1) both; }
 }
@@ -1375,7 +1384,7 @@ html[data-h="b"] .titular--b { display: inline; }
 .cronograma { margin-top: 2.5rem; }
 .cronograma .nota { margin: 1.5rem 0 0; }
 
-/* --- 06) Para quién -------------------------------------------------------- */
+/* --- 07) Para quién -------------------------------------------------------- */
 .para-quien .tarjeta h3 { margin-bottom: 1rem; }
 .para-quien .tarjeta--no { background: var(--mmg-fondo-suave); box-shadow: none; }
 
@@ -1389,7 +1398,7 @@ html[data-h="b"] .titular--b { display: inline; }
   color: var(--color-titulos);
 }
 
-/* --- 07) Inversión --------------------------------------------------------- */
+/* --- 08) Inversión --------------------------------------------------------- */
 .precio { display: grid; gap: 1.5rem; }
 @media (min-width: 900px) { .precio { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; } }
 .precio__tarjeta {
@@ -1421,6 +1430,8 @@ html[data-h="b"] .titular--b { display: inline; }
   line-height: 1.1;
   color: var(--color-titulos);
 }
+.precio__nota { margin: 0 0 1rem; color: var(--color-texto-suave); }
+.precio__tarjeta .precio__nota { color: var(--texto-suave-sobre-oscuro); }
 .precio__ghl { margin-bottom: 1.25rem; font-weight: 700; }
 .precio__pauta {
   margin: 1.25rem 0 0;
@@ -1571,7 +1582,7 @@ html[data-h="b"] .titular--b { display: inline; }
 .calculadora__resultados-col { display: grid; gap: .75rem; }
 .cuenta__debajo { margin-top: 1.5rem; max-width: 760px; }
 
-/* --- 08) Garantía ---------------------------------------------------------- */
+/* --- 09) Garantía ---------------------------------------------------------- */
 .garantia__tarjeta {
   position: relative;
   padding: clamp(1.5rem, 1rem + 2vw, 2.5rem);
@@ -1631,7 +1642,7 @@ html[data-h="b"] .titular--b { display: inline; }
 }
 .garantia .letra-chica { margin-top: 2rem; }
 
-/* --- 09) Formulario -------------------------------------------------------- */
+/* --- 10) Formulario -------------------------------------------------------- */
 .aplicar__tarjeta { max-width: 760px; }
 @media (min-width: 1000px) {
   .aplicar__grid {

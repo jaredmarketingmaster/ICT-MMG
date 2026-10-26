@@ -23,7 +23,7 @@ Con `prefers-reduced-motion` se ve igual de completa, pero sin movimiento. El de
 ## Estructura
 
 ```
-index.html            Landing (secciones 01 a 10 + formulario)
+index.html            Landing (secciones 01 a 11; el formulario es la 10)
 agenda.html           "Tu tienda califica" + calendario de GHL
 no-califica.html      "Gracias por tu sinceridad"
 terminos.html         BORRADOR de términos (Argentina, Mercado Pago), en revisión legal
@@ -85,15 +85,15 @@ Para probar la variante B del titular y los UTM:
 | `emailContacto` | Email laboral de Jared (pie y legales) | No se muestra; en las legales se ve `[PENDIENTE]` |
 | `metaPixelId` | Píxel de Meta | No se carga ningún script de Meta |
 | `videoHero` / `videoPortada` | Video del hero (YouTube, Vimeo o .mp4) y su portada | Se muestra el mock de la cotizadora |
-| `capturaCaso` | Imagen del Administrador de anuncios (sección 04) | El bloque no existe |
+| `capturaCaso` | Imagen del Administrador de anuncios (sección 05) | El bloque no existe |
 | `precioContinuidad` | Precio en la FAQ "¿Qué pasa si cancelo?" | Se quita esa frase |
 | `cupos` | `[{ ciudad: "Tucumán", disponibles: 4 }]`, **solo datos reales** | La franja de cupos no se muestra |
 | `terminosUrl` / `privacidadUrl` | Links legales | El link no se muestra |
 | `prestador` | `nombre`, `condicion`, `cuit` y `domicilio`: pie y páginas legales | Se ve `[PENDIENTE]` |
 
-Los datos del caso (sección 04) están dos veces en `index.html`: en la tabla y en el gráfico (`style="--v:…"`, `data-valor` y `aria-label`). Si cambian, hay que actualizar ambos.
+Los datos del caso (sección 05) están dos veces en `index.html`: en la tabla y en el gráfico (`style="--v:…"`, `data-valor` y `aria-label`). Si cambian, hay que actualizar ambos.
 
-El precio (USD 210 / 150), la pauta (USD 1.000) y la cuenta de 1.210 están en el **copy**, no en `config.js`. Si cambian, hay que tocar `index.html` (texto y tabla de la sección 07) y las constantes de `assets/js/main.js` (`COSTO_MENSUAL`, `VENTAS_OBJETIVO`, `UTILIDAD_MINIMA`).
+El precio (USD 210 / 150), la pauta (USD 1.000) y la cuenta de 1.210 están en el **copy**, no en `config.js`. Si cambian, hay que tocar `index.html` (texto y tabla de la sección 08) y las constantes de `assets/js/main.js` (`COSTO_MENSUAL`, `VENTAS_OBJETIVO`, `UTILIDAD_MINIMA`).
 
 ## Formulario → GoHighLevel
 
@@ -151,8 +151,8 @@ La verificación cubre:
 
 **En el contenido y la técnica:**
 - [ ] Revisión de Jared de toda la versión para Argentina (copy en voseo decidido por Claude a pedido suyo, ver `documentacion.md`).
-- [ ] Moneda en que Mercado Pago debita la suscripción. La landing no lo dice; si es en pesos, falta definir el tipo de cambio para las legales.
-- [ ] Validar el punto "Si trabaja con una agencia…" de la sección 02 (`data-pendiente="validar-agencias"`).
+- [ ] Tipo de cambio para pesificar la cuota (la landing dice "Pesificamos el costo al momento de realizar el pago"; falta en las legales).
+- [ ] Validar el punto "Si trabajás con una agencia…" de la sección 02 (`data-pendiente="validar-agencias"`).
 - [ ] Revisión del abogado de los borradores de `terminos.html` y `privacidad.html`: resolver cada `[PENDIENTE]` y quitar el aviso de BORRADOR.
 - [ ] Banner de consentimiento del píxel: lo define el abogado.
 - [ ] Apuntar `ictc.marketingmaster.top` a GitHub Pages (registro CNAME en el DNS y dominio personalizado en Settings → Pages). Las URLs absolutas de `og:url`, `og:image` y `twitter:image` ya usan ese subdominio.

@@ -344,7 +344,7 @@ function auditarContraste() {
     igual((await p.locator("h1").innerText()).trim(), "Un chat no es una venta. Sabé cuántos iPhones te vende cada anuncio.", "titular B");
     await cerrar(p);
     p = await abrir("index.html");
-    igual((await p.locator("h1").innerText()).trim(), "El objetivo: 15 ventas de iPhone en 30 días, atribuidas a Meta y registradas una por una en tu CRM.", "titular A");
+    igual((await p.locator("h1").innerText()).trim(), "El objetivo: 15 ventas extra de iPhone en 30 días. Cómo: Aplicando el sistema ICTC.", "titular A");
     await cerrar(p);
     p = await abrir("index.html", { config: { titularPorDefecto: "B" } });
     igual((await p.locator("h1").innerText()).trim(), "Un chat no es una venta. Sabé cuántos iPhones te vende cada anuncio.", "titular B por config");
@@ -573,7 +573,7 @@ function auditarContraste() {
     // Las frases del caso nunca dicen "ventas de iPhone".
     const html = fs.readFileSync(path.join(RAIZ, "index.html"), "utf8");
     const caso = html.slice(html.indexOf('id="caso"'), html.indexOf('id="incluye"'));
-    if (/ventas de iPhone/i.test(caso)) malos.push("sección 04: 'ventas de iPhone'");
+    if (/ventas de iPhone/i.test(caso)) malos.push("sección 05 (caso): 'ventas de iPhone'");
     if (/reportó[^<]*ventas de iPhone/i.test(html)) malos.push("franja de prueba: 'ventas de iPhone'");
     igual(malos, [], "problemas de copy");
   });
