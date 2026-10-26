@@ -3,7 +3,8 @@
 Diario de trabajo de la landing de **ICTC** (Marketing Master Top). Tiene dos partes:
 
 1. **Handoff (abajo, primero):** el estado actual del proyecto. Es lo que tiene que leer cualquier persona o agente que retome el trabajo, por ejemplo otra cuenta de Claude Code, para seguir como si fuera la misma conversación. Es una sección viva: se **reescribe** al final de cada sesión.
-2. **Registro:** la historia, en orden cronológico. Solo se **agregan** entradas al final; las viejas no se editan.
+2. **Recapitulación completa:** qué es el proyecto, cómo llegó a este estado y por qué, cómo funciona el código y qué está verificado. Se actualiza cuando cambia algo de fondo.
+3. **Registro:** la historia, en orden cronológico. Solo se **agregan** entradas al final; las viejas no se editan.
 
 - El **README** explica cómo está armado el sitio y cómo se usa.
 - **CLAUDE.md** tiene las reglas que no se rompen.
@@ -124,6 +125,128 @@ Diario de trabajo de la landing de **ICTC** (Marketing Master Top). Tiene dos pa
 - **Configuración y datos legales:** `config.js`.
 - **Pruebas:** `tests/verificar.cjs`.
 - **Estructura completa:** README, "Estructura".
+
+---
+
+## Recapitulación completa (al 2026-10-26)
+
+> Esta parte explica **todo el proyecto como si lo hubieras escrito vos**: qué es, cómo llegó a este estado y por qué, cómo funciona el código y qué está verificado. Se comprobó contra el código del commit en que se escribió (ver "Estado verificado"). El detalle de cada sesión está en el **Registro**, más abajo.
+
+### A. Qué es y para qué sirve
+
+- **Producto:** ICTC (Interrupción, Captura, Tracking y Cierre), de **Marketing Master Top**, la marca personal de Jared Farfán ("El Marketing Master"). Es un sistema de adquisición de clientes para tiendas que venden principalmente iPhone.
+- **Página:** una landing estática que vende ICTC a esas tiendas. Mercado inicial: **Argentina**. Tráfico tibio, casi todo desde el celular.
+- **Objetivo único:** que la tienda que califica complete el formulario y agende una videollamada de 30 minutos. **Un solo CTA:** "Aplicar a un cupo" → `#aplicar`.
+- **Promesa (no garantizada):** 15 ventas de iPhone atribuidas a Meta y registradas en el CRM en 30 días desde el día 0 (encendido de anuncios). Lo que se garantiza es el hito del día 10, con condiciones.
+
+### B. Cómo llegó a este estado (fases, razonamiento y validación)
+
+| Fase | Commits | Qué cambió | Por qué | Cómo se validó |
+|---|---|---|---|---|
+| 1. Beta (2026-10-14) | `94d977b` | Sitio completo: 10 secciones, formulario con calificación, webhook a GoHighLevel, píxel, calculadora y `config.js`. Copy en "usted", para Colombia. | Brief original de Jared para "I.C.T.", de Marketing Masters Group. | 27 pruebas con Playwright. |
+| 2. Capa premium | `1ec63c5` | Hero oscuro, demo de la cotizadora, encabezado que pasa a sólido, gráfico del caso, medidor de 15 hexágonos, línea de tiempo y política de `prefers-reduced-motion`. | Pedido de Jared: "premium, profesional e interactivo", sin librerías. | 29 pruebas; contraste AA. |
+| 3. Ajustes | `0b2ee4a`, `c6dedbc` | Se quitan las menciones que limitaban el servicio a Colombia; imagen real del iPhone sin la manzana. | Pedidos de Jared; regla de no usar marcas de Apple. | Suite en verde. |
+| 4. Renombre | `b3c0802`, `592ffa1`, `839fdbb` | Diario de trabajo; "I.C.T." pasa a "ICTC"; logotipo "iCTC" en línea en el encabezado; Pages desde la rama de trabajo. | Nuevo nombre y logo; Jared quiere ver cada cambio en línea. | Capturas: "CTC" blanco sobre el hero y #2D3748 con el encabezado sólido. |
+| 5. Versión para Argentina (2026-10-24) | `d48f68f`, `e0425d7`, `134c624`, `7e48e67` | Marca Marketing Master Top; `es-AR`; voseo en todo; producto nuevo (6 entregables, onboarding de 5 días, garantía con elección); cobro por Mercado Pago; formulario solo +54 9; legales en borrador; og-image rehecha. | Cambio de marca, mercado, cobro y entregables. Jared delegó el copy ("tomá vos todas las decisiones"). | 30 pruebas; grep sin "usted", Stripe ni Colombia. |
+| 6. Handoff | `3fad577` | Bloque "Handoff" vivo al principio de este archivo. | Poder retomar el trabajo desde otra cuenta u otro agente sin alucinar. | — |
+| 7. Íconos | `47446eb` | Listas de 02 y "Incluye" con ícono por punto y frases clave en negrita. | Pedido de Jared. | Capturas a 360 y 1440 px. |
+| 8. Agravamiento (2026-10-26) | `a96b0d9` | Hero "El objetivo: 15 ventas extra de iPhone en 30 días. / Cómo: Aplicando el sistema ICTC."; nueva sección 03 "¿Cuál es el problema?"; renumeración a 11 secciones; título de la 06; pasos 01 a 05 en el onboarding; nota "Pesificamos el costo al momento de realizar el pago.". | Pedido de Jared con textos literales. | 30 pruebas; capturas. |
+
+**Razonamientos que siguen vigentes (y por qué no hay que deshacerlos):**
+- **Todo configurable en `config.js`.** Así nadie toca el HTML para cambiar links o datos, y lo que falta queda vacío (la página se degrada sola) en lugar de inventado.
+- **Calificación en el cliente.** Permite redirigir al instante a la agenda o a "no califica". GoHighLevel recibe igual `califica` y `motivo_no_califica`.
+- **`event_id` compartido entre el píxel y el payload.** GoHighLevel puede mandar la conversión por la API de Conversiones y Meta deduplica. Desde el navegador **nunca** se mandan nombre ni teléfono a Meta, y `agenda.js` limpia la URL antes de cargar el píxel.
+- **`formatearNumero` en lugar de `Intl`.** `Intl` en español puede no agrupar los números de 4 cifras ("6280" en vez de "6.280").
+- **`seguro(fn, nombre)` en cada inicialización.** Si un adorno falla, el formulario sigue funcionando.
+- **Decoración en `::before` y `::after`.** No baja el contraste del texto y la auditoría automática lo puede medir.
+- **Precios en USD con nota de pesificación.** Mercado Pago en Argentina cobra en pesos (indicio fuerte, no confirmado en la documentación oficial); Jared decidió mostrar USD y aclarar que se pesifica al pagar.
+- **Celular argentino normalizado en el cliente.** wa.me necesita 549 + área sin 0 + número sin 15; si alguien deja el 15, se le pide sacarlo en vez de adivinar.
+
+### C. Cómo funciona el código
+
+**Páginas y scripts**
+
+| Página | Script de entrada | Qué hace |
+|---|---|---|
+| `index.html` | Un script en línea en `<head>` + `assets/js/main.js` | El script en línea fija el titular A/B **antes de pintar** (sin parpadeo). `main.js` arranca todo lo demás. |
+| `agenda.html` | `assets/js/agenda.js` | Lee `nombre` y `whatsapp` de la URL, **los borra de la barra** y embebe el calendario de GoHighLevel prellenado. |
+| `no-califica.html` | Módulo en línea → `iniciarPagina()` | Página simple con botón de WhatsApp si hay número. |
+| `terminos.html`, `privacidad.html` | Módulo en línea → `iniciarPagina()` | Borradores legales; los datos del prestador y del contacto se completan desde `config.js` (`data-prestador`, `data-contacto`). |
+
+**Módulos (`assets/js/`)**
+- `utils.js`: `formatearNumero`, `formatearUSD`, `almacen` (sessionStorage que nunca rompe la página), `linkWhatsApp`, `tieneValor`, `reducirMovimiento`.
+- `comun.js`: `iniciarPagina()` corre, cada uno dentro de `seguro`:
+  - `renderEncabezado`: logotipo iCTC en línea con `aria-label="ICTC, inicio"` y CTA opcional, más `seguirScroll` (sólido y barra de progreso);
+  - `renderPie`: Marketing Master Top, el prestador, links legales y avisos;
+  - `completarDatosLegales`;
+  - `capturarOrigen`: UTM, `fbclid` y `ref` en sessionStorage `ict_origen`;
+  - `conectarLinksWhatsApp`;
+  - `animarAlEntrar`: `.revelar` con red de seguridad de 6 s;
+  - el píxel, solo si hay ID.
+
+  También exporta `leerOrigen` y `seguro`.
+- `main.js` (solo index): define `COSTO_MENSUAL = 1210`, `VENTAS_OBJETIVO = 15` y `UTILIDAD_MINIMA = 81`. Arranca:
+  - `decidirVariante`: A/B por `?h=`, por sesión o por config;
+  - `renderCupos`, `renderVideo` y `renderDatosConfig` (precio de continuidad y captura del caso);
+  - `iniciarCalculadora`: usa `leerUtilidad` y `calcularRentabilidad`; ventas para cubrir = `ceil(1210/U)` y lo que queda = `15U − 1210`;
+  - `iniciarCtaMovil`, `observarInversion` (`ViewContent` una vez), `iniciarEscena` (inclinación de hasta 6°), `iniciarFocoTarjetas` e `iniciarLineaTiempo`;
+  - `iniciarFormulario`.
+- `form.js`:
+  - `calificar`: no califica si `iphone_principal = No`, `suma_1000 = No` o la utilidad es menor de USD 81;
+  - `normalizarCelularArgentino` y `normalizarInstagram`;
+  - `iniciarFormulario`: dos pasos en móvil (menos de 768 px) y uno en escritorio; validación con foco al primer error; payload; `POST` al webhook con 10 s de tiempo máximo; plan B por WhatsApp si falla; evento `Lead` o `AplicacionNoCalifica` con `eventID`; redirección.
+- `pixel.js`: carga el píxel solo con ID y sin configuración automática. `rastrear` y `rastrearPersonalizado` reciben el `eventID`.
+- `agenda.js`: `renderCalendario` usa `calendarioUrl` y `calendarioParametros` (por defecto `first_name` y `phone`).
+
+**Payload del formulario:** `nombre`, `whatsapp` (`+549…`), `tienda`, `instagram` (sin @), `ciudad`, `iphone_principal`, `pauta_actual`, `suma_1000`, `utilidad`, `graba`, `decisor`, `privacidad`, `califica`, `motivo_no_califica`, `variante_titular`, `utm_*`, `fbclid`, `ref`, `pagina`, `enviado_en`, `user_agent` y `event_id`. Sin `webhookUrl` no se envía nada: el payload se muestra en la consola y aparece el aviso "Webhook no configurado".
+
+**CSS (`assets/css/styles.css`, un solo archivo):**
+- **Orden:** 1) variables, 2) base, 3) layout, 4) componentes, 5) secciones (cada una con un comentario `/* --- NN) … */`), 6) utilidades y 7) movimiento.
+- **Tokens:** todos en `:root` (`--mmg-*`, oscuros y textos sobre oscuro).
+- **Hexágono como sistema** (`--hexagono` con `clip-path`): `.hex`, `.lista-hex`, `.lista-hex--iconos`, hitos numerados con `counter(paso)` y el medidor.
+- **Movimiento:** solo con `prefers-reduced-motion: no-preference` y `.animar`.
+
+**Mapa de `index.html` (ids estables; los números visibles se renumeran, los ids no):**
+1. `#hero` (01)
+2. Franja del caso y `#cupos`
+3. `#problema` (02)
+4. `#costo-problema` (03, `.seccion--continua`)
+5. `#ict` (04: cuatro tarjetas I/C/T/C y diagrama)
+6. `#caso` (05: tabla y gráfico)
+7. `#incluye` (06: entregables y onboarding 01 a 05)
+8. `#para-quien` (07)
+9. `#inversion` (08: precio, nota de pesificación, tabla y calculadora)
+10. `#garantia` (09)
+11. `#aplicar` (10: formulario)
+12. `#preguntas` (11: FAQ)
+13. Cierre oscuro y botón fijo en móvil.
+
+**Pruebas (`tests/verificar.cjs`, 30):**
+- consola sin errores a 360, 768 y 1440 px;
+- sin scroll horizontal de 320 a 1440 px; un `h1` y `noindex` por página;
+- 4 casos de calificación; validación en voseo con normalización de celulares;
+- titular A/B;
+- calculadora contra la tabla, y deslizador con medidor;
+- encabezado y reduced-motion;
+- configuración vacía y con datos (cupos, video, píxel, webhook OK y caído, agenda);
+- botón fijo en móvil;
+- copy prohibido;
+- contraste AA en las 5 páginas.
+
+**Herramientas:** `herramientas/og-image.html` es la plantilla de la imagen para compartir y `herramientas/og-image.cjs` la regenera.
+
+### D. Estado verificado
+
+Verificado al terminar de escribir esta recapitulación, sobre el código del commit `a96b0d9` más la corrección de comentarios de este mismo commit de documentación:
+- `tests/verificar.cjs`: **30/30 OK**.
+- `grep -rniE "\busted\b|\btú\b|nuestros clientes|solo hoy|stripe|colombia|Masters Group" --include=*.html --include=*.js .`: **sin coincidencias**.
+- `index.html` tiene 11 `<section>` numeradas de 01) a 11), sin duplicados.
+- Peso propio de las 5 páginas (HTML, CSS y JS): **197.792 bytes sin comprimir y 47.871 con gzip**. El brief pedía menos de 150 KB sin fuentes ni video; el exceso viene de la capa premium, la versión para Argentina y los borradores legales.
+- **Sin verificar:** la moneda oficial de las suscripciones de Mercado Pago, el formato de celulares según ENACOM, el CORS del webhook de GoHighLevel, los parámetros de prellenado del calendario, que Pages ya sirva esta rama y el DNS del subdominio.
+
+### E. Para continuar
+
+Seguí el **Handoff** de arriba: sección 1 (cómo retomar), 6 (datos que no existen, no inventar) y 7 (próximos pasos). El primero es **pedirle a Jared el punto 5 de su pedido del 2026-10-26** (preparación para un futuro VSL), que llegó cortado.
 
 ---
 
@@ -473,3 +596,21 @@ Diario de trabajo de la landing de **ICTC** (Marketing Master Top). Tiene dos pa
 - [ ] **Punto 5 del pedido (preparación para un futuro VSL): el mensaje llegó cortado.**
 - [ ] Confirmar "Pesificamos" y definir el tipo de cambio.
 - [ ] Revisión de Jared de los íconos y negritas de la sección 03.
+
+---
+
+### 2026-10-26 — Recapitulación completa del proyecto
+
+**Pedido por:** Jared ("recapitular todo el trabajo… redactado de una forma que cualquier LLM pueda leer, entender y continuar")
+
+**Qué se hizo**
+- Se agregó la parte **"Recapitulación completa"** entre el Handoff y el Registro. Cubre qué es el producto, las 8 fases con su razonamiento y su validación, los razonamientos vigentes, la arquitectura del código (páginas, módulos, payload, CSS, mapa de secciones con ids, pruebas y herramientas) y el estado verificado.
+- No se creó un archivo nuevo: `documentacion.md` ya era el documento de traspaso, y dos documentos sobre lo mismo se contradirían con el tiempo.
+- Al revisar el código para escribirla aparecieron comentarios con la numeración vieja de secciones en `assets/js/main.js` (07 → 08 y 05 → 06), y se corrigieron. También se corrigió el orden de la regla 5 de CLAUDE.md y su dato de peso.
+
+**Verificación**
+- Suite 30/30; grep de copy prohibido y de "Masters Group" sin coincidencias; 11 secciones de 01) a 11).
+- Peso propio: 197.792 bytes y 47.871 con gzip.
+
+**Pendientes**
+- [ ] Los del Handoff, sección 7. El primero: el punto 5 cortado del pedido del 2026-10-26.

@@ -25,7 +25,7 @@ El texto visible es el aprobado por Jared. Se pueden ajustar saltos de línea y 
 2. Español rioplatense con **voseo** en todo el texto visible ("vos tenés", "aplicá", "escribinos"). Esto incluye mensajes de error, textos de ayuda y `aria-label`. Nada de "usted" (singular) ni de tuteo ("tú", "tienes", "puedes"). "Ustedes" sí vale: es el plural en Argentina. Los textos legales van en tercera persona ("la Tienda", "el Prestador").
 3. El caso dice "ventas", nunca "ventas de iPhone", porque no se conoce el mix.
 4. Hay un solo caso: una tienda anónima en Argentina. Nunca "nuestros clientes" ni "cientos de tiendas". Ya no se dice "en otro país": el caso es del país donde se lanza.
-5. La promesa es **15 ventas de iPhone atribuidas a Meta y registradas en el CRM en 30 días, contados desde el día 0**. En el hero, Jared la escribió como "El objetivo: 15 ventas extra de iPhone en 30 días. Cómo: Aplicando el sistema ICTC." (literal) (el día en que se encienden los anuncios). Es el objetivo, no una garantía; ningún texto puede sugerir lo contrario. Una venta solo de accesorios no cuenta. La garantía siempre va con sus condiciones.
+5. La promesa es **15 ventas de iPhone atribuidas a Meta y registradas en el CRM en 30 días, contados desde el día 0** (el día en que se encienden los anuncios). Es el objetivo, no una garantía; ningún texto puede sugerir lo contrario. Una venta solo de accesorios no cuenta. La garantía siempre va con sus condiciones. En el hero, Jared la escribió así, y va literal: "El objetivo: 15 ventas extra de iPhone en 30 días. Cómo: Aplicando el sistema ICTC."
 6. Sin logo de Apple, sin imágenes oficiales de Apple, sin la manzana. "iPhone" se usa solo como nombre del producto que venden las tiendas.
 7. Sin testimonios, logos de clientes, contadores falsos, temporizadores ni "solo hoy".
 8. Números con punto de miles y coma decimal (USD 6.280, USD 26,17), como se usa en Argentina. En JS, usar `formatearNumero` / `formatearUSD` de `assets/js/utils.js`; no usar `Intl`, que en español puede no agrupar los números de 4 cifras.
@@ -181,7 +181,7 @@ Ambos eventos llevan `eventID` igual al `event_id` del payload. Desde el navegad
    ```
 5. Si se cambia el copy de precios, actualizar a la vez el texto, la tabla de la sección 08 y las constantes de `main.js`.
 6. **Peso:** el brief pedía menos de 150 KB sin fuentes ni video.
-   - Lo propio de las 5 páginas (HTML, CSS y JS) pesa unos 189 KB sin comprimir y unos 46 KB con gzip desde la versión para Argentina; los borradores legales suman unos 14 KB.
+   - Lo propio de las 5 páginas (HTML, CSS y JS) pesa unos 198 KB sin comprimir y unos 48 KB con gzip (medido el 2026-10-26); los borradores legales suman unos 14 KB.
    - No sumar peso sin necesidad; si se agrega algo, medirlo.
 7. **Lighthouse móvil:** 90 o más en rendimiento, accesibilidad y buenas prácticas.
    - Mide con un servidor que comprima (`npx serve .`), no con `python3 -m http.server`.

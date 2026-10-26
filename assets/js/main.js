@@ -9,7 +9,7 @@ import { iniciarPagina, seguro } from "./comun.js";
 import { rastrear } from "./pixel.js";
 import { iniciarFormulario } from "./form.js";
 
-// Números de la cuenta de rentabilidad (sección 07). Si cambia el precio,
+// Números de la cuenta de rentabilidad (sección 08). Si cambia el precio,
 // hay que cambiar también el texto y la tabla estática de index.html.
 const COSTO_MENSUAL = 1210;   // USD 1.000 de pauta + USD 210 de cuota
 const VENTAS_OBJETIVO = 15;
@@ -124,7 +124,7 @@ function renderVideo() {
 }
 
 // -----------------------------------------------------------------------------
-// Calculadora de rentabilidad (sección 07)
+// Calculadora de rentabilidad (sección 08)
 // -----------------------------------------------------------------------------
 
 /** Acepta "90", "1.200" (punto de miles), "$90" o "USD 90". Solo enteros > 0. */
@@ -263,7 +263,7 @@ function iniciarFocoTarjetas() {
 }
 
 // -----------------------------------------------------------------------------
-// Línea de tiempo (sección 05): cada hito se enciende al pasar por la mitad
+// Línea de tiempo (sección 06): cada hito se enciende al pasar por la mitad
 // de la pantalla. Sin IntersectionObserver o con reduced-motion, todos
 // encendidos desde el principio.
 // -----------------------------------------------------------------------------
@@ -307,7 +307,7 @@ function iniciarCtaMovil() {
 }
 
 // -----------------------------------------------------------------------------
-// ViewContent cuando la sección 07 (inversión) entra en pantalla, una vez.
+// ViewContent cuando la sección 08 (inversión) entra en pantalla, una vez.
 // -----------------------------------------------------------------------------
 function observarInversion() {
   const seccion = document.getElementById("inversion");
