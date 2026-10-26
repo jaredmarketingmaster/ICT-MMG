@@ -12,14 +12,14 @@ Diario de trabajo de la landing de **ICTC** (Marketing Master Top). Tiene dos pa
 
 ## Handoff: estado actual (leer primero)
 
-> **Última actualización:** 2026-10-24. **Último commit de código:** `47446eb`. Rama: `claude/zealous-fermi-rhv2dx`.
+> **Última actualización:** 2026-10-26. **Último commit de código:** `a96b0d9`. Rama: `claude/zealous-fermi-rhv2dx`.
 > Si `git log` muestra commits posteriores que no aparecen acá, este bloque está desactualizado: leé esos commits y las entradas del registro antes de tocar nada.
 
 ### 1. Cómo retomar (checklist)
 
 1. Leer completos este bloque, `CLAUDE.md` y `README.md`. Después, las entradas del registro desde la del 2026-10-24 "Versión para Argentina".
 2. `git fetch origin claude/zealous-fermi-rhv2dx` y trabajar en esa rama. Es la que publica GitHub Pages.
-3. Levantar el servidor y correr la suite (comandos en `CLAUDE.md`, "Cómo verificar"). Resultado esperado al commit `47446eb`: **30/30 pruebas OK**.
+3. Levantar el servidor y correr la suite (comandos en `CLAUDE.md`, "Cómo verificar"). Resultado esperado al commit `a96b0d9`: **30/30 pruebas OK**.
 4. Antes de escribir un dato, revisar la sección 6 ("Datos que no existen"). Lo que no está acá ni en `config.js` **no se inventa**: se pregunta a Jared o se deja `[PENDIENTE: …]`.
 5. Al terminar: suite en verde, commit, `git push -u origin claude/zealous-fermi-rhv2dx` (así se ve en Pages en 1 o 2 minutos), **reescribir este bloque** y agregar una entrada al registro.
 
@@ -30,13 +30,17 @@ Diario de trabajo de la landing de **ICTC** (Marketing Master Top). Tiene dos pa
 - Prefiere opciones concretas para elegir y que se publique cada cambio en Pages para revisarlo en línea.
 - **Regla de copy:** ningún texto visible nuevo se publica sin su aprobación, salvo delegación explícita. El 2026-10-24 delegó todo el copy de la versión para Argentina ("tomá vos todas las decisiones y luego voy a chequear"). **Ese copy todavía no lo revisó.**
 
-### 3. Estado del sitio al commit `47446eb`
+### 3. Estado del sitio al commit `a96b0d9`
 
 | Parte | Estado | Origen del texto |
 |---|---|---|
-| Hero, metadatos y og-image | Hecho, en voseo, con la promesa como objetivo | Claude, por delegación; falta revisión de Jared |
+| Hero, metadatos y og-image | Titular A: "El objetivo: 15 ventas extra de iPhone en 30 días. Cómo: Aplicando el sistema ICTC." | Texto de Jared (2026-10-26); el resto del hero, Claude por delegación |
 | 02 a 10 (problema, ICTC con 4 tarjetas, caso, entregables, para quién, inversión, garantía, formulario, FAQ) | Hecho | Claude, por delegación; falta revisión de Jared |
-| Listas de 02 y 05 | Íconos por punto y frases clave en negrita | Pedido de Jared (formato); el texto no cambió |
+| Sección 03 "¿Cuál es el problema?" | Nueva, misma estructura que la 02 (íconos, negritas, cierre destacado) | Texto de Jared (2026-10-26); íconos y negritas, Claude |
+| Numeración | 11 secciones: 01 hero … 10 formulario, 11 FAQ | Pedido de Jared |
+| Listas de 02, 03 y 06 | Íconos por punto y frases clave en negrita | Pedido de Jared (formato) |
+| Sección 06 | Título "¿Qué obtenés al adquirir el sistema ICTC?" y onboarding con pasos 01 a 05 | Texto de Jared |
+| Sección 08 | Nota "Pesificamos el costo al momento de realizar el pago." | Texto de Jared |
 | Pie | Marketing Master Top + prestador desde `config.js` | Claude, por delegación |
 | agenda.html y no-califica.html | Hecho, en voseo y hora Argentina | Claude, por delegación |
 | terminos.html y privacidad.html | **Borradores** con aviso visible y `[PENDIENTE]` | Claude, a pedido de Jared; falta el abogado |
@@ -53,7 +57,7 @@ Diario de trabajo de la landing de **ICTC** (Marketing Master Top). Tiene dos pa
 | Marca Marketing Master Top. Marketing Masters Group **desaparece** del sitio | Jared | Títulos, pie, FAQ |
 | El hexágono "MM" es el logo de Marketing Master Top (archivo `logo-mmg.svg`); el favicon es la "i" de iCTC | Jared | `assets/img/` |
 | Mercado: Argentina; voseo; hora Argentina; formulario sin selector de país | Jared | Todo el sitio |
-| Precios en **USD** (210 / 150); no decir en qué moneda debita Mercado Pago | Jared ("dejalos todo en USD") | Sección 07, FAQ, términos |
+| Precios en **USD** (210 / 150) con la nota "Pesificamos el costo al momento de realizar el pago."; el tipo de cambio no se escribe hasta que Jared lo defina | Jared (2026-10-24 y 2026-10-26) | Sección 08, términos |
 | Plan USD 150: no explicar la transferencia de recursos ni que el Hub es GoHighLevel | Jared | — |
 | Garantía: la tienda **elige** reembolso y fin, o seguir sin reembolso | Jared | Sección 08, términos |
 | Instagram no es filtro; los anuncios activos los revisa el equipo; la calificación automática no cambia | Jared | `form.js` (sin cambios) |
@@ -67,7 +71,7 @@ Diario de trabajo de la landing de **ICTC** (Marketing Master Top). Tiene dos pa
 
 ### 5. Verificado y no verificado
 
-**Verificado al commit `47446eb`:** suite 30/30; capturas de cada sección a 360 y 1440 px sin desbordes; grep sin "usted", tú, Stripe ni Colombia en HTML y JS.
+**Verificado al commit `a96b0d9`:** suite 30/30; capturas de cada sección a 360 y 1440 px sin desbordes; grep sin "usted", tú, Stripe ni Colombia en HTML y JS.
 
 **No verificado (no darlo por hecho):**
 - **Moneda de las suscripciones de Mercado Pago en Argentina.** Indicios de que es solo ARS (ejemplo oficial con `currency_id: "ARS"`, listas de terceros sin USD). La red del contenedor bloquea mercadopago.com.ar, así que no se leyó la documentación oficial.
@@ -85,7 +89,8 @@ Diario de trabajo de la landing de **ICTC** (Marketing Master Top). Tiene dos pa
 | Precio para conservar CRM y cotizadora al cancelar | `config.js` → `precioContinuidad` (USD 60 es **propuesta**) | Sin confirmar |
 | Cupos por ciudad | `config.js` → `cupos` | Solo con datos reales |
 | Categoría de monotributo | No se muestra | Jared no la pasó |
-| Moneda del débito y tipo de cambio | Términos (punto 7) | Sin confirmar |
+| Tipo de cambio para pesificar | Términos (punto 7) | Sin definir (que se pesifica ya está confirmado) |
+| Punto 5 del pedido del 2026-10-26 ("Preparación en el código para futuro VSL…") | — | **El mensaje llegó cortado**; hay que pedírselo a Jared |
 | Texto legal final | `terminos.html`, `privacidad.html` | Lo define el abogado |
 | Vector oficial del logo MM | `assets/img/logo-mmg.svg` | El actual es una recreación |
 
@@ -93,11 +98,12 @@ Diario de trabajo de la landing de **ICTC** (Marketing Master Top). Tiene dos pa
 
 1. Esperar la revisión de Jared de la versión para Argentina y aplicar sus cambios.
 2. Cargar WhatsApp y email cuando lleguen. Eso muestra el botón de respaldo del formulario y el contacto del pie y de las legales.
-3. Confirmar la moneda del débito en Mercado Pago y completar el punto 7 de los términos.
-4. Precio de continuidad: confirmarlo o quitar la frase de la FAQ.
-5. Validar o quitar el punto de agencias de la sección 02 (`data-pendiente="validar-agencias"`).
-6. Subdominio: CNAME `ictc` → `jaredmarketingmaster.github.io` en el DNS y dominio personalizado en Settings → Pages. GitHub crea un archivo `CNAME` en la rama; **no crearlo a mano antes del DNS**, porque deja de verse el sitio de Pages.
-7. Al lanzar: quitar el `noindex` de las 5 páginas, quitar el aviso de BORRADOR de las legales y pasar los cambios a `main`.
+3. Pedirle a Jared el punto 5 de su pedido del 2026-10-26 (preparación para un futuro VSL), que llegó cortado.
+4. Definir el tipo de cambio para pesificar y completar el punto 7 de los términos.
+5. Precio de continuidad: confirmarlo o quitar la frase de la FAQ.
+6. Validar o quitar el punto de agencias de la sección 02 (`data-pendiente="validar-agencias"`).
+7. Subdominio: CNAME `ictc` → `jaredmarketingmaster.github.io` en el DNS y dominio personalizado en Settings → Pages. GitHub crea un archivo `CNAME` en la rama; **no crearlo a mano antes del DNS**, porque deja de verse el sitio de Pages.
+8. Al lanzar: quitar el `noindex` de las 5 páginas, quitar el aviso de BORRADOR de las legales y pasar los cambios a `main`.
 
 ### 8. Entorno y trampas conocidas
 
@@ -112,7 +118,7 @@ Diario de trabajo de la landing de **ICTC** (Marketing Master Top). Tiene dos pa
 
 ### 9. Dónde está cada cosa
 
-- **Copy de la landing:** `index.html` (secciones marcadas `01)` a `10)`).
+- **Copy de la landing:** `index.html` (secciones marcadas `01)` a `11)`).
 - **Mensajes del formulario y del plan B:** `assets/js/form.js` (`MENSAJES`, `mostrarFallo`).
 - **Encabezado y pie:** `assets/js/comun.js` (`renderEncabezado`, `renderPie`).
 - **Configuración y datos legales:** `config.js`.
@@ -437,3 +443,33 @@ Diario de trabajo de la landing de **ICTC** (Marketing Master Top). Tiene dos pa
 
 **Pendientes**
 - [ ] Revisión de Jared de los íconos elegidos y de las frases en negrita.
+
+---
+
+### 2026-10-26 — Hero nuevo, sección "¿Cuál es el problema?" y nota de pesificación
+
+**Commits:** `a96b0d9`
+**Pedido por:** Jared (cambios de copy, estructura y UI; textos literales suyos)
+
+**Qué se hizo**
+- **Hero:** titular A "El objetivo: 15 ventas extra de iPhone en 30 días." con el resalte "Cómo: Aplicando el sistema ICTC.". El resto del hero no cambió. `og:image:alt` y la og-image se actualizaron con el titular nuevo (plantilla en `herramientas/`).
+- **Nueva sección 03 "¿Cuál es el problema?"** después de la 02, con su misma estructura: cuatro puntos con ícono (baja, persona tachada, lupa, equipo), frases clave en negrita y el cierre destacado "La pérdida de dinero en oportunidades es más grande de lo que podés contar.".
+- **Renumeración:** las secciones siguientes pasan de 03–10 a 04–11 en el HTML, los comentarios del CSS, CLAUDE.md, el README y la etiqueta de la prueba del caso. Los ids no cambiaron.
+- **Sección 06:** título "¿Qué obtenés al adquirir el sistema ICTC?". La línea de tiempo del onboarding muestra el número de cada paso (01 a 05) dentro del hito hexagonal, con un contador de CSS.
+- **Sección 08:** debajo de "USD 210 al mes." va la nota "Pesificamos el costo al momento de realizar el pago.". Los términos dicen que el precio se pesifica al pagar; el tipo de cambio queda `[PENDIENTE]`.
+
+**Decisiones y por qué**
+- **"Pesificamos" y no "Especificamos":** Jared dejó la duda. "Pesificamos" es coherente con que Mercado Pago debita en pesos y con la decisión de mostrar los precios en USD.
+- **La nueva sección queda en fondo blanco, como la 02,** para tener el "diseño idéntico" pedido. Como quedan dos secciones blancas seguidas, `.seccion--continua` le quita el espacio de arriba a la 03 y se lee como continuación de la 02. Las secciones siguientes no cambiaron de fondo.
+- **Íconos y negritas en la 03,** igual que en la 02, para que el clon sea idéntico. La negrita no cambia el texto de Jared.
+- **og-image con el titular nuevo,** porque siempre replicó el titular A.
+- **Texto literal de Jared** aunque "Posibles clientes potenciales futuros" sea redundante y "Vendedores sin sistema es depender…" tenga una concordancia coloquial. Se le avisa y no se corrige por cuenta propia.
+
+**Verificación**
+- Suite 30/30 (se actualizó el texto esperado del titular A).
+- Capturas a 360 y 1440 px del hero, la nueva 03, la 06 con los pasos numerados y la 08 con la nota: sin desbordes; la nota se lee sobre la tarjeta oscura (`--texto-suave-sobre-oscuro`, 5,72:1).
+
+**Pendientes**
+- [ ] **Punto 5 del pedido (preparación para un futuro VSL): el mensaje llegó cortado.**
+- [ ] Confirmar "Pesificamos" y definir el tipo de cambio.
+- [ ] Revisión de Jared de los íconos y negritas de la sección 03.
