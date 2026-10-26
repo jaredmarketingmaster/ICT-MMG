@@ -13,14 +13,14 @@ Diario de trabajo de la landing de **ICTC** (Marketing Master Top). Tiene dos pa
 
 ## Handoff: estado actual (leer primero)
 
-> **Última actualización:** 2026-10-26. **Último commit de código:** `a96b0d9`. Rama: `claude/zealous-fermi-rhv2dx`.
+> **Última actualización:** 2026-10-26. **Último commit de código:** `d7adc1c`. Rama: `claude/zealous-fermi-rhv2dx`.
 > Si `git log` muestra commits posteriores que no aparecen acá, este bloque está desactualizado: leé esos commits y las entradas del registro antes de tocar nada.
 
 ### 1. Cómo retomar (checklist)
 
 1. Leer completos este bloque, `CLAUDE.md` y `README.md`. Después, las entradas del registro desde la del 2026-10-24 "Versión para Argentina".
 2. `git fetch origin claude/zealous-fermi-rhv2dx` y trabajar en esa rama. Es la que publica GitHub Pages.
-3. Levantar el servidor y correr la suite (comandos en `CLAUDE.md`, "Cómo verificar"). Resultado esperado al commit `a96b0d9`: **30/30 pruebas OK**.
+3. Levantar el servidor y correr la suite (comandos en `CLAUDE.md`, "Cómo verificar"). Resultado esperado al commit `d7adc1c`: **30/30 pruebas OK**.
 4. Antes de escribir un dato, revisar la sección 6 ("Datos que no existen"). Lo que no está acá ni en `config.js` **no se inventa**: se pregunta a Jared o se deja `[PENDIENTE: …]`.
 5. Al terminar: suite en verde, commit, `git push -u origin claude/zealous-fermi-rhv2dx` (así se ve en Pages en 1 o 2 minutos), **reescribir este bloque** y agregar una entrada al registro.
 
@@ -31,7 +31,7 @@ Diario de trabajo de la landing de **ICTC** (Marketing Master Top). Tiene dos pa
 - Prefiere opciones concretas para elegir y que se publique cada cambio en Pages para revisarlo en línea.
 - **Regla de copy:** ningún texto visible nuevo se publica sin su aprobación, salvo delegación explícita. El 2026-10-24 delegó todo el copy de la versión para Argentina ("tomá vos todas las decisiones y luego voy a chequear"). **Ese copy todavía no lo revisó.**
 
-### 3. Estado del sitio al commit `a96b0d9`
+### 3. Estado del sitio al commit `d7adc1c`
 
 | Parte | Estado | Origen del texto |
 |---|---|---|
@@ -72,7 +72,7 @@ Diario de trabajo de la landing de **ICTC** (Marketing Master Top). Tiene dos pa
 
 ### 5. Verificado y no verificado
 
-**Verificado al commit `a96b0d9`:** suite 30/30; capturas de cada sección a 360 y 1440 px sin desbordes; grep sin "usted", tú, Stripe ni Colombia en HTML y JS.
+**Verificado al commit `d7adc1c`:** suite 30/30; capturas de cada sección a 360 y 1440 px sin desbordes; grep sin "usted", tú, Stripe ni Colombia en HTML y JS.
 
 **No verificado (no darlo por hecho):**
 - **Moneda de las suscripciones de Mercado Pago en Argentina.** Indicios de que es solo ARS (ejemplo oficial con `currency_id: "ARS"`, listas de terceros sin USD). La red del contenedor bloquea mercadopago.com.ar, así que no se leyó la documentación oficial.
@@ -601,6 +601,7 @@ Seguí el **Handoff** de arriba: sección 1 (cómo retomar), 6 (datos que no exi
 
 ### 2026-10-26 — Recapitulación completa del proyecto
 
+**Commits:** `d7adc1c`
 **Pedido por:** Jared ("recapitular todo el trabajo… redactado de una forma que cualquier LLM pueda leer, entender y continuar")
 
 **Qué se hizo**
