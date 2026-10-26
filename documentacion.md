@@ -13,14 +13,14 @@ Diario de trabajo de la landing de **ICTC** (Marketing Master Top). Tiene dos pa
 
 ## Handoff: estado actual (leer primero)
 
-> **Última actualización:** 2026-10-26. **Último commit de código:** `d7adc1c`. Rama: `claude/zealous-fermi-rhv2dx`.
+> **Última actualización:** 2026-10-26. **Último commit de código:** `884d358` (versión final 1, en `main`). Ramas: `main` (versión final 1) y `claude/ict-landing-page-beta-7b6bzq` (mismo contenido). La rama `claude/zealous-fermi-rhv2dx` quedó en `34e78ca`, sin este cambio.
 > Si `git log` muestra commits posteriores que no aparecen acá, este bloque está desactualizado: leé esos commits y las entradas del registro antes de tocar nada.
 
 ### 1. Cómo retomar (checklist)
 
 1. Leer completos este bloque, `CLAUDE.md` y `README.md`. Después, las entradas del registro desde la del 2026-10-24 "Versión para Argentina".
-2. `git fetch origin claude/zealous-fermi-rhv2dx` y trabajar en esa rama. Es la que publica GitHub Pages.
-3. Levantar el servidor y correr la suite (comandos en `CLAUDE.md`, "Cómo verificar"). Resultado esperado al commit `d7adc1c`: **30/30 pruebas OK**.
+2. Partir de `main` (versión final 1). La versión 2 (VSL) se trabaja en una rama nueva desde `main`. GitHub Pages tiene que apuntar a `main`; hasta que Jared lo cambie en Settings → Pages, sigue mostrando `claude/zealous-fermi-rhv2dx`, que **no** tiene el español neutro.
+3. Levantar el servidor y correr la suite (comandos en `CLAUDE.md`, "Cómo verificar"). Resultado esperado al commit `884d358`: **34/34 pruebas OK**.
 4. Antes de escribir un dato, revisar la sección 6 ("Datos que no existen"). Lo que no está acá ni en `config.js` **no se inventa**: se pregunta a Jared o se deja `[PENDIENTE: …]`.
 5. Al terminar: suite en verde, commit, `git push -u origin claude/zealous-fermi-rhv2dx` (así se ve en Pages en 1 o 2 minutos), **reescribir este bloque** y agregar una entrada al registro.
 
@@ -45,6 +45,7 @@ Diario de trabajo de la landing de **ICTC** (Marketing Master Top). Tiene dos pa
 | Pie | Marketing Master Top + prestador desde `config.js` | Claude, por delegación |
 | agenda.html y no-califica.html | Hecho, en voseo y hora Argentina | Claude, por delegación |
 | terminos.html y privacidad.html | **Borradores** con aviso visible y `[PENDIENTE]` | Claude, a pedido de Jared; falta el abogado |
+| Español neutro | Quien no está en Argentina (zona horaria del dispositivo) ve todo en tuteo; el HTML sigue en voseo y `idioma.js` traduce | Pedido de Jared (2026-10-26); diccionario de Claude |
 | Formulario | Solo Argentina, prefijo fijo +54 9 | Decisión de Jared; mensajes de Claude |
 | Caso (sección 04) y calculadora (07) | Números sin cambios | Brief original |
 | Publicación | GitHub Pages desde esta rama. Jared dijo que lo configuraba; **no se verificó desde el contenedor** | — |
@@ -68,11 +69,12 @@ Diario de trabajo de la landing de **ICTC** (Marketing Master Top). Tiene dos pa
 | Legales: borrador publicado con aviso de BORRADOR | Jared | `terminos.html`, `privacidad.html` |
 | Titular A con "El objetivo:"; línea de "30 días desde que se encienden los anuncios"; frase C1 del pie; firma "By marketingmaster.top" | Claude (delegado) | Hero, pie |
 | Texto de no-califica válido para cualquier motivo | Claude (delegado) | `no-califica.html` |
+| Español neutro fuera de Argentina, detectado por zona horaria (no por IP, que no se puede ver sin servidor); tuteo como neutro | Jared pidió el neutro; Claude eligió zona horaria y tuteo | `assets/js/idioma.js` |
 | Validación de celular argentino (acepta 54/9/0, pide sacar el 15) | Claude | `form.js` → `normalizarCelularArgentino` |
 
 ### 5. Verificado y no verificado
 
-**Verificado al commit `d7adc1c`:** suite 30/30; capturas de cada sección a 360 y 1440 px sin desbordes; grep sin "usted", tú, Stripe ni Colombia en HTML y JS.
+**Verificado al commit `884d358`:** suite 34/34 (incluye el español neutro en 4 zonas horarias y las 4 zonas argentinas); Lighthouse móvil 91–100 en las dos variantes; antes, al commit `d7adc1c`: capturas de cada sección a 360 y 1440 px sin desbordes; grep sin "usted", tú, Stripe ni Colombia en HTML y JS.
 
 **No verificado (no darlo por hecho):**
 - **Moneda de las suscripciones de Mercado Pago en Argentina.** Indicios de que es solo ARS (ejemplo oficial con `currency_id: "ARS"`, listas de terceros sin USD). La red del contenedor bloquea mercadopago.com.ar, así que no se leyó la documentación oficial.
@@ -97,6 +99,8 @@ Diario de trabajo de la landing de **ICTC** (Marketing Master Top). Tiene dos pa
 
 ### 7. Próximos pasos (en orden)
 
+0. **Versión 2: el VSL** (Jared va a pasar todo el material). Pendiente del pedido del 2026-10-26: el punto 5 llegó cortado.
+
 1. Esperar la revisión de Jared de la versión para Argentina y aplicar sus cambios.
 2. Cargar WhatsApp y email cuando lleguen. Eso muestra el botón de respaldo del formulario y el contacto del pie y de las legales.
 3. Pedirle a Jared el punto 5 de su pedido del 2026-10-26 (preparación para un futuro VSL), que llegó cortado.
@@ -104,7 +108,7 @@ Diario de trabajo de la landing de **ICTC** (Marketing Master Top). Tiene dos pa
 5. Precio de continuidad: confirmarlo o quitar la frase de la FAQ.
 6. Validar o quitar el punto de agencias de la sección 02 (`data-pendiente="validar-agencias"`).
 7. Subdominio: CNAME `ictc` → `jaredmarketingmaster.github.io` en el DNS y dominio personalizado en Settings → Pages. GitHub crea un archivo `CNAME` en la rama; **no crearlo a mano antes del DNS**, porque deja de verse el sitio de Pages.
-8. Al lanzar: quitar el `noindex` de las 5 páginas, quitar el aviso de BORRADOR de las legales y pasar los cambios a `main`.
+8. Al lanzar: quitar el `noindex` de las 5 páginas y el aviso de BORRADOR de las legales (los cambios ya están en `main` desde la versión final 1). **Sin `webhookUrl` el formulario no guarda nada**: no mandar tráfico real antes de configurarlo.
 
 ### 8. Entorno y trampas conocidas
 
@@ -615,3 +619,34 @@ Seguí el **Handoff** de arriba: sección 1 (cómo retomar), 6 (datos que no exi
 
 **Pendientes**
 - [ ] Los del Handoff, sección 7. El primero: el punto 5 cortado del pedido del 2026-10-26.
+
+---
+
+### 2026-10-26 — Español neutro fuera de Argentina y versión final 1 en `main`
+
+**Commits:** `884d358`
+**Pedido por:** Jared ("si alguien con IP externo a Argentina visita este website, todos los textos se cambien de español argentino a español neutro… esta será la versión final 1, pasalo a main")
+
+**Qué se hizo**
+- `assets/js/idioma.js`: detecta la variante y traduce de voseo a tuteo con un diccionario (verbos, imperativos, "vos", "para vos" → "para ti", "la plata" → "el dinero"). Traduce textos, atributos (`aria-label`, `placeholder`, `title`, `alt`, `data-texto`), el título y lo que aparece después (errores, avisos, encabezado y pie), y el mensaje precargado de WhatsApp.
+- Script en el `<head>` de las 5 páginas: decide antes de pintar y oculta el `body` hasta que termina la traducción (red de seguridad de 1,5 s). `idioma.js` se carga como módulo aparte, antes que el resto.
+- `?es=ar` / `?es=neutro` y `CONFIG.espanolNeutroFueraDeArgentina`.
+- La rama de esta sesión se adelantó (fast-forward) hasta `34e78ca` antes de empezar; después se creó `main` con la versión final 1.
+
+**Decisiones y por qué**
+- **Zona horaria y no IP:** GitHub Pages no tiene servidor que vea la IP. Un servicio externo de geolocalización suma una dependencia, demora y límites, y le manda la IP de cada visitante a un tercero (implicancias de privacidad). La zona horaria funciona sin red. Falla en dos casos: alguien de Argentina con el dispositivo en otra zona horaria (viajando) ve el neutro, y alguien de afuera con el dispositivo en hora Argentina ve el rioplatense. Una VPN no cambia la zona horaria.
+- **Neutro = tuteo:** es lo más usado en español neutro latinoamericano en marketing digital, y mantiene el tono cercano del voseo. Si Jared prefiere "usted", se cambia el diccionario.
+- **Solo cambia el idioma:** hora Argentina, Mercado Pago, pesificación, formulario +54 9 y legales quedan iguales en las dos variantes. Un visitante de otro país no puede completar el formulario con un celular no argentino; eso es una decisión de producto de Jared (regla 11) y se le avisa.
+- **Sin precarga de todos los módulos:** se probó y empeoraba el primer pintado en Argentina (~1,29 s → ~1,48 s en red lenta). Con `idioma.js` aparte: Argentina ~1,34 s y neutro ~1,78 s (antes del arreglo, 2,45 s).
+
+**Verificación**
+- Suite 34/34. La prueba de voseo se probó con una mutación (se quitó "sabés" del diccionario y falló).
+- Diferencia línea por línea entre las dos variantes en las 5 páginas: concordancia y pronombres correctos; las legales no cambian (tercera persona).
+- Lighthouse móvil (servidor con gzip): rendimiento 91–100, accesibilidad 100, buenas prácticas 100 en las dos variantes.
+
+**Pendientes**
+- [ ] Jared: apuntar GitHub Pages a `main` (Settings → Pages).
+- [ ] Jared: revisar el neutro y confirmar tuteo (o pedir "usted").
+- [ ] Decidir si el formulario acepta celulares de otros países para la versión neutra.
+- [ ] Versión 2: VSL.
+
